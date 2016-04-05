@@ -1,0 +1,495 @@
+---
+title: "Initial notes on inbreeding and parental investment"
+author: "Brad Duthie"
+date: "March 28, 2016"
+output: html_document
+linestretch: 1
+header-includes:
+- \usepackage{natbib}
+- \usepackage{lineno}
+- \linenumbers
+bibliography: Inbreeding_and_PI.bib
+---
+
+******************************
+
+Some very brief background
+------------------------------------------------
+
+The following includes some initial notes, modelling, and analysis on biparental inbreeding and parental investment. The goal is to explore whether or not different degrees of parental investment might be favoured for different degrees of inbreeding, and if inbreeding might be favoured sometimes if enough parental investment can overcome the effect of inbreeding depression.
+
+******************************
+
+The model
+------------------------------------------------
+
+First I define an equation describing the proportion of identical-by-descent allele copies of a parent (assume female) in its offspring that make it into the next generation ($\zeta_{off}$). As such, the below equation accounts for the inclusive fitness increment associated with inbreeding, along with inbreeding depression. It also models direct offspring fitness as a function of parental investment. The equation takes a similar form to previous models of parental investment and inclusive fitness models of biparental inbreeding,
+
+$$\zeta_{off} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-\beta_{0}-\beta_{1}r\right)}\right).$$
+
+The expression $\left(1/2\right) \left(1 + r\right)$ is the proportion of identical-by-descent alleles in **one** offspring of the parent providing parental care (again, just assume female for now; note that there is no $n$ representing offspring number, yet -- for the moment, we are only looking at the proportion of alleles passed in one focal offspring). The expression $\left(1 - \exp\left[-c\left(m-\beta_{0}-\beta_{1}r\right)\right]\right)$ is the individual offspring's direct fitness (e.g., in terms of survival) as a function of parental care ($m$), the minimum parental care required for a viable offspring ($\beta_{0}$, which can also be interpreted as the amount of load in the population not due to inbreeding -- this might require a constant to scale appropriately, but the concept should be the same), log-linear slope of inbreeding depression ($\beta_{1}$), and a parameter that affects the curve of parental investment with respect to fitness ($c$; i.e., how 'diminishing' are the returns on $\zeta_{off}$ from increasing $m$). There are a few things worth noting right away:
+
+- This model considers a focal parent (just assume it is outbred and female, to keep things simple for now) that has offspring that can be inbred to some degree, and she must decide how much parental investment to make to maximise the number of identical-by-descent alleles contributed to her offspring. 
+- The parameter $m$ is not simply raw resources provided to an offspring. Rather, it is the amount of parental investment provided that **could otherwise have been invested in other offspring**. In other words, assuming parents have a total amount of investment that they can provide, and that amount must be divided among offspring, $m$ is the amount provided to the one offspring of interest that is taken away from the production of, or investment in, siblings of the offspring (for now, I implicity assume no mixed broods -- females apply $m$ to offspring that are equally inbred or outbred).
+- When $r=0$ and $\beta_{1}=0$ (outbred offspring), the above equation collapses back down to standard models of parental investment [e.g., @Macnair1978; @Parker1978], but with the usual parameter $K$ being replaced by $1/2$, and thereby specifying IBD alleles transmitted to offspring instead of some arbitrary metric of offspring fitness.
+- When $c=-1$ and $m=0$, the model collapses back down to the version of Parker's [-@Parker1978] model presented in @Duthie2015a. This is elegant, but it is worth pointing out that, conceptually, there is no 'standard' amount of parental care provided in biparental inbreeding models (and therefore no real way, that I can see, to completely anchor to them; i.e., this is probably as mathematically elegant as it can get). Really, at $m=0$, offspring fitness should always be zero because no investment is provided. It is only the $-c$ that flips things back around so that the model can collapse and mirror that of @Duthie2015a -- otherwise, $\zeta_{off}$ would **always** be negative (biologically interpreted as zero fitness). As $m \to \infty$, inbred offspring **always** have the same direct fitness (and therefore higher $\zeta_{off}$ due to IBD alleles) as their outbred counterparts; in other words, **I assume that sufficient parental investment can *always* compensate for being inbred** (though the amount of PI required might be extremely high). <!--- [**NOTE:**, actually, the collapse is not entirely clean because in @Duthie2015a we defined $\exp\left(-\beta_{0}-\beta_{1}r\right) = \left(1-\delta\right)$, meaning that really the exponent above is more like $\delta$, representing the degree of inbreeding depression -- not survival. Not sure how this will affect some of the interpretation below in relation to previous biparental inbreeding models, but conceptually this still works for a given $\beta_{1}$. I have some initial concern when differentiating $\zeta_{off}$ with respect to $r$ -- the concavity of this function appears to be the opposite of what we would want, but this should not affect the general conclusions below, I do not think.]   <span style="color:red">  **NOTE AGAIN** Really, to shoehorn the biparental inbreeding model, it really should be that $\left(1 - \exp\left[-c\left(m-\beta_{0}-\beta_{1}r\right)\right]\right) = \left(1-\delta\right)$. This kind of makes sense, actually.]</span> --->
+
+> **CONJECTURE**: The tangent of a curve $\zeta_{off}(m)$ with respect to the origin determines optimal offspring produced and PI per offspring. Upon inspection, it is obvious that optimal PI is higher when $r$ is higher. Therefore, **when inbreeding, it might be beneficial to invest more in fewer offspring**.
+
+A biological implication of the above conjecture (the conjecture will be demonstrated more carefully below) might be that parents that inbreed will be expected to produce fewer offspring -- not necessarily because the inbreeding parents (or the inbred offspring) are *low quality*, but because the best strategy for maximising their own inclusive fitness is to invest more in a smaller number of offspring rather than invest less in a lot of offspring (note, will want to think about how the distribution of relatedness and fecundity interact, but for now we can just look at the key concept). 
+
+Alternatively, if parents have a fixed clutch size, for whatever reason (e.g., only four eggs fit in a nest or burrow, or something -- as long as the reason is independent of the parent's $m$, I think it works), it might be beneficial to produce inbred offspring. Intuitively, this would be caused by a parent that has more to invest, but cannot use that extra $m$ to make more offspring, so it shifts to producing inbred offspring that now have the same direct fitness as outbred offspring -- or, at least, lower fitness, but are expected to pass more alleles identical-by-descent.
+
+**The above points are only some potential ideas, but we need to analyse the model to really understand what it predicts.** Note again that the tangent of the curve $\zeta_{off}(m)$ with respect to the origin identifies the optimum amount of investment for a particular offspring *given a degree of inbreeding*. This does not by itself say anything about how much inbreeding an individual should do given some degree of inbreeding depression -- but this should be something we can figure out (I will do this below). Intuitively, if there is no inbreeding depression, a focal female should always inbreed -- the same amount of PI will yield a higher $\zeta_{off}$ every time due the positive increment of $r$ and zero value of $\beta_{1}$ in the above equation. Also intuitively, if inbreeding depression is severe, then inbred offspring will simply not be viable (aside: consider defining a maximum $m$?). Between the two, there should be some way to find the $r$ and $m$ that maximises $\zeta_{off}$ for a given $\beta_{1}$, but some care needs to be exercised in biological interpretations of this. In any case, **there seem to be at least two interesting concepts to flesh out here:**
+
+1. How the optimum amount of parental investment varies with a parent's degree of inbreeding.
+2. What the optimal combination of inbreeding and parental investment is for maximising the number of identical-by-descent alleles a parent leaves in their offspring.
+
+What follows is some progress in fleshing out the two above points, and generally analysing the above model. Below is the equation defined in R, which can be used as a starting point for the analysis.
+
+```{r}
+OffAT <- function(r, m, B0=1, B1=1, c=1){
+    return( (1/2)*(1+r) * (1 - exp(-c*(m - B0 - B1*r)) ));
+}
+```
+
+As a starting point, we can plot the relationship between $m$ (x-axis) and $\zeta_{off}$ (y-axis) in the figure below, given that a focal female outbreeds ($r=0$) and the minimum $m$ for a viable offspring ($\beta_{0}$) is $1$; set $c=1$.
+
+```{r, echo=FALSE}
+PI <- seq(from=0,to=4,by=0.01);
+Alleles_IBD_outbr <- OffAT(r=0, m=PI, B0=1, B1=1, c=1);
+par(mar=c(5,5,2,2));
+plot(PI,Alleles_IBD_outbr,type="l",lwd=3,ylim=c(0,1),
+     xlab=expression(paste("Parental investment (",italic(m),")")),
+     ylab=expression(paste("IBD alleles in offspring (",zeta[off],")")),
+     cex.lab=1.5,cex.axis=1.5);
+abline(h=0,lty="dotted",lwd=0.8);
+```
+
+The general shape of this curve is the same as described from previous models of parental investment [e.g., @Macnair1978; @Parker1978]. Note that the slope crosses the x-axis at $m=1$, the miminum parental investment for viable offspring. As $m$ increases, the direct fitness of offspring increases, asymptotically approaching a direct fitness of $1$. Because outbred offspring share $1/2$ of their alleles IBD with the focal parent, the value of $\zeta_{off}$ therefore approaches $1/2$ as $m \to \infty$. Note that we can change the shape of this curve by adjusting $c$, increasing the rate at which $\zeta_{off}$ approaches $1/2$ (increasing $c$), or decreasing the rate at which it approaches $1/2$ (decreasing $c$). Note also that if we increase $r$ but not $\beta_{1}$ (inbreeding, but no inbreeding depression), such that $r=1/2$ and $\beta_{1}=0$, $\zeta_{off}$ is higher for all values of $m>\beta_{0}$ than when $r=0$, as reflected by the plotted red line below.
+
+```{r, echo=FALSE}
+par(mar=c(5,5,2,2));
+plot(PI,Alleles_IBD_outbr,type="l",lwd=3,ylim=c(0,1),
+     xlab=expression(paste("Parental investment (",italic(m),")")),
+     ylab=expression(paste("IBD alleles in offspring (",zeta[off],")")),
+     cex.lab=1.5,cex.axis=1.5);
+abline(h=0,lty="dotted",lwd=0.8);
+Alleles_IBD_inbr <- OffAT(r=0.5, m=PI, B0=1, B1=0, c=1);
+points(PI,Alleles_IBD_inbr,type="l",lwd=3,col="red");
+```
+
+Note that the red line asymptotes to the value of $\left(1/2\right)\left(r+1\right)=3/4$ as $m \to \infty$. Also note, however, that the optimal $m$ is probably identical (tangent line appears to hit the curve at around the same place), which would make biological sense (as long as all the offspring in a clutch are equally related, there does not seem to be any intuitive reason why a female should shift to investing more in fewer offspring -- or vice versa -- in the absence of inbreeding depression). This is a good thing, but needs to be confirmed through analysis (*note*, analysis described below confirms that both curves have an optimum of $m=2.146193$).
+
+Before proceeding with such an analysis, I will consider one more simple case in which there exists some inbreeding depression, $\beta_{1}=1$. All other parameters will be kept the same for now. The red line below now compares how $\zeta_{off}$ changes with $m$ given the same degree of inbreeding $r=1/2$ as above, except now with inbreeding depression.
+
+
+```{r, echo=FALSE}
+par(mar=c(5,5,2,2));
+plot(PI,Alleles_IBD_outbr,type="l",lwd=3,ylim=c(0,1),
+     xlab=expression(paste("Parental investment (",italic(m),")")),
+     ylab=expression(paste("IBD alleles in offspring (",zeta[off],")")),
+     cex.lab=1.5,cex.axis=1.5);
+abline(h=0,lty="dotted",lwd=0.8);
+Alleles_IBD_inbr <- OffAT(r=0.5, m=PI, B0=1, B1=1, c=1);
+points(PI,Alleles_IBD_inbr,type="l",lwd=3,col="red");
+```
+
+The tangent lines to the curves appear to hit $m$ at different places, lower $m$ for the outbred offspring, indicating an optimal strategy of producing more offspring and investing less in each, compared to inbreeding. The slope of the tangent line would also appear to be slightly greater for the inbred (red) case, which would indicate (as in the previous example where $\beta_{1}=0$), I think, higher fitness is possible overall due to inbreeding.
+
+So the way to analyse this is to consider the lines that pass through the origin and are tangent to the curves produced by this model -- I believe that that three concepts can be illustrated visually in this way (which I hope to come back to with these same two examples):
+
+1. For slopes where the lines run through the origin and are tangent to the curves, the point at which the two touch represents the optimal $m$ for maximising fitness (assuming as many offspring will be presented as possible with $m$ invested in each offspring). This is not new, and has already been shown by @Macnair1978, and by @Parker1978, but leads into point 2 below.
+
+2. How optimal $m$ differs for different degrees of inbreeding ($r$) and inbreeding depression ($\beta_{1}$). This is described, as mentioned in 1 above, by the point on the x-axis where the line running from the origin is tangent to the curve. This by itself is interesting, and my intuition from both the equation and the plots is that optimal $m$ will be directly affected by $\beta_{1}$, but not $r$ (*note*, analysis confirms). 
+
+3. How fitness can be maximised by inbreeding and parental investment jointly. This will be determined, I believe, by maximising the *slope* of the line that runs through the origin that lies tangent to the curves. The results of @Parker1979 and @Duthie2015a should also pop out of this (*note*, they sort of do) -- where inbreeding increases inclusive fitness more than inbreeding avoidance, the slope of this line should be greater. In other words, we should be able to find the inbreeding thresholds from @Duthie2015a for females and -- *I think* -- demonstrate that at those thresholds, the slope of the lines will be **identical** (*note*, it is *slightly* more complicated than this, see below). Note, this is a bit more difficult than it sounds because the thresholds were discussed in terms of coefficients of kinship rather than relatedness (*note*, not really an issue, actually), but a translation should be possible. To me, this would be a beautiful conceptual link between the two models (*note*, it is pretty cool).
+
+Below begins my attempt to analyse the model a bit. 
+
+******************************
+
+Initial analysis
+------------------------------------------------
+
+Starting again with the original equation,
+
+$$\zeta_{off} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-\beta_{0}-\beta_{1}r\right)}\right).$$
+
+We can differentiate $\zeta_{off}$ with respect to $m$ using R. Instead of using the above R function (`OffAT`), I will define `fm` as an expression in R.
+
+```{r}
+fm <- expression(0.5*(1+r)*(1-exp(-c*(m-B0-B1*r))),'m');
+```
+
+We can find the first derivative as follows.
+
+```{r}
+fm1 <- D(fm,'m');
+print(fm1);
+```
+
+More clearly written, we have the following,
+
+$$\frac{\partial \zeta_{off}}{\partial m} = \frac{c}{2} \left(1+r\right)e^{-c\left(m-\beta_{0}-\beta_{1}r\right)}. $$
+
+This is intuitive, but it is nice to have R verify. We can do the same for the second derivative (which we will not need for the anaylsis, but it helps sometimes write out and visualise).
+
+```{r}
+fm2 <- D(D(fm , 'm'),'m');
+print(fm2);
+```
+
+Again, more clearly written, we have the following,
+
+$$\frac{\partial^{2} \zeta_{off}}{\partial m^{2}} = \frac{-c^{2}}{2}\left(1+r\right) e^{-c\left(m - \beta_{0} - \beta_{1}r\right)}.  $$
+
+This also is also fairly straightforward, but it helps to plot these functions to make sure that they look sensical. In the case of the above, we can go back to the simple case where $r=0$, $\beta_{0}=1$, and $c=1$ (note, it does not matter what we set $\beta_{1}$ to if $r=0$, so $\beta_{1}=1$ is fine).
+
+```{r, echo=FALSE}
+OffAT1 <- function(r, m, B0=1, B1=1, c=1){
+    #return(  0.5 * (1 + r) * (exp(-c * (m - B0 - B1 * r)) * c)  );
+    return(  (c/2)*(1+r)*exp(-c*(m-B0-B1*r))  );
+}
+OffAT2 <- function(r, m, B0=1, B1=1, c=1){
+    return(  -(0.5 * (1 + r) * (exp(-c * (m - B0 - B1 * r)) * c * c))  );
+}
+Alleles_IBD_outbr  <- OffAT(r=0, m=PI, B0=1, B1=1, c=1);
+par(mar=c(5,5,2,2));
+plot(PI,Alleles_IBD_outbr,type="l",lwd=3,ylim=c(-1,1),
+     xlab=expression(paste("Parental investment (",italic(m),")")),
+     ylab=expression(paste("IBD alleles in offspring (",zeta[off],")")),
+     cex.lab=1.5,cex.axis=1.5);
+abline(h=0,lty="dotted",lwd=0.8);
+Alleles_IBD_outbr1 <- OffAT1(r=0, m=PI, B0=1, B1=1, c=1);
+points(PI,Alleles_IBD_outbr1,type="l",lwd=3,col="black",lty="dashed");
+Alleles_IBD_outbr2 <- OffAT2(r=0, m=PI, B0=1, B1=1, c=1);
+points(PI,Alleles_IBD_outbr2,type="l",lwd=3,col="black",lty="dotted");
+```
+
+In the above, the dashed line plots the partial derivative of $\zeta_{off}$ with respect to $m$, and the dotted line plots the second partial derivative. This all appears to checkout, so I think I can proceed with confidence in finding the line that lies tangent to the curve that also passes through the origin. In general, the equation for a line tangent to some function $f$ at the point $a$ is,
+
+$$ y = f'\left(a\right)\left(x-a\right) + f\left(a\right).$$
+
+Applying this to the above, we have the general line,
+
+$$ y = \frac{c}{2} \left(1+r\right)e^{-c\left(m-\beta_{0}-\beta_{1}r\right)}\left(x-m\right) + \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-\beta_{0}-\beta_{1}r\right)}\right). $$
+
+Substituting the parameters of interest, this simplifies considerably,
+
+$$ y = \frac{1}{2} \left(1+0\right)e^{-1\left(m-1-\left(1\right)0r\right)}\left(x-m\right) + \frac{1}{2}\left(1+0\right)\left(1-e^{-1\left(m-1-\left(1\right)0r\right)}\right), $$
+
+which reduces to,
+
+$$ y = \frac{1}{2} e^{-\left(m-1\right)}\left(x-m\right) + \frac{1}{2}\left(1-e^{-\left(m-1\right)}\right). $$
+
+The line needs to pass through the origin, so we want to solve for $m$ given $y=0$ and $x=0$, so we set $x$ and $y$ values as such below,
+
+$$ 0 = \frac{1}{2} e^{-\left(m-1\right)}\left(0-m\right) + \frac{1}{2}\left(1-e^{-\left(m-1\right)}\right). $$
+
+The nicest way we can simplify this is,
+
+$$ 0 = e^{-\left(m-1\right)} - \frac{1}{m+1}. $$
+
+We can plot the right hand side of the above equation across different values of $m$, and the unsimplified version before it. What we are looking for is the value of $m$ that equals zero on the y-axis.
+
+```{r, echo=FALSE}
+fmlong  <- function(m) 0.5*exp(-(m-1)) * (0-m) + 0.5*(1-exp(-(m-1)));
+fmshort <- function(m) exp(-(m-1))-(1/(m+1));
+x       <- seq(from=0,to=4,by=0.001);
+plot(x=x,y=fmlong(x),type="l",lwd=3,xlab="m value",ylab="y value");
+points(x=x,y=fmshort(x),type="l",lwd=3,lty="dashed");
+abline(h=0,lty="dotted");
+```
+
+Clearly, the value of $m$ we are looking for is slightly greater than $2$; we can get a more precise value by solving numerically (as an analytical solution does not seem possible -- isolating $m$ is not going to work). The R code below is probably overkill (I suspect it can be written more cleanly too, but it does the job), but writing something like it might be useful later on when there are other values for which we need to solve numerically (*note*, did this, and a general `findm` function is useful).
+
+```{r}
+findm <- function(low.guess,high.guess){
+  fm  <- function(m) exp(-(m-1)) - (1/(m+1));
+  lg  <- fm(low.guess);
+  hg  <- fm(high.guess);
+  if(lg > 0){
+    u <- low.guess;
+    l <- high.guess;
+  }else{
+    u <- high.guess;
+    l <- low.guess;
+  }
+  if((fm(l) > 0 & fm(u) > 0) | (fm(l) < 0 & fm(u) < 0)){
+    return("Value of m is outside the range");
+  }else{
+    check  <- 1;
+    mguess <- 0.5 * (l+u);
+    i      <- 0;
+    while(abs(check) > 0.001 | i < 10000){
+        check <- fm(mguess);
+        if(check > 0){
+          u      <- mguess;
+          mguess <- 0.5*(l+mguess); 
+        }else{
+          l      <- mguess;
+          mguess <- 0.5*(u+mguess);
+        }
+        i <- i+1;
+    }
+    return(mguess);
+  }
+} # Running the below returns the estimate
+findm(low.guess=0,high.guess=4);
+```
+
+We now have our value of interest. This is the optimal value of $m$, which is the amount of parental investment that maximises IBD allele copies produced in offspring. Above this value of $m$, females invest too much in their offspring when they should instead produce more offspring with less parental care. Below this value of $m$, females do not invest enough in their offspring and produce too many offspring with too low of direct fitness.
+
+Now, it is useful to find the *slope* ($\gamma$) of the line tangent to the curve at the optimal $m$ that passes through the origin. The slope of this line will be the rate of increase in fitness for the parent. Higher values mean more total IBD allele copies in the offspring of a female parent. Finding $\gamma$ is trivial; because the line is straight, we just need two sets of points. The first set is the origin at $(0,0)$. The second is the value of $m$ we just calculated, and $\zeta_{off}(m)$ from the original function,
+
+```{r}
+OffAT(r=0, m=2.146193, B0=1, B1=1, c=1);
+```
+
+We now have the point on the y-axis that we need. The slope of the line tangent to our original function is simply,
+
+$$ \gamma = \frac{0.3410777 - 0}{2.146193 - 0} = 0.1589222 $$
+
+We can plot the tangent line against our original function to confirm this visually,
+
+```{r, echo=FALSE}
+PI <- seq(from=0,to=4,by=0.01);
+Alleles_IBD_outbr <- OffAT(r=0, m=PI, B0=1, B1=1, c=1);
+par(mar=c(5,5,2,2));
+plot(PI,Alleles_IBD_outbr,type="l",lwd=3,ylim=c(0,1),
+     xlab=expression(paste("Parental investment (",italic(m),")")),
+     ylab=expression(paste("IBD alleles in offspring (",zeta[off],")")),
+     cex.lab=1.5,cex.axis=1.5);
+abline(a=0,b=0.1589222,lwd=2,lty="dashed");
+abline(h=0,lty="dotted",lwd=0.8);
+```
+
+We now have the optimum parental investment ($m$) and the rate of fitness increase ($\gamma$) for an outbreeding ($r=0$) female given minimum parental care for viable offspring of $\beta_{0}=1$, inbreeding depress of $\beta_{1}=1$ (irrelevant here due to outbreeding), and $c=1$. Using the same procedure as above, we can find the optimum $m$ and its corresponding $\gamma$ for a female that inbreeds with a full sibling $r=1/2$. This requires the more general function `OffAT` be used, and its derivative `OffAT1`,
+
+```{r}
+OffAT <- function(r, m, B0=1, B1=1, c=1){
+    return( (1/2)*(1+r) * (1 - exp(-c*(m - B0 - B1*r)) ));
+}
+OffAT1 <- function(r, m, B0=1, B1=1, c=1){
+    return(  (c/2)*(1+r)*exp(-c*(m-B0-B1*r))  );
+}
+```
+When we use these functions to solve for the general formula $y=f'(a)(x-a)+f(a)$ when $r=1/2$, we get a slightly higher value of $m$.
+
+```{r, echo=FALSE}
+findm <- function(low.guess,high.guess,rval){
+  fm  <- function(m,r) OffAT1(r=rval, m=m)*(0-m) + OffAT(r=rval, m=m);
+  lg  <- fm(m=low.guess, r=rval);
+  hg  <- fm(m=high.guess,r=rval);
+  if(lg > 0){
+    u <- low.guess;
+    l <- high.guess;
+  }else{
+    u <- high.guess;
+    l <- low.guess;
+  }
+  if((fm(l) > 0 & fm(u) > 0) | (fm(l) < 0 & fm(u) < 0)){
+    return("Value of m is outside the range");
+  }else{
+    check  <- 1;
+    mguess <- 0.5 * (l+u);
+    i      <- 0;
+    while(abs(check) > 0.001 | i < 10000){
+        check <- fm(r=rval, m= mguess);
+        if(check > 0){
+          u      <- mguess;
+          mguess <- 0.5*(l+mguess); 
+        }else{
+          l      <- mguess;
+          mguess <- 0.5*(u+mguess);
+        }
+        i <- i+1;
+    }
+    return(mguess);
+  }
+} # Running the below returns the estimate
+findm(low.guess=0,high.guess=4,rval=0.5);
+```
+
+We can use this value of $m$ to again figure out $\zeta_{off}(m)$, 
+
+```{r, echo=FALSE}
+OffAT(r=0.5, m=2.847397, B0=1, B1=1, c=1);
+```
+
+This value can again be used to figure out the slope ($\gamma$) of the tangent line, 
+
+$$ \gamma = \frac{0.555063 - 0}{2.847397 - 0} = 0.194937 $$
+
+We now have both the optimal $m$ for the inbreeding female, and the slope of the tangent line for the same female. Before getting into the biology, it will help to plot this out visually below,
+
+```{r, echo=FALSE}
+PI <- seq(from=0,to=4,by=0.01);
+Alleles_IBD_outbr <- OffAT(r=0, m=PI, B0=1, B1=1, c=1);
+par(mar=c(5,5,2,2));
+plot(PI,Alleles_IBD_outbr,type="l",lwd=3,ylim=c(0,1),
+     xlab=expression(paste("Parental investment (",italic(m),")")),
+     ylab=expression(paste("IBD alleles in offspring (",zeta[off],")")),
+     cex.lab=1.5,cex.axis=1.5);
+abline(a=0,b=0.1589222,lwd=2,lty="dashed");
+abline(h=0,lty="dotted",lwd=0.8);
+Alleles_IBD_inbr <- OffAT(r=0.5, m=PI, B0=1, B1=1, c=1);
+points(PI,Alleles_IBD_inbr,type="l",lwd=3,col="red");
+abline(a=0,b=0.194937,lwd=2,lty="dashed",col="red");
+```
+
+Now we can clearly see two things:
+
+1. The inbreeding female ($r=1/2$) maximises her $\zeta_{off}$ production at a higher value of $m$ than for the outbreeding ($r=0$) female. In biological terms, it benefits her to invest more in a smaller number of offspring than her outbreeding counterparts.
+
+2. The inbreeding female has a higher rate of $\zeta_{off}$ production at her optimal $m$ than her outbreeding counterpart, as shown by the higher slope ($\gamma$) of $\zeta_{off}$ as a function of $m$ passing through the origin (dashed red versus dashed black lines). In biological terms, this means that the inbreeding female can acheive a higher *total* $\zeta_{off}$ with her limited resources than the outbreeding female. This is consistent with the models of @Parker1979 and @Duthie2015a for this fairly low inbreeding depression slope of $\beta_{1}=1$. 
+
+Overall, it appears that **the model conceptually combines parental investment theory and biparental inbreeding theory to generate novel predictions about optimal parental investment for different degrees of inbreeding** 
+
+Okay, just how good can we get with the model overlap here? In @Duthie2015a, we found a slope of $\beta_{1}=1.785148$ to be the threshold for a focal female, below which it benefitted her to mate with a half-brother of $r=1/4$. If this is the point at which inbreeding has the same fitness as outbreeding, then the $\gamma$ values for both inbreeding and outbreeding parents should be the same, albeit with different optimal $m$ values (higher for inbreeding females, as we just saw). Given $\beta_{1}=1.785148$, $\beta_{0}=1$ (Cancelled out in finding thresholds in @Duthie2015a), and $c=1$, the optimum $m$ for outbreeding ($r=0$) females is found below,
+
+```{r, echo=FALSE}
+
+findm <- function(low.guess,high.guess,rval,B1=1,c=1){
+  fm  <- function(m,r) OffAT1(r=rval, B1=B1, m=m, c=c)*(0-m) + OffAT(r=rval, B1=B1, m=m, c=c);
+  lg  <- fm(m=low.guess, r=rval);
+  hg  <- fm(m=high.guess,r=rval);
+  if(lg > 0){
+    u <- low.guess;
+    l <- high.guess;
+  }else{
+    u <- high.guess;
+    l <- low.guess;
+  }
+  if((fm(l) > 0 & fm(u) > 0) | (fm(l) < 0 & fm(u) < 0)){
+    return("Value of m is outside the range");
+  }else{
+    check  <- 1;
+    mguess <- 0.5 * (l+u);
+    i      <- 0;
+    while(abs(check) > 0.001 | i < 10000){
+        check <- fm(r=rval, m= mguess);
+        if(check > 0){
+          u      <- mguess;
+          mguess <- 0.5*(l+mguess); 
+        }else{
+          l      <- mguess;
+          mguess <- 0.5*(u+mguess);
+        }
+        i <- i+1;
+    }
+    return(mguess);
+  }
+} # Running the below returns the estimate
+
+findm(low.guess=0,high.guess=4,rval=0.0, B1=1.785148);
+
+```
+
+This translates into a $\gamma$ value of,
+
+```{r, echo=FALSE}
+OffAT(r=0.000,B1=1.785148,m=2.146193) / 2.146193;
+```
+
+Note that these values have not changed from the above (black curve and tangent line) because inbreeding depression has no effect when $r=0$. Doing the same for a female that breeds with her half-brother ($r=1/4$), we find an optimum $m$ below,
+
+```{r, echo=FALSE}
+findm(low.guess=0,high.guess=4,rval=0.25, B1=1.785148);
+```
+
+This translates into a $\gamma$ value of,
+
+```{r, echo=FALSE}
+OffAT(r=0.250,B1=1.785148,m=2.774575) / 2.774575;
+```
+
+These values are very similar -- it is difficult to tell if they **should** be identical or not, but it seems like a good sign that they are close. We can graph both below.
+
+```{r, echo=FALSE}
+PI <- seq(from=0,to=4,by=0.01);
+Alleles_IBD_outbr <- OffAT(r=0, m=PI, B0=1, B1=1.785148, c=1);
+par(mar=c(5,5,2,2));
+plot(PI,Alleles_IBD_outbr,type="l",lwd=3,ylim=c(0,1),
+     xlab=expression(paste("Parental investment (",italic(m),")")),
+     ylab=expression(paste("IBD alleles in offspring (",zeta[off],")")),
+     cex.lab=1.5,cex.axis=1.5);
+abline(a=0,b=0.1589222,lwd=2,lty="dashed");
+abline(h=0,lty="dotted",lwd=0.8);
+Alleles_IBD_inbr <- OffAT(r=0.25, m=PI, B0=1, B1=1.785148, c=1);
+points(PI,Alleles_IBD_inbr,type="l",lwd=3,col="red");
+abline(a=0,b=0.1655816,lwd=2,lty="dashed",col="red");
+```
+
+Again, the black line above illustrates where $r=0$, and the red line illustrates where $r=1/4$. As expected, the inbreeding female benefits by investing more and producing fewer total offspring. Intuitively, it is pleasing that the $\gamma$ values are similar at the threshold $\beta_{1}=1.785148$ value of inbreeding for half-siblings -- this is the value where the fitness for inbreeding or avoiding inbreeding is identical in the inclusive fitness model of @Duthie2015a. But I am not sure that the two slopes should necessarily be **exact** *a priori*; as mentioned above, there is no baseline or natural default for parental care ($m$) in the biparental inbreeding models, so when we allow $m$ to vary, it is not entirely obvious that both inbreeding and outbreeding females will converge on the same fitness given unique values of *optimal* parental care (or any other $m$ values) for threshold values of inbreeding versus inbreeding avoidance. But it is satisfying that the slopes are similar -- at the very least, it would seem to suggest that the conclusions from biparental inbreeding are not very sensitive to different parental investment when each invests its optimum amount. Perhaps there is a way to prove that the two values overlap.
+
+**Upon inspection**, values of $\gamma$ will also depend on $c$, slightly, and I have assumed $c=1$. If we increase to $c=5$, then the $\gamma$ values are still very similar, but their magnitudes are reversed -- it is slightly better to outbreed for a female assuming optimum investment in $m$. Below shows the same parameters plotted as above, but with $c=5$. 
+
+```{r, echo=FALSE}
+mo <- findm(low.guess=0,high.guess=4,rval=0.00, B1=1.785148, c=5);
+mi <- findm(low.guess=0,high.guess=4,rval=0.25, B1=1.785148, c=5);
+so <- OffAT(r=0.000,B1=1.785148,m=mo, c=5) / mo;
+si <- OffAT(r=0.250,B1=1.785148,m=mi, c=5) / mi;
+PI <- seq(from=0,to=4,by=0.01);
+Alleles_IBD_outbr <- OffAT(r=0, m=PI, B0=1, B1=1.785148, c=5);
+par(mar=c(5,5,2,2));
+plot(PI,Alleles_IBD_outbr,type="l",lwd=3,ylim=c(0,1),
+     xlab=expression(paste("Parental investment (",italic(m),")")),
+     ylab=expression(paste("IBD alleles in offspring (",zeta[off],")")),
+     cex.lab=1.5,cex.axis=1.5);
+abline(a=0,b=so,lwd=2,lty="dashed");
+abline(h=0,lty="dotted",lwd=0.8);
+Alleles_IBD_inbr <- OffAT(r=0.25, m=PI, B0=1, B1=1.785148, c=5);
+points(PI,Alleles_IBD_inbr,type="l",lwd=3,col="red");
+abline(a=0,b=si,lwd=2,lty="dashed",col="red");
+print(paste("Outbreeding optmal m:",round(mo,digits=6)));
+print(paste("Outbreeding tangent to origin:",round(so,digits=6)));
+print(paste("Inbreeding optmal m:",round(mi,digits=6)));
+print(paste("Inbreeding tangent to origin:",round(si,digits=6)));
+```
+
+Again, it is conceptually reassuring that the values are similar. There must be a $c$ value for which the two values completely overlap. Some checking and rechecking finds a value of $c=2.084185$, which predicts identical slopes $\gamma$.
+
+```{r, echo=FALSE}
+cc <- 2.084185;
+mo <- findm(low.guess=0,high.guess=4,rval=0.00, B1=1.785148, c=cc);
+mi <- findm(low.guess=0,high.guess=4,rval=0.25, B1=1.785148, c=cc);
+so <- OffAT(r=0.000,B1=1.785148,m=mo, c=cc) / mo;
+si <- OffAT(r=0.250,B1=1.785148,m=mi, c=cc) / mi;
+PI <- seq(from=0,to=4,by=0.01);
+Alleles_IBD_outbr <- OffAT(r=0, m=PI, B0=1, B1=1.785148, c=cc);
+par(mar=c(5,5,2,2));
+plot(PI,Alleles_IBD_outbr,type="l",lwd=3,ylim=c(0,1),
+     xlab=expression(paste("Parental investment (",italic(m),")")),
+     ylab=expression(paste("IBD alleles in offspring (",zeta[off],")")),
+     cex.lab=1.5,cex.axis=1.5);
+abline(a=0,b=so,lwd=2,lty="dashed");
+abline(h=0,lty="dotted",lwd=0.8);
+Alleles_IBD_inbr <- OffAT(r=0.25, m=PI, B0=1, B1=1.785148, c=cc);
+points(PI,Alleles_IBD_inbr,type="l",lwd=3,col="red");
+abline(a=0,b=si,lwd=2,lty="dashed",col="red");
+print(paste("Outbreeding optimal m:",round(mo,digits=6)));
+print(paste("Outbreeding tangent to origin:",round(so,digits=6)));
+print(paste("Inbreeding optimal m:",round(mi,digits=6)));
+print(paste("Inbreeding tangent to origin:",round(si,digits=6)));
+```
+
+I am not sure why this is the case (it is not simply a mean $m$ value), and I suspect that the answer is not terribly elegant. In general, higher values of $c$ give the outbreeder a higher slope when optimally investing in offspring, while lower values do the opposite. I suppose this is because if the optimal strategy is to invest relatively more in each offspring (as it is for inbreeders), then a low $c$ (smoother sloping curve) is relatively beneficial because it takes more $m$ to invest optimally -- in contrast, less $m$ is needed to reach the plateau of $\zeta_{off}$ when $c$ is high, so this slightly benefits outbreeders.
+
+Very brief summary
+----------------------------------------------
+
+There is clearly more work to do with the analysis, but I am optimistic that a manuscript can be written from this model that makes two key interesting points:
+
+1. Parental investment should increase -- and fewer offspring should be produced -- given increasing parental inbreeding (all else being equal, of course).
+
+2. The inclusive fitness gain associated with inbreeding to a particular degree, or with outbreeding, can be described by a straight line that passes through the origin and is tangent to $\zeta_{off}(m)$ for any set of parameter values. This is how fitness is described in other models of parental care [@Macnair1978; @Parker1978], and the concept can be used to relate inclusive fitness from inbreeding versus avoiding inbreeding across different magnitudes of parental investment ($m$).
+
+In addition to the theoretical knowledge gained from the two above points, the above (1) could lead to interseting empirical hypotheses relating parental care to inbreeding. Even (2) could be used to develop empirical hypotheses (though this would seem more challenging) across systems with different degrees of inbreeding and parental investment. My inclination is to say that a manuscript based on the above could make a strong contribution to the *Journal of Theoretical Biology*, but it would probably be possible to shoot a bit higher (e.g., *Proceedings B*).
+
+> **ADDED NOTE** This work could have implications for quantitative estimates of parental care. If, for example empirical studies do not account for inbreeding, they might underestimate the amount of parental care that should be provided to offspring. Alternativley, changing environment might or inbreeding behaviour might then feedback to affect parental care provided. Implications for cooperative breeding if high inbreeding increases parental care.
+
+References
+----------------------------------------------
+
