@@ -1,0 +1,432 @@
+---
+title: "Parental investment and inbreeding"
+author: "Brad Duthie"
+date: "April 14, 2016"
+output: 
+  ioslides_presentation: 
+    widescreen: yes
+runtime: shiny
+bibliography: Inbreeding_and_PI.bib
+---
+
+## Why parental investment and inbreeding? {.smaller}
+
+No theory addresses parental investment given biparental inbreeding
+
+ - This is odd, because Parker was a key developer of the foundational theory for both parental investment [@Macnair1978] and biparental inbreeding [@Parker1979] over three decades ago.
+
+ - One model considers plant outcrossing versus self-fertilisation [@DeJong2005], with a focus on parent-offspring conflict.
+
+## Why parental investment and inbreeding? {.smaller}
+
+No theory addresses parental investment given biparental inbreeding
+
+ - This is odd, because Parker was a key developer of the foundational theory for both parental investment [@Macnair1978] and biparental inbreeding [@Parker1979] over three decades ago.
+
+ - One model considers plant outcrossing versus self-fertilisation [@DeJong2005], with a focus on parent-offspring conflict.
+
+If parental investment changes with biparental inbreeding, it may have widespread implications for evolutionary ecology.
+
+ - Change offspring production if per offspring investment increases or decreases
+
+ - Change parent-offspring conflict if parental investment and parent-offspring relatedness changes
+
+ - Change inbreeding strategy of parents given fixed resources for parental investment
+
+ - Cause errors in estimation of inbreeding depression if parental investment varies with inbreeding
+
+## A precise definition of *parental investment*
+
+Anything that a parent does to increase its offspring's fitness *at the expense of its other actual or potential offspring* [@Trivers1972; @Trivers1974]
+
+```{r, out.width = 600, fig.retina = NULL, echo=FALSE}
+knitr::include_graphics("Calliope-nest_edit.jpg")
+```
+
+## Model of IBD alleles carried by offspring ($\zeta_{\textrm{off}}$)
+
+$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right).$$ 
+
+<br><br>
+
+- Relatedness of sire to the focal mother ($r$)
+- Parental investment curve ($c$)
+- Amount of focal mother's investment ($m$)
+- Minimum investment to produce viable offspring ($m_{min}$)
+- Inbreeding depression in offspring ($\beta$)
+
+## Model of IBD alleles carried by offspring ($\zeta_{\textrm{off}}$)
+
+$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right).$$ 
+
+```{r, echo=FALSE, fig.height = 4, fig.width=9}
+# Below is a function of the general equation for plotting
+OffATr <- function(r, m, mmin=1, Beta=1, c=1){
+    return( (1/2)*(1+r) * (1 - exp(-c*(m - mmin - Beta*r)) ));
+}
+PI  <- seq(from=0,to=4,by=0.01);
+All <- OffATr(r=0, m=PI, mmin=1, Beta=0, c=1);
+par(mar=c(5,5,2,2));
+plot(PI,All,type="l",lwd=4,ylim=c(0,1),
+  xlab=expression(paste("Parental investment (",italic(m),")")),
+  ylab=expression(paste("IBD alleles in offspring (",zeta[off],")")),
+  cex.lab=1.25,cex.axis=1.5);
+abline(h=0,lty="dotted",lwd=0.8);
+```
+
+## Model of IBD alleles carried by offspring ($\zeta_{\textrm{off}}$)
+
+$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right).$$ 
+
+<br><br>
+
+- Assume the population is diploid
+- Assume obligate biparental inbreeding
+- Assume increased parental investment has diminishing returns on increasing offspring fitness
+- Assume no paternal investment (or that it is always constant)
+- Assume sufficient parental investment can **always** compensate for being inbred
+
+## Basic model (simulated)
+
+```{r, echo=FALSE}
+# Below is fmd for analysis and plotting
+OffATrd <- function(r, m, mmin=1, Beta=1, c=1){
+    return(  0.5 * (1 + r) * (exp(-c * (m - mmin - Beta * r)) * c)  );
+    # Also can simplify: return(  (c/2)*(1+r)*exp(-c*(m-mmin-Beta*r))  );
+} # We'll need the above to find m^{*} and \gamma^{*} 
+# To find m^{*}, can use the function below
+findm <- function(low.guess,high.guess,rval,mmin=1,Beta=1,c=1){
+  fm  <- function(m,r=rval){ 
+           OffATrd(r=rval, mmin=mmin, Beta=Beta, m=m, c=c)*(0-m) + 
+             OffATr(r=rval, mmin=mmin, Beta=Beta, m=m, c=c);
+         }
+  lg  <- fm(m=low.guess, r=rval);
+  hg  <- fm(m=high.guess,r=rval);
+  if(lg > 0){
+    u <- low.guess;
+    l <- high.guess;
+  }else{
+    u <- high.guess;
+    l <- low.guess;
+  }
+  if((fm(l) > 0 & fm(u) > 0) | (fm(l) < 0 & fm(u) < 0)){
+    return("Value of m is outside the range");
+  }else{
+    check  <- 1;
+    mguess <- 0.5 * (l+u);
+    i      <- 0;
+    while(abs(check) > 0.000001 & i < 1000000){
+        check <- fm(r=rval, m=mguess);
+        if(check > 0){
+          u      <- mguess;
+          mguess <- 0.5*(l+mguess); 
+        }else{
+          l      <- mguess;
+          mguess <- 0.5*(u+mguess);
+        }
+        i <- i+1;
+    }
+    return(mguess);
+  }
+} # Running the below returns the estimate
+fm  <- expression(zeta[off] == frac(1,2)*(1+r)*(1-e^{(-c*(m-m[min]-beta*r))}));
+inputPanel(
+    
+  sliderInput("rval", label = "Relatedness", width="100%",
+              min = 0.0, max = 1, value = 0, step = 0.05), 
+    
+  sliderInput("cval", label = "PI curve", width="100%",
+              min = 0.0, max = 3, value = 1, step=0.2),
+  
+  sliderInput("mmin", label = "Minimum m value", width="100%",
+              min = 0.0, max = 2, value = 1, step = 0.1),
+  
+  sliderInput("Beta", label = "Inbreeding depression", 
+              width="100%", min = 0.0, max = 5, value = 0, step = 0.2)
+)
+
+renderPlot({
+  cc  <- as.numeric(input$cval);
+  mm  <- as.numeric(input$mmin);
+  bb  <- as.numeric(input$Beta);
+  rr  <- as.numeric(input$rval);
+  rmm <- findm(low.guess=0,high.guess=6,rval=rr,mmin=mm,Beta=bb,c=cc);
+  mzt <- OffATr(r=rr, m=rmm, mmin=mm, Beta=bb, c=cc);
+  rmg <- mzt / rmm;    
+  PI  <- seq(from=0,to=4,by=0.01);
+  All <- OffATr(r=rr, m=PI, mmin=mm, Beta=bb, c=cc);
+  par(mar=c(5,5,2,2));
+  plot(PI,All,type="l",lwd=4,ylim=c(0,1),
+     xlab=expression(paste("Parental investment (",italic(m),")")),
+     ylab=expression(paste("IBD alleles in offspring (",zeta[off],")")),
+     cex.lab=1.5,cex.axis=1.5);
+  abline(h=0,lty="dotted",lwd=0.8);
+  abline(a=0,b=rmg,lty="solid", lwd=2,col="blue");
+  arrows(x0=rmm,y0=mzt/2,x1=rmm,y1=0,length = 0.15,angle=30,code=2,lwd=3,col="blue");
+  text(x=rmm,y=0.5*mzt+0.07,labels=expression(paste(italic(m)^"*")),col="blue",cex=2);
+  text(x=1,y=0.8,fm,cex=2);
+  text(x=0.5,y=rmg*0.5+0.07,labels=expression(paste(italic(gamma^"*"))),
+       srt=rmg,cex=2,col="blue");
+})
+
+```
+
+## Reduces to @Macnair1978
+
+$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right)$$ 
+
+<br><br>
+
+$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+0\right)\left(1-e^{-c\left(m-m_{min}-\beta 0\right)}\right)$$ 
+
+<br><br>
+
+$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1-e^{-c\left(m-m_{min}\right)}\right)$$ 
+
+## Reduces to @Parker1979
+
+$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right)$$ 
+
+<br><br>
+
+$$ \delta_{r} = e^{-c(m^{*}_{r}-m_{min}-\beta r)}. $$
+
+<br><br>
+
+$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-\delta_{r}\right)$$ 
+
+## Optimum parental investment ($m^{*}$) with $\beta$ & r
+
+```{r, echo=FALSE, fig.width = 7, fig.height = 5.5}
+bss <- seq(from=0.5,to=5,by=0.25);
+gamz <- function(rvl,betas,mmin=1,c=1){
+    mvl <- rep(0,length(betas));
+    gam <- rep(0,length(betas));
+    for(i in 1:length(bss)){
+        mvl[i] <- findm(low.guess=0,high.guess=10,rval=rvl,mmin=1,Beta=betas[i],c=1);
+        gam[i] <- OffATr(r=rvl, m=mvl[i], mmin=1, Beta=betas[i], c=1) / mvl[i];
+    }
+    return(list(mvl=mvl,gam=gam));
+}
+rg000 <- gamz(rvl=0.000,betas=bss);
+rg125 <- gamz(rvl=0.125,betas=bss);
+rg250 <- gamz(rvl=0.250,betas=bss);
+rg500 <- gamz(rvl=0.500,betas=bss);
+#----------------------------------------------------------------
+par(mar=c(5,5,2,1),lwd=2);
+plot(x=bss,y=rg000$mvl,type="l",lwd=2,ylim=c(2,6),pch=1.5,
+     xlab=expression(paste("Inbreeding depression (",beta,")")),
+     ylab=expression(paste("Optimum parental investment (",italic(m),"*)")),
+     cex.lab=1.5,cex.axis=1.5);
+points(x=bss,y=rg125$mvl,type="l",lwd=2);
+points(x=bss,y=rg250$mvl,type="l",lwd=2);
+points(x=bss,y=rg500$mvl,type="l",lwd=2);
+text(x=bss[17],y=rg000$mvl[17]+0.15,labels="r=0",srt=-0,cex=1.25);
+text(x=bss[17],y=rg125$mvl[17]+0.15,labels="r=1/8",srt=6,cex=1.25);
+text(x=bss[17],y=rg250$mvl[17]+0.15,labels="r=1/4",srt=12,cex=1.25);
+text(x=bss[17],y=rg500$mvl[17]+0.15,labels="r=1/2",srt=22,cex=1.25);
+```
+
+## Rate of fitness increase ($\gamma^{*}$) given $m^{*}$
+
+```{r, echo=FALSE, fig.width = 7, fig.height = 5.5}
+par(mar=c(5,5,0.25,1),lwd=2);
+plot(x=bss,y=rg000$gam,type="l",lwd=2,ylim=c(0.12,0.22),pch=1.5,yaxt="n",
+     xlab=expression(paste("Inbreeding depression (",beta,")")),
+     ylab=expression(paste("Rate of fitness increase (",gamma,"*)")),
+     cex.lab=1.5,cex.axis=1.5);
+axis(side=2,at=c(0.12,0.16,0.20),cex.axis=1.5);
+points(x=bss,y=rg125$gam,type="l",lwd=2);
+points(x=bss,y=rg250$gam,type="l",lwd=2);
+points(x=bss,y=rg500$gam,type="l",lwd=2);
+text(x=bss[17],y=rg000$gam[17]+0.003,labels="r=0",srt=-0,cex=1.25);
+text(x=bss[17],y=rg125$gam[17]+0.003,labels="r=1/8",srt=-6,cex=1.25);
+text(x=bss[17],y=rg250$gam[17]+0.003,labels="r=1/4",srt=-12,cex=1.25);
+text(x=bss[17],y=rg500$gam[17]+0.003,labels="r=1/2",srt=-18,cex=1.25);
+
+```
+
+## Little effect if focal parent is inbred
+
+```{r, echo=FALSE}
+OffATf <- function(f, k, m, B0=1, B1=1, c=1){
+    return( (1/2)*(1+(2*k/(1+f))) * (1 - exp(-c*(m - B0 - 2*B1*k)) ));
+}
+findmf <- function(low.guess,high.guess,kval,fval,B1=1,c=1,B0=1){
+  OffATf <- function(m, f=fval, k=kval, B0=1, B1=1, c=1){
+    return( (1/2)*(1+(2*k/(1+f))) * (1 - exp(-c*(m - B0 - 2*B1*k)) ));
+  }
+  OffATff <- function(m, k=kval, f=fval, B0=1, B1=1, c=1){
+    return( 0.5 * (1 + (2 * k/(f + 1))) * (exp(-c * (m - B0 - 2 * B1 * k)) * c) );
+  }    
+  fm <- function(m, f=fval, k=kval, B0=1, B1=1, c=1){
+    OffATff(m=m, f=fval, k=kval, B0=B0, B1=B1, c=c)*(0-m) + 
+          OffATf(m=m, f=fval, k=kval, B0=B0, B1=B1, c=c);
+  }
+  lg  <- fm(m=low.guess, k=kval, f=fval);
+  hg  <- fm(m=high.guess,k=kval, f=fval);
+  if(lg > 0){
+    u <- low.guess;
+    l <- high.guess;
+  }else{
+    u <- high.guess;
+    l <- low.guess;
+  }
+  if((fm(l) > 0 & fm(u) > 0) | (fm(l) < 0 & fm(u) < 0)){
+    return("Value of m is outside the range");
+  }else{
+    check  <- 1;
+    mguess <- 0.5 * (l+u);
+    i      <- 0;
+    while(abs(check) > 0.001 & i < 10000){
+        check <- fm(k=kval, f=fval, m=mguess);
+        if(check > 0){
+          u      <- mguess;
+          mguess <- 0.5*(l+mguess); 
+        }else{
+          l      <- mguess;
+          mguess <- 0.5*(u+mguess);
+        }
+        i <- i+1;
+    }
+    return(mguess);
+  }
+} # Running the below returns the estimate
+PI         <- seq(from=0,to=4,by=0.01);
+imopt.f000 <- findmf(low.guess=0,high.guess=4,kval=0.25,fval=0.0, B1=1);
+imopt.f025 <- findmf(low.guess=0,high.guess=4,kval=0.25,fval=0.25, B1=1);
+itang.f000 <- OffATf(m=imopt.f000, f=0, k=0.25, B0=1, B1=1, c=1) / imopt.f000;
+itang.f025 <- OffATf(m=imopt.f025, f=0.25, k=0.25, B0=1, B1=1, c=1) / imopt.f025;
+omopt.f000 <- findmf(low.guess=0,high.guess=4,kval=0.0,fval=0.0, B1=1);
+omopt.f025 <- findmf(low.guess=0,high.guess=4,kval=0.0,fval=0.25, B1=1);
+otang.f000 <- OffATf(m=omopt.f000, f=0, k=0.0, B0=1, B1=1, c=1) / omopt.f000;
+otang.f025 <- OffATf(m=omopt.f025, f=0.25, k=0.0, B0=1, B1=1, c=1) / omopt.f025;
+Alleles_IBD_f000 <- OffATf(k=0.25, f=0.0, m=PI, B0=1, B1=1, c=1);
+par(mar=c(5,5,2,2));
+plot(PI,Alleles_IBD_f000,type="l",lwd=1,ylim=c(0,1),lty="solid",
+     xlab=expression(paste("Parental investment (",italic(m),")")),
+     ylab=expression(paste("IBD alleles in offspring (",zeta[off],")")),
+     cex.lab=1.5,cex.axis=1.5);
+abline(h=0,lty="dotted",lwd=0.8);
+Alleles_IBD_f025 <- OffATf(k=0.25, f=0.25, m=PI, B0=1, B1=1, c=1);
+abline(b=itang.f000,a=0,lty="solid",lwd=0.5,col="grey40");
+abline(b=itang.f025,a=0,lty="solid",lwd=0.5,col="grey40");
+polygon(x=c(PI,rev(PI)),y=c(Alleles_IBD_f000,rev(Alleles_IBD_f025)),col="grey70",border=NA);
+points(PI,Alleles_IBD_f025,type="l",lwd=1,col="black",lty="solid");
+points(PI,Alleles_IBD_f000,type="l",lwd=1,col="black",lty="solid");
+yof000 <- OffATf(k=0.25, f=0.0,  m=imopt.f000, B0=1, B1=1, c=1);
+yof025 <- OffATf(k=0.25, f=0.25, m=imopt.f025, B0=1, B1=1, c=1);
+xline  <- seq(from=1,to=imopt.f000,by=0.001);
+points(x=xline,y=rep(yof000,length(xline)),type="l",lwd=1);
+points(x=xline,y=rep(yof025,length(xline)),type="l",lwd=1);
+yline  <- seq(from=0,to=yof025,by=0.001);
+points(x=rep(imopt.f025,length(yline)),y=yline,type="l",lwd=1);
+text(x=3.5,y=0.255,labels=expression(paste(italic(m^{"*"}))),cex=1.75);
+arrows(x0=3.345,y0=0.205,x1=imopt.f025+0.04,y1=0.01,length = 0.15,angle=30,code=2,lwd=2);
+text(x=0.75,y=0.8,labels=expression(paste(italic(f==0))),cex=1.25);
+arrows(x0=0.8,y0=0.75,x1=1.1,y1=yof000+0.01,length = 0.15,angle=30,code=2,lwd=2);
+text(x=0.67,y=0.35,labels=expression(paste(italic(f==frac(1,4)))),cex=1.25);
+arrows(x0=0.87,y0=0.36,x1=1.1,y1=yof025-0.01,length = 0.15,angle=30,code=2,lwd=2);
+
+```
+
+## Parental investment *always* increases with r {.smaller}
+
+When the below is satisfied, $m = m^{*}$.
+
+$$ 0 = \frac{c}{2} \left(1+r\right)e^{-c\left(m-m_{min}-\beta r\right)}\left(0-m\right) + \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right). $$
+
+This comes from the same general equation for finding a line tangent to some function $f$ at the point $a$ (used to to get $m^{*}$ and $\gamma^{*}$,
+
+$$ y = f'\left(a\right)\left(x-a\right) + f\left(a\right).$$
+
+## Parental investment *always* increases with r {.smaller}
+
+So we can substitute, $m^{*}$ below.
+
+$$ 0 = \frac{c}{2} \left(1+r\right)e^{-c\left(m^{*}-m_{min}-\beta r\right)}\left(0-m^{*}\right) + \frac{1}{2}\left(1+r\right)\left(1 -e^{-c\left(m^{*}-m_{min}-\beta r\right)}\right). $$
+
+Ideally, we would demonstrate,
+
+$$ \frac{\partial m^{*}}{\partial r} > 0. $$ <br>
+
+But we cannot isolate $m^{*}$. Instead, we can find $\frac{\partial r}{\partial m^{*}}$
+
+## Parental investment *always* increases with r {.smaller}
+
+So we can substitute, $m^{*}$ below.
+
+$$ 0 = \frac{c}{2} \left(1+r\right)e^{-c\left(m^{*}-m_{min}-\beta r\right)}\left(0-m^{*}\right) + \frac{1}{2}\left(1+r\right)\left(1 -e^{-c\left(m^{*}-m_{min}-\beta r\right)}\right). $$
+
+Differentiating $r$ with respect to $m^{*}$,
+
+$$ \frac{\partial r}{\partial m^{*}} = \frac{m^{*} c}{\beta \left(m^{*} c + 1\right)}. $$
+
+Overall, we can conclude that optimal parental investment will always increase with $r$ given $c>0$ and $\beta>0$.
+
+## Consistency with biparental inbreeding models {.smaller}
+
+We can define $\delta$ as follows,
+
+$$ \delta_{r} = e^{-c(m^{*}_{r}-m_{min}-\beta r)}. $$
+
+Fitness from inbreeding to any degree $r$ can then be determined by,
+
+$$ W_{r} = \frac{n}{2}\left(1+r\right)\left(1-\delta_{r}\right). $$
+
+To account for different numbers of offspring produced (as caused by varying $m$), we can simply include $m$ to scale for offspring produced,
+
+$$ W_{r} = \frac{n}{2 m}\left(1+r\right)\left(1-\delta_{r}\right). $$
+
+The end result is that the prediction for $W_{r}$ becomes identical to that of $\gamma^{*}$ when $n=1$, and is otherwise directly proportional.
+
+## General predictions and why they are interesting
+
+* If a female inbreeds by choice or necessity, she should make fewer offspring and increase her parental investment in each one.
+
+* Lower offspring production for inbreeding versus outbreeding females does not necessarily reflect consequences of inbreeding depression.
+
+* If offspring number is fixed, the best strategy might be to inbreed.
+
+* Parent-offspring conflict will be reduced by inbreeding.
+
+* Comparison with selfing literature for optimal seed size.
+
+## Inbreeding and offspring number
+
+![Figure from Liberg et al. 2005](LibergEtAl_corr.png)
+
+@Liberg2005 intepret lower offspring number as inbreeding depression.
+
+## Inbreeding and offspring number
+
+![Figure from Fredrickson et al. 2005](FredricksonEtAl_corr.png)
+
+@Fredrickson2007 also interpret lower offspring number as inbreeding depression
+
+## Inbreeding and offspring number
+
+- But the negative correlations between inbreeding and offspring number in @Liberg2005 and @Fredrickson2007 are exactly what we should expect given that optimal parental investment increases with inbreeding
+
+- Empirical studies might need to consider differential parental investment given inbreeding
+
+- Population ecology conclusions might be reasonable
+
+## References {.smaller}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
