@@ -9,17 +9,29 @@ runtime: shiny
 bibliography: Inbreeding_and_PI.bib
 ---
 
+## How should parents adjust their investment in offspring when they inbreed?
+
+```{r, out.width = 700, fig.retina = NULL, echo=FALSE}
+knitr::include_graphics("Mouse_litter.jpg");
+```
+
 ## Why parental investment and inbreeding? {.smaller}
 
-No theory addresses parental investment given biparental inbreeding
+No theory addresses parental investment given biparental inbreeding [@Pilakouta2015]
 
  - This is odd, because Parker was a key developer of the foundational theory for both parental investment [@Macnair1978] and biparental inbreeding [@Parker1979] over three decades ago.
 
  - One model considers plant outcrossing versus self-fertilisation [@DeJong2005], with a focus on parent-offspring conflict.
+ 
+<br><br>
+ 
+```{r, out.width = 600, fig.retina = NULL, echo=FALSE}
+knitr::include_graphics("DeJongPaper.png");
+``` 
 
 ## Why parental investment and inbreeding? {.smaller}
 
-No theory addresses parental investment given biparental inbreeding
+No theory addresses parental investment given biparental inbreeding [@Pilakouta2015]
 
  - This is odd, because Parker was a key developer of the foundational theory for both parental investment [@Macnair1978] and biparental inbreeding [@Parker1979] over three decades ago.
 
@@ -40,7 +52,7 @@ If parental investment changes with biparental inbreeding, it may have widesprea
 Anything that a parent does to increase its offspring's fitness *at the expense of its other actual or potential offspring* [@Trivers1972; @Trivers1974]
 
 ```{r, out.width = 600, fig.retina = NULL, echo=FALSE}
-knitr::include_graphics("Calliope-nest_edit.jpg")
+knitr::include_graphics("Calliope-nest_edit.jpg");
 ```
 
 ## Model of IBD alleles carried by offspring ($\zeta_{\textrm{off}}$)
@@ -59,7 +71,7 @@ $$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}
 
 $$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right).$$ 
 
-```{r, echo=FALSE, fig.height = 4, fig.width=9}
+```{r, echo=FALSE, fig.height = 4, fig.width=9, dev.args = list(bg = 'transparent')}
 # Below is a function of the general equation for plotting
 OffATr <- function(r, m, mmin=1, Beta=1, c=1){
     return( (1/2)*(1+r) * (1 - exp(-c*(m - mmin - Beta*r)) ));
@@ -189,7 +201,7 @@ $$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}
 
 <br><br>
 
-$$ \delta_{r} = e^{-c(m^{*}_{r}-m_{min}-\beta r)}. $$
+$$ \delta_{r} = e^{-c(m^{*}_{r}-m_{min}-\beta r)} $$
 
 <br><br>
 
@@ -197,7 +209,7 @@ $$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-\delta_{r}\right)$$
 
 ## Optimum parental investment ($m^{*}$) with $\beta$ & r
 
-```{r, echo=FALSE, fig.width = 7, fig.height = 5.5}
+```{r, echo=FALSE, fig.width = 7, fig.height = 5.5, dev.args = list(bg = 'transparent')}
 bss <- seq(from=0.5,to=5,by=0.25);
 gamz <- function(rvl,betas,mmin=1,c=1){
     mvl <- rep(0,length(betas));
@@ -229,7 +241,7 @@ text(x=bss[17],y=rg500$mvl[17]+0.15,labels="r=1/2",srt=22,cex=1.25);
 
 ## Rate of fitness increase ($\gamma^{*}$) given $m^{*}$
 
-```{r, echo=FALSE, fig.width = 7, fig.height = 5.5}
+```{r, echo=FALSE, fig.width = 7, fig.height = 5.5, dev.args = list(bg = 'transparent')}
 par(mar=c(5,5,0.25,1),lwd=2);
 plot(x=bss,y=rg000$gam,type="l",lwd=2,ylim=c(0.12,0.22),pch=1.5,yaxt="n",
      xlab=expression(paste("Inbreeding depression (",beta,")")),
@@ -248,7 +260,7 @@ text(x=bss[17],y=rg500$gam[17]+0.003,labels="r=1/2",srt=-18,cex=1.25);
 
 ## Little effect if focal parent is inbred
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, dev.args = list(bg = 'transparent')}
 OffATf <- function(f, k, m, B0=1, B1=1, c=1){
     return( (1/2)*(1+(2*k/(1+f))) * (1 - exp(-c*(m - B0 - 2*B1*k)) ));
 }
@@ -336,7 +348,7 @@ When the below is satisfied, $m = m^{*}$.
 
 $$ 0 = \frac{c}{2} \left(1+r\right)e^{-c\left(m-m_{min}-\beta r\right)}\left(0-m\right) + \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right). $$
 
-This comes from the same general equation for finding a line tangent to some function $f$ at the point $a$ (used to to get $m^{*}$ and $\gamma^{*}$,
+This comes from the same general equation for finding a line tangent to some function $f$ at the point $a$ (used to to get $m^{*}$ and $\gamma^{*}$),
 
 $$ y = f'\left(a\right)\left(x-a\right) + f\left(a\right).$$
 
@@ -411,6 +423,21 @@ The end result is that the prediction for $W_{r}$ becomes identical to that of $
 - Empirical studies might need to consider differential parental investment given inbreeding
 
 - Population ecology conclusions might be reasonable
+
+## Empirical support
+
+- @Pilakouta2015 show that the presence of a caring female increased offspring survival more for inbred than outbred broods (a necessary assumption of our model). They suggest that parental care can mitigate inbreeding depression and cause selection favouring inbreeding tolerance. 
+
+- @Aviles2006 also show that elevated maternal investment buffers against severe inbreeding depression.
+
+- @Mattey2013 found no evidence that outbreeding burying beetles laid more eggs than inbreeding burying beetles (not necessarily contradicting this model, but worth noting)
+
+## Explicitly consider mixed broods?
+
+```{r, out.width = 750, fig.retina = NULL, echo=FALSE}
+knitr::include_graphics("mixedcomic.png");
+```
+
 
 ## References {.smaller}
 

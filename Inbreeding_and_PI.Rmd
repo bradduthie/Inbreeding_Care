@@ -2,7 +2,7 @@
 title: "Inbreeding parents should invest more resources in fewer offspring"
 author: "Brad Duthie"
 date: "March 28, 2016"
-output: html_document
+output: pdf_document
 linestretch: 1
 header-includes:
 - \usepackage{natbib}
@@ -10,19 +10,33 @@ header-includes:
 - \linenumbers
 - \bibliographystyle{amnatnat}
 bibliography: Inbreeding_and_PI.bib
+word_document:
+  reference_docx: AASRJ-Style-Format.docx
 ---
+
+<!---
+
+  word_document:
+    reference_docx: AASRJ-Style-Format.docx
+
+--->
+
 
 ******************************
 
 Introduction
 ------------------------------------------------
 
+Mating among relatives is common, especially within small and viscous populations, and such inbreeding can alter offspring genotypes and decrease offspring fitness [@Goodwillie2005; OGrady2006; @Charlesworth2009].  
+
 The setup of the introduction should address:
 
 * Biparental inbreeding can increase or decrease fitness depending on inbreeding depression
 * Inbreeding theory assumes that offspring number is fixed and parental investment is implicit
 * We instead allow parents to adjust their investment in offspring given different inbreeding
+* Empirical studies suggest that parental investment increases offspring fitness relatively more when offspring are inbred [@Aviles2006; @Pilakouta2015].
 * We demonstrate that inbreeding should consistently increase optimal parental investment
+
 
 <!--- The following includes some initial notes, modelling, and analysis on biparental inbreeding and parental investment. The goal is to explore whether or not different degrees of parental investment might be favoured for different degrees of inbreeding, and if inbreeding might be favoured sometimes if enough parental investment can overcome the effect of inbreeding depression. --->
 
@@ -302,8 +316,9 @@ Discussion
 
 Key points to hit in the Discussion:
 
+* Reiterate that there is no theory addressing how parental investment should affect inbreeding depression [@Pilakouta2015]. 
 * If a female inbreeds by choice or necessity, she should make fewer offspring and increase her parental investment in each one.
-* Lower offspring production for inbreeding versus outbreeding females does not necessarily reflect consequences of inbreeding depression.
+* Lower offspring production for inbreeding versus outbreeding females does not necessarily reflect consequences of inbreeding depression [e.g, @Liberg2005; @Fredrickson2007].
 * If offspring number is fixed, the best strategy might be to inbreed.
 * Parent-offspring conflict will be reduced by inbreeding.
 * Comparison with selfing literature for optimal seed size.
