@@ -2,7 +2,7 @@
 title: "Inbreeding parents should invest more resources in fewer offspring"
 author: "Brad Duthie"
 date: "March 28, 2016"
-output: pdf_document
+output: html_document
 linestretch: 1
 header-includes:
 - \usepackage{natbib}
@@ -47,9 +47,17 @@ The setup of the introduction should address:
 Model
 ------------------------------------------------
 
+<!--- Get in here somewhere, perhaps, a female's total pool $M$ of resources, such that she produces a total of $n = M/m$ offspring [see @Parker2002]. This will make the connection between the biparental inbreeding literature and the parental investment literature clearer. Also, @Parker1985 define this explicitly using the same terms, such that n f = (M/m)f(m), where n is offspring number and f is fitness of an offspring. Can weave this directly into the model at the start, and then just assume $n=1$ (noting that it doesn't really matter). Or, could leave it where it is, maybe with a bit more explicit connection before mentioning Appendix 3, where it features more heavily. --->
+
+<!--- Also, @Parker1985 has a useful way of putting the rate of fitness increase: ``A gene which causes a female to allocate its resources as m* equally to each offspring will have the fastest possible replication rate'' -- maybe explain it this way, with citation, to describe $\zeta_{\textrm{off}}$? Essentially, we are showing how this works when outbreeding is no longer assumed. --->
+
+<!--- Note that given the above logic, and that in @Parker1985, the below modelling assumes *either* one parent investment *or* `true monogamy' in which each parent invests equally. The two only differ be a factor of two, so if we assume monogamy, then m* is the same, but parents produce twice as many offspring (this doesn't need to be demonstrated, but it's worth noting). --->
+
+<!--- Adding a second parent, more generally, is a bit counter-intuitive: Total investment should just be m_mum + m_dad. Given true monogamy under these conditions, optimal investment for each parent is just m*/2 (each contributes half investment). But, if the father slacks off and only invests m*/4 (and mum can't do anything about it), then -- paradoxicially -- mum should invest less, not more. The reason is that given the father decreases its m, the mother is now stuck with more offspring than she would have otherwise produced given her budget for investment; her optimal response is to decrease investment in each. This is because when one parent `defects' by investing less, the reduced benefit is offset by the non-defecting parent (and both parents get the same total benefit) and the defector pays none of the costs. In response, the optimal strategy is therefore to also decrease investment. I'm not sure whether it's worth getting into this or not yet. It appears we would need to define $\zeta_{\textrm{off}}(m1,m2)$, then find 2*zeta(m1)/zeta'(m1) ? --->
+
 Our model conceptually links two different theoretical frameworks initially developed by @Macnair1978 and @Parker1979. The first framework [@Macnair1978] predicts optimal parental investment in outbred offspring. The second [@Parker1979] predicts inbreeding depression thresholds below which focal parents increase their fitness by inbreeding rather than avoiding inbreeding. We consider a focal diploid parent (hereafter assumed to be female) that can adjust the degree to which she invests in each offspring to maximise her own fitness given that she inbreeds to some degree and produces correspondingly inbred offspring whose fitness might be decreased by inbreeding depression. 
 
-We define a focal female's fitness in terms of the total number of identical-by-descent allele copies carried in her offspring. This definition differs from that of previous models of parental investment [e.g., @Macnair1978; @Parker1978], which instead define fitness only in terms of the number of offspring produced and therefore cannot account for inclusive fitness differences between inbred and outbred offspring.  As in @Parker1978, we assume that direct offspring fitness (e.g., offspring survival) increases with increasing parental investment ($m$), with diminishing returns as $m$ increases. It is important to note that $m$ does not represent raw resources provided to an offspring (e.g., food), but is rather anything that a parent does to increase its offspring's fitness at the expense of its other actual or potential offspring [@Trivers1972; @Trivers1974]. Overall, identical-by-descent allele copies carried per offspring ($\zeta_{\textrm{off}}$) is represented as,
+We define a focal female's fitness in terms of the total number of identical-by-descent allele copies carried in her offspring. This definition differs from that of previous models of parental investment [e.g., @Macnair1978; @Parker1978], which instead define fitness only in terms of the number of offspring produced and therefore cannot account for inclusive fitness differences between inbred and outbred offspring.  As in @Parker1978, we assume that direct offspring fitness (e.g., offspring survival) increases with increasing parental investment ($m$), with diminishing returns as $m$ increases. It is important to note that $m$ does not represent raw resources provided to an offspring (e.g., food), but is rather anything that a parent does to increase its offspring's fitness at the expense of its other actual or potential offspring [@Trivers1972; @Trivers1974]. Females have a total investment budget of $M$, and therefore will produce $n=M/m$ total offspring, and we assume $M \gg m$ [@Parker1985]. Overall, identical-by-descent allele copies carried per offspring ($\zeta_{\textrm{off}}$) is represented as,
 
 $$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right).$$ 
 
@@ -201,9 +209,161 @@ text(x=4.95,y=0.215,labels="B",cex=2.5);
 
 A general relationship between $\beta$, $m^{*}$, and $\gamma^{*}$ for different values of $r$ can be shown through numerical simulation. In the figure above, this relationship is shown across a range of $\beta$ for $r$ values corresponding to outbreeding ($r=0$) and inbreeding between outbred cousins ($r=1/8$), half-siblings ($r=1/4$), and full siblings ($r=1/2$). Across all numerical simulations, $m_{min}=1$ and $c=1$. Panel (A) shows how $m^{*}$ increases with both increasing $\beta$ and increasing $r$, and panel (B) shows how $\gamma^{*}$ changes with $\beta$ and $r$ given optimal parental investment. Overall, optimal investment increases with increasing inbreeding depression and inbreeding, and the difference in magnitude of investment per offspring is sometimes expected to be high (e.g., when $\beta=3.25$, $m^{*}_{r=1/2} > m^{*}_{r=0}$ by a factor of `r round(findm(low.guess=0,high.guess=5,rval=0.5,Beta=3.25) / findm(low.guess=0,high.guess=5,rval=0.0,Beta=3.25),digits=2)`). Consequently, inbreeding parents might often be expected to invest considerably more in fewer offspring, relative to outbreeding parents.
 
+In some populations, females might be unable to discriminate between kin and non-kin, and hence unable to adjust their parental investment when inbreeding. It is therefore interesting to consider the fitness consequencies when inbreeding females invest suboptimally in offspring, and therefore $\gamma < \gamma^{*}$. The figure below shows $\gamma$ values for inbreeding females when they invest at the relatively low optimum $m^{*}$ for an outbreeding female. 
+
+```{r, echo=FALSE, fig.width = 8, fig.height = 5}
+# First the below plots the new figure
+bss <- seq(from=0.5,to=5,by=0.25);
+gamznokin <- function(rvl,betas,mmin=1,c=1){
+    mvl <- rep(0,length(betas));
+    gam <- rep(0,length(betas));
+    for(i in 1:length(bss)){
+        mvl[i] <- findm(low.guess=0,high.guess=10,rval=0,mmin=1,Beta=betas[i],c=1);
+        gam[i] <- OffATr(r=rvl, m=mvl[i], mmin=1, Beta=betas[i], c=1) / mvl[i];
+    }
+    return(list(mvl=mvl,gam=gam));
+}
+rg000nk <- gamznokin(rvl=0.000,betas=bss);
+rg125nk <- gamznokin(rvl=0.125,betas=bss);
+rg250nk <- gamznokin(rvl=0.250,betas=bss);
+rg500nk <- gamznokin(rvl=0.500,betas=bss);
+par(mar=c(5,5,0.25,1),lwd=2);
+plot(x=bss,y=rg000nk$gam,type="l",lwd=2,ylim=c(0.12,0.22),pch=1.5,yaxt="n",
+     xlab=expression(paste("Inbreeding depression (",beta,")")),
+     ylab=expression(paste("Rate of fitness increase (",gamma,"*)")),
+     cex.lab=1.5,cex.axis=1.5);
+axis(side=2,at=c(0.12,0.16,0.20),cex.axis=1.5);
+points(x=bss,y=rg125nk$gam,type="l",lwd=2);
+points(x=bss,y=rg250nk$gam,type="l",lwd=2);
+points(x=bss,y=rg500nk$gam,type="l",lwd=2);
+text(x=bss[12],y=rg000nk$gam[12]+0.003,labels="r=0",srt=-0,cex=1.25);
+text(x=bss[10],y=rg125nk$gam[10]+0.004,labels="r=1/8",srt=-22.5,cex=1.25);
+text(x=bss[7],y=rg250nk$gam[7]+0.005,labels="r=1/4",srt=-44,cex=1.25);
+text(x=bss[4]+0.08,y=rg500nk$gam[4]+0.004,labels="r=1/2",srt=-60,cex=1.25);
+# Next, the below generates a function to find where lines intersect
+# Finds the beta at which a particular r value intersects r=0 for fitness
+findbeta <- function(high.guess,rval,m=FALSE,mmin=1,c=1){
+    low.guess <- 0;
+    outbr <- findm(low.guess=0,high.guess=10,rval=0,mmin=mmin,Beta=0,c=c);
+    outgm <- OffATr(r=0,m=outbr,mmin=mmin,Beta=0,c=c) / outbr;
+    if(m == FALSE){ # If we're not constraining m
+        check  <- 1;
+        bguess <- 0.5 * high.guess;
+        i      <- 0;
+        l      <- low.guess
+        u      <- high.guess;
+        while(abs(check) > 0.000001 & i < 1000000){
+            mst   <- findm(low.guess=0,high.guess=10,rval=rval,mmin=mmin,Beta=bguess,c=c);
+            gam   <- OffATr(r=rval,m=mst,mmin=mmin,Beta=bguess,c=c) / mst;
+            check <- gam - outgm;
+            if(check < 0){
+                u      <- bguess;
+                bguess <- 0.5*(l+bguess); 
+            }else{
+                l      <- bguess;
+                bguess <- 0.5*(u+bguess);
+            }
+            i <- i+1;
+        }
+    }else{ #If we are forcing m to a particular value
+        check  <- 1;
+        bguess <- 0.5 * high.guess;
+        i      <- 0;
+        l      <- low.guess
+        u      <- high.guess;
+        while(abs(check) > 0.000001 & i < 1000000){
+            gam   <- OffATr(r=rval,m=m,mmin=mmin,Beta=bguess,c=c) / m;
+            check <- gam - outgm;
+            if(check < 0){
+                u      <- bguess;
+                bguess <- 0.5*(l+bguess); 
+            }else{
+                l      <- bguess;
+                bguess <- 0.5*(u+bguess);
+            }
+            i <- i+1;
+        }
+    }   
+    return(bguess);
+}
+```
+
+The fitness consequences of suboptimal parental investment are severe when inbreeding females invest as if they are outbreeding. While the fitness of a female that inbreeds with a first order relative ($r=1/2$) exceeds that of an outbreeding female ($\gamma^{*}=$ `r round(r00g,digits=3)`) when $\beta <$ `r round(findbeta(high.guess=10,rval=0.5,m=FALSE), digits=3)`, if the inbreeding female invests at the outbreeding female's optimum ($m^{*}_{r=0}$), then her fitness is higher only when $\beta <$ `r round(findbeta(high.guess=10,rval=0.5,m=r00m), digits=3)`. Consequently, if females are unable to adjust their parental investment with inbreeding, the consequences of inbreeding depression might be especially severe. 
+
+Biparental investment (work in progress)
+------------------------------------------------
+
+We have assumed that a focal female provides exclusive care to offspring. The consequence of relaxing this assumption is straightforward in the case of outbreeding if both females and males pair exactly once in life [i.e., strict monomgamy; see @Parker1985]. In this case, $m^{*}$ will remain unchanged with twice as many offspring produced due to a doubled investment budget $2M$ [@Parker1985]. This is not true given inbreeding because by choosing a male relative, a focal female is necessarily precluding him from mating with another female. Consequently, she will loses any indirect fitness increment she would have otherwise received from him breeding with a different female. In the biparental inbreeding literature, this indirect fitness loss is modelled as an opportunity cost ($\omega$) of the focal male relative [@Waser1986]. To incorporate this cost, it is now necessary to consider both the direct and indirect (through her male relative) fitness consequences of inbreeding explicitly. We assume that if a focal female avoids inbreeding, her male relative will instead outbreed, and that parents invest optimally for any given $\beta$. Therefore, if a focal female avoids inbreeding,
+
+$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1-e^{-c\left(m^{*}_{r=0}-m_{min}\right)}\right).$$ 
+
+If she instead inbreeds,
+
+$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m^{*}_{r=r}-m_{min}-\beta r\right)}\right) - \frac{r}{2}\left(1-e^{-c\left(m^{*}_{r=0}-m_{min}\right)}\right).$$ 
+
+
+<!--- , and that breeding with a male relative does not decrease his opportunities to breed with other females.   --->
+
+
+Consequences of relaxing these assumptions follow clearly from theory on parental investment [@Parker1985] and biparental inbreeding [@Waser1986]. If instead of providing exclusive care, both females and males pair exactly once in life (true monogamy), then paternal care will have the same optimal value as females ($m^{*}$) with twice as many offspring produced due to a doubled investment budget $2M$ [@Parker1985]. If pairings are not monogamous, then, paradoxically, $m^{*}$ is decreased due to sexual conflict over investment. @Parker1985 shows that an evolutionary stable strategy (ESS) for $m^{*}$ given two parent investment without monogamy $m^{*}_{p}$ is satisfied by,
+
+$$ m^{*}_{p} = \frac{2 \zeta_{\textrm{off}}(m^{*}_{p})}{\zeta'_{\textrm{off}}(m^{*}_{p})}. $$
+
+```{r, echo=FALSE}
+findmp <- function(low.guess,high.guess,rval,mmin=1,Beta=1,c=1){
+    fm  <- function(m,r=rval){ 
+         (2*OffATr(r=rval, mmin=mmin, Beta=Beta, m=m, c=c) / 
+            OffATrd(r=rval, mmin=mmin, Beta=Beta, m=m, c=c));
+    }
+    lg  <- fm(m=low.guess, r=rval);
+    if(lg < 0){
+        fixlg     <- seq(from=low.guess,to=high.guess,by=0.01);
+        move      <- sum(fm(m=fixlg,r=rval) < 0);
+        newg      <- fixlg[move+1];
+        lg        <- fm(m=newg, r=rval);
+    }
+    hg  <- fm(m=high.guess,r=rval);
+    if(lg > 0){
+        u <- low.guess;
+        l <- high.guess;
+    }else{
+        u <- high.guess;
+        l <- low.guess;
+    }
+    if((fm(l) > 0 & fm(u) > 0) | (fm(l) < 0 & fm(u) < 0)){
+        return("Value of m is outside the range");
+    }else{
+        check  <- 1;
+        mguess <- 0.5 * (l+u);
+        i      <- 0;
+        while(abs(check) > 0.000001 & i < 1000000){
+            check <- fm(r=rval, m=mguess) - mguess;
+            if(check > 0){
+                u      <- mguess;
+                mguess <- 0.5*(l+mguess); 
+            }else{
+                l      <- mguess;
+                mguess <- 0.5*(u+mguess);
+            }
+            i <- i+1;
+        }
+        return(mguess);
+    }
+} # Running the below returns the estimate
+```
+
+ESS values of $m^{*}_{p}$ are always lower than $m^{*}$. In our example where $c=1$, $m_{min}=1$, and $\beta=1$, the value $m^{*}_{p}$ of outbreeding equals `r round(findmp(low.guess=0,high.guess=10,rval=0),digits=3)` compared to $m^{*}=$ `r round(findm(low.guess=0,high.guess=10,rval=0),digits=3)` given single parental care or monogamy. When $r=1/2$, $m^{*}_{p}=$ `r round(findmp(low.guess=0,high.guess=10,rval=0.5),digits=3)` compared to $m^{*}=$ `r round(findm(low.guess=0,high.guess=10,rval=0),digits=3)`. All else being equal, optimal parental investment therefore decreases when both parents contribute but are not monogamous, regardless of inbreeding. It is unclear, however, if this general agreement with @Parker1985 would still be expected for females jointly considering inbreeding strategy and parental investment. <!--- Need to say more about this --->
+
+Assuming again that only females provide care, if a male pays a mating opportunity cost by inbreeding with a female ($\omega$), then the fitness increase of the focal female will decrease proportionally to $r$ such that
+<!---
+$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right) - \omega r \frac{1}{2} \left(1-e^{-c\left(m-m_{min})}\right) .$$ 
+--->
+For simplicity, the above assumes that the male is unrelated to all but the focal female, and therefore only inbreeds once [but see @Duthie2015a]. 
+
 <!--- ===================================================================== --->
 <!--- ==================  LEFT OFF HERE =================================== --->
 <!--- ===================================================================== --->
+
 
 Relaxing the assumption of an outbred parent
 ------------------------------------------------
@@ -276,7 +436,7 @@ otang.f000 <- OffATf(m=omopt.f000, f=0, k=0.0, B0=1, B1=1, c=1) / omopt.f000;
 otang.f025 <- OffATf(m=omopt.f025, f=0.25, k=0.0, B0=1, B1=1, c=1) / omopt.f025;
 ```
 
-Further, the degree to which a female is inbred should only slightly affect $\gamma^{*}$, and only if $k>0$. If $k=0$, then $\gamma^{*}$ is unaffected because there is no inbreeding depression, so $\gamma^{*}=$ `r round(otang.f025,digits=3)` for all values of $f$ given the previously considered $\beta=1$, $m_{min}=1$, and $c=1$. If instead $k=1/4$ (inbreeding between first order relatives) and $f=1/4$ (the female is the offspring of first order relatives), then a slight decrease in $\gamma^{*}$ is predicted. If $k=1/4$ and $f=1/4$, then $\gamma^{*}=$ `r round(itang.f025,digits=3)`, versus $\gamma^{*}=$ `r round(itang.f000,digits=3)` given $f=0$. The difference between these two curves predicting $\zeta_{off}(m)$ for $f=0$ and $f=1/4$ given $k=1/4$ is shown in the figure below.
+Further, the degree to which a female is inbred should only slightly affect $\gamma^{*}$, and only if $k>0$. If $k=0$, then $\gamma^{*}$ is unaffected because there is no inbreeding depression, so $\gamma^{*}=$ `r round(otang.f025,digits=3)` for all values of $f$ given the previously considered $\beta=1$, $m_{min}=1$, and $c=1$. If instead $k=1/4$ (inbreeding between first order relatives) and $f=1/4$ (the female is the offspring of first order relatives), then a slight decrease in $\gamma^{*}$ is predicted. If $k=1/4$ and $f=1/4$, then $\gamma^{*}=$ `r round(itang.f025,digits=3)`, versus $\gamma^{*}=$ `r round(itang.f000,digits=3)` given $f=0$. The difference between these two curves predicting $\zeta_{\textrm{off}}(m)$ for $f=0$ and $f=1/4$ given $k=1/4$ is shown in the figure below.
 
 ```{r, echo=FALSE}
 Alleles_IBD_f000 <- OffATf(k=0.25, f=0.0, m=PI, B0=1, B1=1, c=1);
@@ -307,7 +467,7 @@ text(x=0.67,y=0.35,labels=expression(paste(italic(f==frac(1,4)))),cex=1.25);
 arrows(x0=0.87,y0=0.36,x1=1.1,y1=yof025-0.01,length = 0.15,angle=30,code=2,lwd=2);
 ```
 
-The bottom curve shows $\zeta_{off}(m)$ given $f=1/4$, and the top curve shows $\zeta_{off}(m)$ given $f=0$, with the difference between $\zeta_{off}(m)$ represented by grey shading. Where $m=m^{*}$, $\zeta_{off}$ is slightly higher for $f=0$, meaning that the rate of fitness increase (here, technically, identical-by-descent alleles carried by offspring scaled by their frequency within the parent) is higher for outbred individuals even though optimal investment per offspring has not changed ($m^{*}_{f=0}=m^{*}_{f=1/4}$). Thin grey lines in the figure show tangent lines for each curve. The above figure shows an overall weak effect on $\gamma^{*}$ across a relatively wide range of $f$ (outbred individuals versus individuals of full sibling matings). Consequently, the degree to which an individual is inbred will have a relatively minor effect on its rate of fitness increase.
+The bottom curve shows $\zeta_{\textrm{off}}(m)$ given $f=1/4$, and the top curve shows $\zeta_{\textrm{off}}(m)$ given $f=0$, with the difference between $\zeta_{\textrm{off}}(m)$ represented by grey shading. Where $m=m^{*}$, $\zeta_{\textrm{off}}$ is slightly higher for $f=0$, meaning that the rate of fitness increase (here, technically, identical-by-descent alleles carried by offspring scaled by their frequency within the parent) is higher for outbred individuals even though optimal investment per offspring has not changed ($m^{*}_{f=0}=m^{*}_{f=1/4}$). Thin grey lines in the figure show tangent lines for each curve. The above figure shows an overall weak effect on $\gamma^{*}$ across a relatively wide range of $f$ (outbred individuals versus individuals of full sibling matings). Consequently, the degree to which an individual is inbred will have a relatively minor effect on its rate of fitness increase.
 
 <!--- It is worth noting that because the optimal amount of parent investment always increases as inbreeding depression becomes more severe (Appendix 2), if increases in $f$ increase inbreeding depression of offspring (e.g., if inbred individuals are less able to), then $m^{*}$ is expected to increase. --->
 
@@ -359,7 +519,7 @@ Appendix 2: $m^{*}$ increases with increasing $r$
 
 Here we show that optimal parental investment always increases with increasing inbreeding given inbreeding depression and $c>0$. Because we are only interested in the sign of this increase, it will be sufficient to show that $\partial r / \partial m^{*} > 0$ given $\beta>0$ and $c>0$. 
 
-First, we note that $m^{*}$ is defined as the value of $m$ that maximises the rate of increase in $\zeta_{off}$ for a female. This is described by the line that passes through the origin and lies tangent to $\zeta_{off}(m)$. As in Appendix 1, we have the general equation for which $m=m^{*}$,
+First, we note that $m^{*}$ is defined as the value of $m$ that maximises the rate of increase in $\zeta_{\textrm{off}}$ for a female. This is described by the line that passes through the origin and lies tangent to $\zeta_{\textrm{off}}(m)$. As in Appendix 1, we have the general equation for which $m=m^{*}$,
 
 $$ 0 = \frac{c}{2} \left(1+r\right)e^{-c\left(m-m_{min}-\beta r\right)}\left(0-m\right) + \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right). $$
 
@@ -367,7 +527,7 @@ We first substitute $m=m^{*}$ and note that this equation reduces to,
 
 $$ 0 = c e^{-c\left(m^{*}-m_{min}-\beta r\right)}\left(0-m^{*}\right) + \left(1-e^{-c\left(m^{*}-m_{min}-\beta r\right)}\right). $$
 
-This simplification dividing both sides of the equation by $(1/2)(1+r)$ has a biological interpretaion that is relevant to parental investment. Optimal parental investment does not depend directly on the uniform increase in $\zeta_{off}$ caused by $r$ in $(1/2)(1+r)$, the change in $m^{*}$ is only affected by $r$ insofar as $r$ affects offspring fitness directly through inbreeding depression. Ideally, we would isolate $m$ to find $\partial m^{*} / \partial r$, but this is not possible. Instead, the above equation can be simplified further to isolate $r$ and show that $\partial r / \partial m^{*} > 0$,
+This simplification dividing both sides of the equation by $(1/2)(1+r)$ has a biological interpretaion that is relevant to parental investment. Optimal parental investment does not depend directly on the uniform increase in $\zeta_{\textrm{off}}$ caused by $r$ in $(1/2)(1+r)$, the change in $m^{*}$ is only affected by $r$ insofar as $r$ affects offspring fitness directly through inbreeding depression. Ideally, we would isolate $m$ to find $\partial m^{*} / \partial r$, but this is not possible. Instead, the above equation can be simplified further to isolate $r$ and show that $\partial r / \partial m^{*} > 0$,
 
 $$ 0 = -m^{*} c e^{-c\left(m^{*}-m_{min}-\beta r\right)} + 1-e^{-c\left(m^{*}-m_{min}-\beta r\right)}. $$
 
@@ -401,7 +561,7 @@ Given the above, $\partial r / \partial m^{*} > 0$ assuming $\beta>0$ (inbreedin
 Appendix 3: Consistency with biparental inbreeding models
 ----------------------------------------------
 
-It is trivial to show that a female that inbreeds with a first order relative ($r=1/2$) has a higher fitness than a female that outbreeds ($r=0$) given $m_{min}=1$, $\beta=1$, and $c=1$ at optimal values of $m^{*}_{r=1/2}$ and $m^{*}_{r=0}$. To do this, we define $\delta$ as follows,
+It is trivial to show that a female that inbreeds with a first order relative ($r=1/2$) has a higher fitness than a female that outbreeds ($r=0$) given $m_{min}=1$, $\beta=1$, and $c=1$ at optimal values of $m^{*}_{r=1/2}$ and $m^{*}_{r=0}$. To do this, we define $\delta_{r}$ as follows,
 
 $$ \delta_{r} = e^{-c(m^{*}_{r}-m_{min}-\beta r)}. $$
 
@@ -409,15 +569,23 @@ In biparental inbreeding models [e.g., @Kokko2006; @Parker2006; @Duthie2015a], i
 
 $$ W_{r} = \frac{n}{2}\left(1+r\right)\left(1-\delta_{r}\right). $$
 
-In the above, $n$ is the total number of offspring a female produces in a reproductive bout. Biparental inbreeding models assume that this value is constant, but $n$ will scale linearly with $m$ (by definition) because females that invest more in each offspring (high $m$) will produce fewer total offspring (low $n$). To account for this, we can simply include $m$ to scale for offspring produced,
+By definition, $n = M/m$, so $n$ is the total number of offspring a female produces. Biparental inbreeding models assume that this value is constant, but $n$ will scale linearly with $m$ because females that invest more in each offspring (high $m$) will produce fewer total offspring (low $n$). To account for this, we can simply substitute $M/m$ for $n$ to scale for offspring produced,
 
-$$ W_{r} = \frac{n}{2 m}\left(1+r\right)\left(1-\delta_{r}\right). $$
+$$ W_{r} = \frac{M}{2 m}\left(1+r\right)\left(1-\delta_{r}\right). $$
 
-Fitness given $r=0$ and $r=1/2$, and $m^{*}_{r=0}$ and $m^{*}_{r=1/2}$, can be determined by substituting some constant value for $n$ (for simplicity, assume $n=1$), as the magnitude of $n$ will not affect relative fitness differences. 
+Fitness given $r=0$ and $r=1/2$, and $m^{*}_{r=0}$ and $m^{*}_{r=1/2}$, can be determined by substituting some constant value for $M$ (here for simplicity, assume $M=1$), as the magnitude of $n$ will not affect relative fitness differences. 
 
 To show that inbreeding with first order relatives returns a higher fitness than outbreeding given the above conditions assumed in our model, we can simply use the above equation directly to compare the fitness given both $r=1/2$ and $r=0$, noting that $\delta_{r=1/2}=0.26$ and $\delta_{r=0}=0.32$ (note that $\delta_{r=1/2}<\delta_{r=0}$ because inbreeding parents are investing more in their offspring, $m^{*}_{r=1/2}=$ `r round(r05m,digits=2)` versus $m^{*}_{r=0}=$ `r round(r00m,digits=2)`). Consequently, we can use the above equation to show that the fitness gain of an optimally investing female that inbreeds with a first order relative is `r round((1/(r05m*2))*(1+0.5)*(1-exp(-1*(r05m - 1 -1*0.5))),digits=2)`, compared with `r round((1/(r00m*2))*(1+0.0)*(1-exp(-1*(r00m - 1 -1*0.0))),digits=2)` for the outbreeding female; these values are identical to our earlier calculated values of $\gamma^{*}_{r=1/2}$ and $\gamma^{*}_{r=0}$.
 
-<!--- Note that we can expand this -- n * (\zeta_{off} / m) --->
+<!--- Note that we can expand this -- n * (\zeta_{\textrm{off}} / m) --->
+
+Thoughts in progress
+----------------------------------------------
+
+Note that we can formulate the optimal contribution for an individual parent $m_{p}^{*}$ as the value of m that satisfies the following [see @Parker1985],
+
+$$m = \frac{2 \zeta_{\textrm{off}}(m)}{\partial \zeta_{\textrm{off}}(m) / \partial m}$$
+
 
 References
 ----------------------------------------------
