@@ -2,7 +2,7 @@
 title: "Inbreeding parents should invest more resources in fewer offspring"
 author: "Brad Duthie"
 date: "March 28, 2016"
-output: html_document
+output: pdf_document
 linestretch: 1
 header-includes:
 - \usepackage{natbib}
@@ -32,9 +32,31 @@ Mating among relatives is common, especially within small and viscous population
 The setup of the introduction should address:
 
 * Biparental inbreeding can increase or decrease fitness depending on inbreeding depression
+
+ 1. Briefly, traditional biparental inbreeding models follow an inclusive fitness framework to predict whether or not a focal individual should inbreed or avoid inbreeding [@Parker1979; Parker2006; Kokko2006; @Duthie2015a].
+
+ 2. But these models have always assumed that females produce a fixed number of offspring, and the amount investment in each offspring is also a constant
+
+ 3. If parents can increase the fitness of their inbred offspring by investing more in inbred offspring per capita, they may increase their inclusive fitness benefits. 
+
+<!---
 * Inbreeding theory assumes that offspring number is fixed and parental investment is implicit
+--->
+
+* Parental investment theory has not considered biparental inbreeding, but theory shows how parents should optimise their per offspring investment to maximise their own fitness increase [@Macnair1978; @Parker1978]
+
+ 1. Historically, parental investment theory is considered in the context of parent-offspring conflict, originating from the seminal work of @Trivers1972. But the framework is easy to consider in the context of inbreeding
+
+ 2. Offspring fitness is assumed to increase with increasing parental investment, asymptoting to some maximum fitness value. 
+
+ 3. Parents have a fixed total investment budget, and must decide how many offspring to produce and how much to therefore invest in each.
+
+ 4. This decision might change if offspring are inbred, with fitness consequences for inbreeding versus inbreeding avoidance.
+
 * We instead allow parents to adjust their investment in offspring given different inbreeding
+
 * Empirical studies suggest that parental investment increases offspring fitness relatively more when offspring are inbred [@Aviles2006; @Pilakouta2015].
+
 * We demonstrate that inbreeding should consistently increase optimal parental investment
 
 
@@ -656,11 +678,11 @@ $$m = \frac{2 \zeta_{\textrm{off}}(m)}{\partial \zeta_{\textrm{off}}(m) / \parti
 Supporting information
 ----------------------------------------------
 
-Suppose we assume that some amount of reduction in offspring fitness due to inbreeding cannot be mitigated by parental investment, $(1 - \Delta r)$, such that offspring fitness decreases linearly with increasing $\Delta$ and $r$. In this case, $\zeta_{\textrm{off}} is simply,
+Suppose we assume that some amount of reduction in offspring fitness due to inbreeding cannot be mitigated by parental investment, $(1 - \Delta r)$, such that offspring fitness decreases linearly with increasing $\Delta$ and $r$ regardless of $m$. In this case, $\zeta_{\textrm{off}}$ is simply,
 
 $$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right) \left(1 - \Delta r\right).$$
 
-Note that offspring fitness now decreases with $\Delta$, but $\Delta$ (by definition) is independent of $m$. A simple example illustrates how $\zeta_{\textrm{off}}$ and therefore $\gamma^{*}$ decreases with increasing $\Delta$, while $m^{*}$ remains unaffected.
+Note that offspring fitness now decreases with $\Delta$, but $\Delta$ (by definition) is independent of $m$. A simple example illustrates how $\zeta_{\textrm{off}}$ and therefore $\gamma^{*}$ decreases with increasing $\Delta$, while $m^{*}$ remains unaffected. We return to the example in which $c=1$, $m_{min}=1$, $\beta=1$, and $r=1/2$ (inbreeding between first order relatives).
 
 ```{r, echo=FALSE}
 fm  <- expression(0.5*(1+r) * (1 - exp(-c*(m-mmin-Beta*r))) * (1-r*Delta),'m');
@@ -712,7 +734,11 @@ mmin <- 1;
 rva  <- 0.5;
 Delt <- 0; # First show no Delta
 Del1 <- OffDelta(m=PI,r=0.5,Delta=Delt, Beta=1);
-plot(x=PI,y=Del1,type="l",lwd=2,ylim=c(0,1));
+par(mar=c(5,5,1,1));
+plot(x=PI,y=Del1,type="l",lwd=2,ylim=c(0,1),
+     xlab=expression(paste("Parental investment (",italic(m),")")),
+     ylab=expression(paste("IBD alleles in offspring (",zeta[off],")")),
+     cex.lab=1.5,cex.axis=1.5);
 d1m <- findmDelta(low.guess=0,high.guess=10,rval=0.5,Delta=Delt);
 d1g <- OffDelta(r=rva, mmin=mmin, Beta=Beta, m=d1m, c=c, Delta=Delt) / d1m;
 abline(a=0,b=d1g,col="black");
@@ -724,6 +750,11 @@ d2g <- OffDelta(r=rva, mmin=mmin, Beta=Beta, m=d2m, c=c, Delta=Delt) / d2m;
 abline(a=0,b=d2g,lty="dashed");
 
 ```
+
+The figure above compares $\Delta=0$ (solid curve) with $\Delta=1/2$ (dashed curve). When strong inbreeding depression exists with an effect that is independent of $m$, optimal parental investment does not change, and $m^{*}=$ `r round(d2m,digits=3)`. Yet while $m^{*}$ is unaffected by $\Delta$, an additional source of inbreeding depression has a predictable negative effect on $\zeta_{\textrm{off}}$, with a rate of fitness increase $\gamma^{*}$ of `r round(d1g,digits=3)` (solid line) when $\Delta=0$ and `r round(d2g,digits=3)` when $\Delta=1/2$ (dashed line). The inclusion of $\Delta$ effectively relaxes the assumption that sufficient parental investment can always compensate for being inbred. For inbred offspring, $\zeta_{\textrm{off}}$ approaches $1/2(1+r)(1 - \Delta r)$ as $m \to \infty$. As such, when $r=1/2$ and $\Delta=1/2$, the maximum possible $\zeta_{\textrm{off}}$ is `r OffDelta(m=Inf, r=0.5, Delt=0.5, Beta=0)` (dashed curve) instead of `r OffDelta(m=Inf, r=0.5, Delt=0, Beta=0)` (solid curve). While this has no effect on optimal parental investment given that inbreeding has occurred, it should be noted that the existence of inbreeding depression that cannot be mitigated with parental investment might strongly effect the fitness consequences of inbreeding versus avoiding inbreeding (e.g., $\gamma^{*}_{r=1/2}$ versus $\gamma^{*}_{r=0}$).
+
+
+
 
 References
 ----------------------------------------------
