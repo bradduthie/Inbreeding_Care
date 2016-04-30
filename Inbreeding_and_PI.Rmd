@@ -4,7 +4,7 @@ author: "Brad Duthie"
 date: "March 28, 2016"
 output:
   pdf_document:
-    fig_caption: true
+    fig_caption: yes
   html_document: default
   word_document:
     fig_caption: yes
@@ -33,7 +33,7 @@ bibliography: Inbreeding_and_PI.bib
 figscale <- 1.0; # Avoid making huge figures.
 ```
 
-Introduction
+Background
 ===================================================
 
 Breeding between relatives (inbreeding) can alter offspring genotypes and decrease offspring fitness (inbreeding depression), thereby affecting evolution of phenotypes and population dynamics [@Goodwillie2005; @OGrady2006; @Charlesworth2009]. Evolutionary consequences of inbreeding have been modelled to predict when strategies of inbreeding or avoiding inbreeding will be adaptive [@Parker1979; @Lande1985; @Cheptou2001; @Kokko2006]. Such models assume that parental investment (hereafter PI) does not vary with inbreeding [but see @DeJong2005], but if parents can increase their investment in inbred offspring, then it might buffer inbreeding depression and thereby alter selection on inbreeding [@Pilakouta2015]. Here we focus on PI and inbreeding in the context of obligate biparental reproduction. By conceptually unifying biparental inbreeding and PI theory, we show why PI should increase when offspring are inbred, and we predict the fitness consequences of inbreeding given optimal parental investment.
@@ -582,10 +582,32 @@ arrows(x0=0.87,y0=0.36,x1=1.1,y1=yof025-0.01,length = 0.15,angle=30,code=2,lwd=2
 
 The bottom curve of Fig. 5 shows $\zeta_{\textrm{off}}(m)$ given $f=1/4$, and the top curve shows $\zeta_{\textrm{off}}(m)$ given $f=0$, with the difference between $\zeta_{\textrm{off}}(m)$ represented by grey shading. Where $m=m^{*}$, $\zeta_{\textrm{off}}$ is slightly higher for $f=0$, meaning that the rate of fitness increase (here, technically, identical-by-descent alleles carried by offspring scaled by their frequency within the parent) is higher for outbred individuals even though optimal investment per offspring has not changed ($m^{*}_{f=0}=m^{*}_{f=1/4}$). Thin grey lines in the figure show tangent lines for each curve. Overall, Fig 5 shows a weak effect on $\gamma^{*}$ across a relatively wide range of $f$ (outbred individuals versus individuals of full sibling matings). Consequently, the degree to which an individual is inbred will have a relatively minor effect on its rate of fitness increase.
 
-<!--- It is worth noting that because the optimal amount of parent investment always increases as inbreeding depression becomes more severe (Appendix 2), if increases in $f$ increase inbreeding depression of offspring (e.g., if inbred individuals are less able to), then $m^{*}$ is expected to increase. --->
+******************************
 
 Discussion
 ===================================================
+
+We have provided a framework for synthesising biparental inbreeding theory and parental investment theory. Our results show that biparental inbreeding can alter optimal PI, thereby affecting parent and offspring fitness. Specifically, we have shown that when offspring are inbred, the optimal PI provided by a single female should always increase, and this increase in optimal PI should be greatest when inbreeding depression is high. We have also shown that, in contrast to outbreeding [@Parker1985], optimal PI changes when both parents invest given strict monogamy as opposed to single PI; under such conditions, optimal PI increases, but the fitness of inbreeding parents never exceeds that of outbreeding parents. Finally, we have shown that optimal PI does not change when a focal female is herself inbred, but her fitness, defined in as the rate at which she increases copies of her identical-by-descent alleles, is decreased. Our modelling has potentially widespread empirical implications, and extensions of our model can further inform theory on the interaction between inbreeding and parental investment.
+
+Multiple studies estimate magnitudes of inbreeding depression in offspring fitness [@Charlesworth2009; @Szulkin2012], but predicting how the effects of inbreeding depression in offspring in turn affect parent fitness and subsequent evolution of behaviour remains empirically challenging [@Reid2015b]. Further, because PI might encompass a range of behaviours, each of which is an instance of allocation from an unknown total PI budget, PI is notoriously difficult to measure [@Parker2002]. One approach is to vary PI experimentally by excluding a parent during offspring development. @Pilakouta2015 quantified the fitness of burying beetle (*Nicrophorus vespilloides*) offspring in the presence and absence of maternal care, and for inbred and outbred offspring, finding that maternal care increased survival relatively more for inbred than outbred offspring. Their result is consistent with our assumption that PI can mitigate inbreeding depression and thereby buffer offspring fitness.  Similarly, in the subsocial spider *Anelosimus* cf. *jucundus*, in which care is provided by solitary females, @Aviles2006 found evidence of inbreeding depression only late in life when parental care was absent. They also hypothesise that maternal care might buffer inbreeding depression. Interestingly, clutch size does not decrease when *A* cf. *jucundus* females inbreed as our model predicts, and as would be expected if females respond to inbreeding by increasing PI per offspring at the cost of total offspring production. In the European earwig (*Forficula auricularia*), @Meunier2013 also found no evidence that clutch size decreased with inbreeding, nor that parental care buffers inbreeding depression. It is possible that the ability of parents to adjust PI based on inbreeding might be precluded in such systems if kin recognition is limited, and parents therefore have no means to determine whether or not they are inbreeding. Empirical tests of our model might therefore be most applicable to species that are known to vary their behaviour with respect to relatedness.
+
+**************************
+
+Wolves can probably recognise relatedness and stuff -- lead into that as a system and mention the brood size papers. Try to wrap up the empirical stuff with some discussion about what the look at next. Could lead into non-uniparental investment $\to$ back to talk about theory.
+
+
+We have assumed that parents control investment with no parent-offspring conflict, but offspring might have more say in their own investment. @DeJong2005 assumed that seed size is under offspring control, and found that the empirical evidence is largely in support of this. 
+
+
+
+New paragraphs:
+
+* There are some serious empirical implications of our results, and previous scientists have suggested that parental investment might buffer inbreeding depression -- here we show that this verbal idea works. It also means, however, that females might want to invest more in fewer offspring, so we should be aware of the effects of inbreeding on offspring production, and not assume that this is due to inbreeding (as some scientists imply).
+
+* Theory should look at non-uniparental investment and non-strict monogamy. This will get complicated because it will have to incorporate opportunity costs for males with respect to inbreeding, but also evolutionary stable strategies surrounding investment @Parker1985 showed that care is reduced by ESS given outbreeding, and the issue is likely to be complicated more by inbreeding due to the changing parent-offspring relatedness and indirect effects of investment by relatives
+
+
+<!--- (1) to show how optimal PI changes when offpsring are inbred, and for different magnitudes of inbreeding depression; (2) to show how an inbreeding female's optimal PI is indirectly affected by opportunity costs when both parents invest in offspring; and (3) to show how parental fitness, but not optimal PI, is decreased when an inbreeding female is herself inbred. --->
 
 Key points to hit in the Discussion:
 
@@ -598,13 +620,14 @@ Key points to hit in the Discussion:
 
 Empirical studies suggest that parental investment increases offspring fitness relatively more when offspring are inbred [@Aviles2006; @Pilakouta2015]
 
+******************************
 
 Appendix 1: Sample derivations of $m^{*}$ and $\gamma^{*}$
 ----------------------------------------------
 
 In general, the equation for a line tangent to some function $f$ at the point $a$ is,
 
-$$ y = f'\left(a\right)\left(x-a\right) + f\left(a\right).$$
+$$ y = f'\left(a\right)\left(x-a\right) + f\left(a\right). $$
 
 In the above, $f'(a)$ is the first derivative of $f(a)$, and $y$ and $x$ define the point of interest through which the straight line will pass that is also tangent to $f(a)$. The original function that defines $\zeta_{\textrm{off}}$ is as follows,
 
@@ -704,6 +727,8 @@ $$m = \frac{2 \zeta_{\textrm{off}}(m)}{\partial \zeta_{\textrm{off}}(m) / \parti
 
 --->
 
+******************************
+
 Supporting information
 ----------------------------------------------
 
@@ -783,7 +808,7 @@ abline(a=0,b=d2g,lty="dashed");
 The figure above compares $\Delta=0$ (solid curve) with $\Delta=1/2$ (dashed curve). When strong inbreeding depression exists with an effect that is independent of $m$, optimal parental investment does not change, and $m^{*}=$ `r round(d2m,digits=3)`. Yet while $m^{*}$ is unaffected by $\Delta$, an additional source of inbreeding depression has a predictable negative effect on $\zeta_{\textrm{off}}$, with a rate of fitness increase $\gamma^{*}$ of `r round(d1g,digits=3)` (solid line) when $\Delta=0$ and `r round(d2g,digits=3)` when $\Delta=1/2$ (dashed line). The inclusion of $\Delta$ effectively relaxes the assumption that sufficient parental investment can always compensate for being inbred. For inbred offspring, $\zeta_{\textrm{off}}$ approaches $1/2(1+r)(1 - \Delta r)$ as $m \to \infty$. As such, when $r=1/2$ and $\Delta=1/2$, the maximum possible $\zeta_{\textrm{off}}$ is `r OffDelta(m=Inf, r=0.5, Delt=0.5, Beta=0)` (dashed curve) instead of `r OffDelta(m=Inf, r=0.5, Delt=0, Beta=0)` (solid curve). While this has no effect on optimal parental investment given that inbreeding has occurred, it should be noted that the existence of inbreeding depression that cannot be mitigated with parental investment might strongly affect the fitness consequences of inbreeding versus avoiding inbreeding (e.g., $\gamma^{*}_{r=1/2}$ versus $\gamma^{*}_{r=0}$).
 
 
-
+******************************
 
 References
 ----------------------------------------------
