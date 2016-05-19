@@ -1,7 +1,7 @@
 ---
 title: "Inbreeding parents should invest more resources in fewer offspring"
 author: "Brad Duthie"
-date: "April 14, 2016"
+date: "May 20, 2016"
 output: 
   ioslides_presentation: 
     widescreen: yes
@@ -13,6 +13,7 @@ bibliography: Inbreeding_and_PI.bib
 <!--- ================ INTRODUCTION ===================================== --->
 <!--- =================================================================== --->
 
+# Background
 
 ## Parental investment applies to all species {.smaller}
 
@@ -57,6 +58,18 @@ https://commons.wikimedia.org/wiki/File:Frog_in_frogspawn.jpg
 
 https://commons.wikimedia.org/wiki/File:Savannah_Sparrow,_Passerculus_sandwichensis,_nestlings_baby_birds_begging_in_nest_Alberta_Canada.jpg
 Kati Fleming
+
+https://commons.wikimedia.org/wiki/File:Mouse_litter.jpg
+Seweryn Olkowicz: Mouse with litter
+
+https://commons.wikimedia.org/wiki/File:Calliope-nest_edit.jpg
+Papa Lima: Feeding hummingbirds
+
+https://commons.wikimedia.org/wiki/File:Dachshund_brown_puppy.jpg
+Puppy 
+
+https://commons.wikimedia.org/wiki/File:DNA_orbit_animated.gif
+DNA
 --->
 
 ## Parental investment applies to all species
@@ -65,13 +78,13 @@ All individuals that reproduce must decide how much to invest in each offspring.
 
 Parental investment is defined as anything that a parent does to increase its offspring's fitness *at the expense of its other actual or potential offspring* [@Trivers1972; @Trivers1974].
 
+![puppy](puppy.jpg)
+
 ## Key assumptions of parental investment theory {.smaller}
 
  1. Parents have a total investment budget (*M*), and parental investment (*m*) is directly and inversely related to total offspring production (*n*) such that: *n = M/m*.
  
- 2. Offspring fitness increases with *m*, but in such a way as to cause dimishing returns as more PI is provided.
-
-<br><br>
+<br><br><br>
 
 ![Offspring diff](offdiff.png)
 
@@ -81,6 +94,7 @@ Parental investment is defined as anything that a parent does to increase its of
  1. Parents have a total investment budget (*M*), and parental investment (*m*) is directly and inversely related to total offspring production (*n*) such that: *n = M/m*.
  
  2. Offspring fitness increases with *m*, but in such a way as to cause dimishing returns as more PI is provided.
+
 
 ```{r, echo=FALSE, fig.height = 4, fig.width=9, dev.args = list(bg = 'transparent')}
 OffATr <- function(r, m, mmin=1, Beta=1, c=1){
@@ -141,6 +155,8 @@ In all sexual species, individuals must find another individual with which to br
 
 Inbreeding is defined by inbreeding between related individuals, which share a recent common ancestor and therefore share identical-by-descent alleles.
 
+![Offspring diff](DNA_orbit_animated.gif)
+
 
 ## Key assumptions of inbreeding theory
 
@@ -152,6 +168,9 @@ Inbreeding is defined by inbreeding between related individuals, which share a r
 ## Parental investment when parents inbreed
 
 Given the aforementioned minimal assumptions about parental investment and inbreeding, is it possible to make any general conclusions about how parents should invest in offspring when their offspring are inbred?
+
+![Birds investing](Calliope-nest_edit.jpg)
+
 
 ## Parental investment when parents inbreed
 
@@ -183,6 +202,8 @@ How should inbreeding affect the degree to which parents invest in their offspri
 <!--- =================================================================== --->
 <!--- ================ MODEL PART 1 ===================================== --->
 <!--- =================================================================== --->
+
+# The general model
 
 ## Model of IBD alleles carried by offspring ($\zeta_{\textrm{off}}$)
 
@@ -302,6 +323,8 @@ renderPlot({
 ```
 
 
+# Specific conclusions derived from the general model
+
 ## Specific aims of the model
 
  1. **Show how optimal PI changes with (i) the degree to which a focal parent inbreeds and (ii) the magnitude of inbreeding depression in their offspring.**
@@ -310,7 +333,6 @@ renderPlot({
  
  3. Show how parental investment is affected if a parent is inbred.
  
-
 ## Optimum parental investment ($m^{*}$) with $\beta$ & r
 
 ```{r, echo=FALSE, fig.width = 7, fig.height = 5.5, dev.args = list(bg = 'transparent')}
@@ -384,7 +406,7 @@ rg500nk <- gamznokin(rvl=0.500,betas=bss);
 par(mar=c(5,5,0.25,1),lwd=2);
 plot(x=bss,y=rg000nk$gam,type="l",lwd=2,ylim=c(0.12,0.22),pch=1.5,yaxt="n",
      xlab=expression(paste("Inbreeding depression (",beta,")")),
-     ylab=expression(paste("Rate of fitness increase (",gamma,"*)")),
+     ylab=expression(paste("Rate of fitness increase (",gamma,")")),
      cex.lab=1.5,cex.axis=1.5);
 axis(side=2,at=c(0.12,0.16,0.20),cex.axis=1.5);
 points(x=bss,y=rg125nk$gam,type="l",lwd=2);
@@ -723,49 +745,174 @@ arrows(x0=0.87,y0=0.36,x1=1.1,y1=yof025-0.01,length = 0.15,angle=30,code=2,lwd=2
 <!--- ================ DISCUSSION ======================================= --->
 <!--- =================================================================== --->
 
+# Discussion of empirical predictions and new theory
+
+## Empirical predictions {.smaller}
+
+Parental investment can buffer the negative effects of inbreeding depression 
+ 
+ - Buffered in beetles [@Pilakouta2015] and spiders [@Aviles2006]
+ 
+ - No effect of PI found in earwigs [@Meunier2013]
+
+![Earwig](Forficula_auricularia.gif)
 
 
+## Empirical predictions {.smaller}
 
-## General predictions and why they are interesting
+Parental investment can buffer the negative effects of inbreeding depression 
+ 
+ - Buffered in beetles [@Pilakouta2015] and spiders [@Aviles2006]
+ 
+ - No effect of PI found in earwigs [@Meunier2013]
 
-* If a female inbreeds by choice or necessity, she should make fewer offspring and increase her parental investment in each one.
+<br>
 
-* Lower offspring production for inbreeding versus outbreeding females does not necessarily reflect consequences of inbreeding depression.
+Inbreeding parents should have fewer offspring (and invest more in each)
+ 
+ - PI is difficult to estimate; reproductive output is easier, but confounded by inbreeding depression
+ 
+ - No decrease in reproductive output for inbreeding spiders [@Aviles2006] or earwigs [@Meunier2013]
+ 
+ - Smaller litter size in wolves [@Liberg2005; @Fredrickson2007], interpreted as inbreeding depression
 
-* If offspring number is fixed, the best strategy might be to inbreed.
+## Empirical predictions {.smaller}
 
-* Parent-offspring conflict will be reduced by inbreeding.
+When reproductive ouput does not or cannot vary, relatively fit parents (high *M*) should inbreed
+ 
+ - Difficult to estimate total resource budget of parents
+ 
+ - Tied to variation in parent-offspring relatedness (Reid et al. *in press*)
 
-* Comparison with selfing literature for optimal seed size.
+![Sparrow](Song-Sparrow.gif)
 
-## Inbreeding and offspring number
+## Empirical predictions {.smaller}
 
-![Figure from Liberg et al. 2005](LibergEtAl_corr.png)
+When reproductive ouput does not or cannot vary, relatively fit parents (high *M*) should inbreed
+ 
+ - Difficult to estimate total resource budget of parents
+ 
+ - Tied to variation in parent-offspring relatedness (Reid et al. *in press*)
+ 
+<br>
+ 
+Intrafamilial conflict might decrease as a consequence of inbreeding
+ 
+ - Increased PI and decreased offspring bedding given inbreeding in *N. vispilloides* [@Mattey2014]
+ 
+## Future theoretical work 
+ 
+How should inbreeding affect intrafamilial conflict over parental investment?
 
-@Liberg2005 intepret lower offspring number as inbreeding depression.
+<br>
 
-## Inbreeding and offspring number
+Should the interaction between inbreeding and parental investment affect population dynamics, especially in small populations at risk of extinction?
 
-![Figure from Fredrickson et al. 2005](FredricksonEtAl_corr.png)
+# Appendicies and Supporting Information (if the need arises)
 
-@Fredrickson2007 also interpret lower offspring number as inbreeding depression
+## Appendix 1: Derivations of $m^{*}$ and $\gamma^{*}$ {.smaller}
 
-## Inbreeding and offspring number
+$$ y = f'\left(a\right)\left(x-a\right) + f\left(a\right) $$ <br>
 
-- But the negative correlations between inbreeding and offspring number in @Liberg2005 and @Fredrickson2007 are exactly what we should expect given that optimal parental investment increases with inbreeding
+$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right)$$ <br>
 
-- Empirical studies might need to consider differential parental investment given inbreeding
+$$\frac{\partial \zeta_{\textrm{off}}}{\partial m} = \frac{c}{2} \left(1+r\right)e^{-c\left(m-m_{min}-\beta r\right)} $$ <br>
 
-- Population ecology conclusions might be reasonable
+$$ 0 = \frac{c}{2} \left(1+r\right)e^{-c\left(m-m_{min}-\beta r\right)}\left(0-m\right) + \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right) $$
 
-## Empirical support
+## Appendix 2: $m^{*}$ increases with increasing $r$ {.smaller}
 
-- @Pilakouta2015 show that the presence of a caring female increased offspring survival more for inbred than outbred broods (a necessary assumption of our model). They suggest that parental care can mitigate inbreeding depression and cause selection favouring inbreeding tolerance. 
+$$ 0 = \frac{c}{2} \left(1+r\right)e^{-c\left(m-m_{min}-\beta r\right)}\left(0-m\right) + \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right). $$ <br>
 
-- @Aviles2006 also show that elevated maternal investment buffers against severe inbreeding depression.
+$$ 0 = c e^{-c\left(m^{*}-m_{min}-\beta r\right)}\left(0-m^{*}\right) + \left(1-e^{-c\left(m^{*}-m_{min}-\beta r\right)}\right). $$ <br>
 
-- @Mattey2013 found no evidence that outbreeding burying beetles laid more eggs than inbreeding burying beetles (not necessarily contradicting this model, but worth noting)
+$$ r = \frac{1}{\beta}\left(m^{*} - m_{min} + \frac{1}{c}\ln\left(\frac{1}{\left(1 + m^{*} c\right)}\right)\right) $$ <br>
 
+$$ \frac{\partial r}{\partial m^{*}} = \frac{m^{*} c}{\beta \left(m^{*} c + 1\right)} $$
+
+## Appendix 3: Consistency with biparental inbreeding models {.smaller}
+
+$$ \delta_{r} = e^{-c(m^{*}_{r}-m_{min}-\beta r)}. $$ <br>
+
+$$ W_{r} = \frac{n}{2}\left(1+r\right)\left(1-\delta_{r}\right). $$ <br>
+
+$$ W_{r} = \frac{M}{2 m}\left(1+r\right)\left(1-\delta_{r}\right). $$
+
+## Supporting information {.smaller}
+
+$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right) \left(1 - \Delta r\right).$$
+
+## Supporting information {.smaller}
+
+$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right) \left(1 - \Delta r\right).$$
+
+
+```{r, echo=FALSE, dev.args = list(bg = 'transparent')}
+fm  <- expression(0.5*(1+r) * (1 - exp(-c*(m-mmin-Beta*r))) * (1-r*Delta),'m');
+# We can use the above to differentiate fm wrt `m`
+fmd <- D(fm,'m'); # can print fmd to show solution
+OffDelta <- function(r, m, mmin=1, Beta=1, c=1, Delta){
+    return( 0.5*(1+r) * (1 - exp(-c*(m-mmin-Beta*r))) * (1-r*Delta) );
+}
+OffDeltad <- function(r, m, mmin=1, Beta=1, c=1, Delta){
+    return( 0.5 * (1 + r) * (exp(-c * (m - mmin - Beta * r)) * c)*(1-r*Delta) );
+}
+findmDelta <- function(low.guess,high.guess,rval,mmin=1,Beta=1,c=1,Delta){
+    fm  <- function(m,r=rval, DD=Delta){ 
+        OffDeltad(r=rval, mmin=mmin, Beta=Beta, m=m, c=c, Delta=Delta)*(0-m) + 
+            OffDelta(r=rval, mmin=mmin, Beta=Beta, m=m, c=c, Delta=Delta);
+    }
+    lg  <- fm(m=low.guess, r=rval, DD=Delta);
+    hg  <- fm(m=high.guess,r=rval, DD=Delta);
+    if(lg > 0){
+        u <- low.guess;
+        l <- high.guess;
+    }else{
+        u <- high.guess;
+        l <- low.guess;
+    }
+    if((fm(l) > 0 & fm(u) > 0) | (fm(l) < 0 & fm(u) < 0)){
+        return("Value of m is outside the range");
+    }else{
+        check  <- 1;
+        mguess <- 0.5 * (l+u);
+        i      <- 0;
+        while(abs(check) > 0.000001 & i < 1000000){
+            check <- fm(r=rval, m=mguess);
+            if(check > 0){
+                u      <- mguess;
+                mguess <- 0.5*(l+mguess); 
+            }else{
+                l      <- mguess;
+                mguess <- 0.5*(u+mguess);
+            }
+            i <- i+1;
+        }
+        return(mguess);
+    }
+} # Running the below returns the estimate
+Beta <- 1;
+c    <- 1;
+mmin <- 1;
+rva  <- 0.5;
+Delt <- 0; # First show no Delta
+Del1 <- OffDelta(m=PI,r=0.5,Delta=Delt, Beta=1);
+par(mar=c(5,5,1,1));
+plot(x=PI,y=Del1,type="l",lwd=2,ylim=c(0,1),
+     xlab=expression(paste("Parental investment (",italic(m),")")),
+     ylab=expression(paste("IBD alleles in offspring (",zeta[off],")")),
+     cex.lab=1.5,cex.axis=1.5);
+d1m <- findmDelta(low.guess=0,high.guess=10,rval=0.5,Delta=Delt);
+d1g <- OffDelta(r=rva, mmin=mmin, Beta=Beta, m=d1m, c=c, Delta=Delt) / d1m;
+abline(a=0,b=d1g,col="black");
+Delt <- 0.5; # Now show significant delta
+Del2 <- OffDelta(m=PI,r=0.5,Delta=Delt, Beta=1);
+points(x=PI,y=Del2,type="l",lwd=2,ylim=c(0,1),lty="dashed");
+d2m <- findmDelta(low.guess=0,high.guess=10,rval=0.5,Delta=Delt);
+d2g <- OffDelta(r=rva, mmin=mmin, Beta=Beta, m=d2m, c=c, Delta=Delt) / d2m;
+abline(a=0,b=d2g,lty="dashed");
+
+```
 
 ## References {.smaller}
 
