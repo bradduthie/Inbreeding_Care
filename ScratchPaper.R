@@ -1410,4 +1410,42 @@ abline(a=0,b=d2g,lty="dashed");
 
 
 
+# Below is a function of the general equation for plotting
+OffATr <- function(r, m, mmin=1, Beta=1, c=1){
+    return( (1/2)*(1+r) * (1 - exp(-c*(m - mmin - Beta*r)) ));
+}
+PI  <- seq(from=0,to=4,by=0.01);
+All <- OffATr(r=0, m=PI, mmin=1, Beta=0, c=1);
+par(mar=c(5,5,2,4));
+plot(PI,All,type="l",lwd=4,ylim=c(0,1),xlim=c(0,4),
+     xlab=expression(paste("Parental investment (",italic(m),")")),
+     ylab=expression(paste("Offspring fitness")),
+     cex.lab=1.25,cex.axis=1.5);
+par(new=TRUE);
+plot(x=PI,y=10/PI,ylim=c(0,10),lwd=0,xaxt="n",yaxt="n",
+     xlab="",ylab="",lty="dashed",type="l",col="white");
+axis(4, cex.axis=0, col.axis="black");
+abline(h=0,lty="dotted",lwd=0.8);
+
+
+# Below is a function of the general equation for plotting
+OffATr <- function(r, m, mmin=1, Beta=1, c=1){
+    return( (1/2)*(1+r) * (1 - exp(-c*(m - mmin - Beta*r)) ));
+}
+PI  <- seq(from=0,to=4,by=0.01);
+All <- OffATr(r=0, m=PI, mmin=1, Beta=0, c=1);
+par(mar=c(5,5,2,4));
+plot(PI,All,type="l",lwd=4,ylim=c(0,1),xlim=c(0,4),
+     xlab=expression(paste("Parental investment (",italic(m),")")),
+     ylab=expression(paste("Offspring fitness")),
+     cex.lab=1.25,cex.axis=1.5);
+par(new=TRUE);
+plot(x=PI[PI>=1],y=10/PI[PI>=1],ylim=c(0,10),lwd=2,xaxt="n",yaxt="n",xlim=c(0,4),
+     xlab="",ylab="",lty="dashed",type="l",col="black");
+axis(4, cex.axis=1.5, col.axis="black", at=c(2,4,6,8,10));
+mtext(text=expression(paste("Offspring produced (",italic(n),")")),
+      side=4,line=3, cex=1.5, col="black");
+text(x=3.5,y=9.5,labels="M=10",cex=3);
+abline(h=0,lty="dotted",lwd=0.8);
+
 

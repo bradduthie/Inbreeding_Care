@@ -1,5 +1,5 @@
 ---
-title: "Parental investment and inbreeding"
+title: "Inbreeding parents should invest more resources in fewer offspring"
 author: "Brad Duthie"
 date: "April 14, 2016"
 output: 
@@ -9,51 +9,180 @@ runtime: shiny
 bibliography: Inbreeding_and_PI.bib
 ---
 
-## How should parents adjust their investment in offspring when they inbreed?
+<!--- =================================================================== --->
+<!--- ================ INTRODUCTION ===================================== --->
+<!--- =================================================================== --->
 
-```{r, out.width = 700, fig.retina = NULL, echo=FALSE}
-knitr::include_graphics("Mouse_litter.jpg");
-```
 
-## Why parental investment and inbreeding? {.smaller}
+## Parental investment applies to all species {.smaller}
 
-No theory addresses parental investment given biparental inbreeding [@Pilakouta2015]
+![Diversity Figure](PIandInbreeders_trsp_sm.png)
 
- - This is odd, because Parker was a key developer of the foundational theory for both parental investment [@Macnair1978] and biparental inbreeding [@Parker1979] over three decades ago.
+<!---
+http://www.telegraph.co.uk/travel/advice/Leeches-bloodsuckers-with-a-propensity-for-private-parts/
 
- - One model considers plant outcrossing versus self-fertilisation [@DeJong2005], with a focus on parent-offspring conflict.
+https://en.wikipedia.org/wiki/Northern_leopard_frog#/media/File:Lithobates_pipiens.jpg
+(Brian Gratwicke)
+
+http://www.sciencebuddies.org/science-fair-projects/project_ideas/Zoo_p059.shtml#background
+
+https://commons.wikimedia.org/wiki/File:Drosophila_repleta_lateral.jpg
+Bbski
+
+https://en.wikipedia.org/wiki/Chinese_red-headed_centipede#/media/File:Scolopendra_subspinipes_mutilans_DSC_1438.jpg
+Yasunori Koide
+
+https://en.wikipedia.org/wiki/Shrimp#/media/File:Macrobrachium_carcinus.jpg
+Hans Hillewaert
+
+
+https://commons.wikimedia.org/wiki/File:Nicrophorus_sayi_Laporte.jpg
+Michael K Oliver, PhD
+
+https://en.wikipedia.org/wiki/Ficus#/media/File:Feige-Schnitt.png
+Tatoute
+
+https://en.wikipedia.org/wiki/Parasitoid#/media/File:Female_Apocephalus_borealis_ovipositing_into_the_abdomen_of_a_worker_honey_bee.png
+Core A et al. (2012) PLoS One
+
+https://commons.wikimedia.org/wiki/File:Diatom_-_Arachnoidiscus_sp_-_400x_%2816050575150%29.jpg
+Jacopo Werther
+
+
+Puppy: https://commons.wikimedia.org/wiki/File:Keeshond_Sibirian_Husky_crossbreed_puppy.jpg
+RICHARD BARTZ
+
+
+https://commons.wikimedia.org/wiki/File:Frog_in_frogspawn.jpg
+
+https://commons.wikimedia.org/wiki/File:Savannah_Sparrow,_Passerculus_sandwichensis,_nestlings_baby_birds_begging_in_nest_Alberta_Canada.jpg
+Kati Fleming
+--->
+
+## Parental investment applies to all species
+
+All individuals that reproduce must decide how much to invest in each offspring.
+
+Parental investment is defined as anything that a parent does to increase its offspring's fitness *at the expense of its other actual or potential offspring* [@Trivers1972; @Trivers1974].
+
+## Key assumptions of parental investment theory {.smaller}
+
+ 1. Parents have a total investment budget (*M*), and parental investment (*m*) is directly and inversely related to total offspring production (*n*) such that: *n = M/m*.
  
+ 2. Offspring fitness increases with *m*, but in such a way as to cause dimishing returns as more PI is provided.
+
 <br><br>
+
+![Offspring diff](offdiff.png)
+
+
+## Key assumptions of parental investment theory {.smaller}
+
+ 1. Parents have a total investment budget (*M*), and parental investment (*m*) is directly and inversely related to total offspring production (*n*) such that: *n = M/m*.
  
-```{r, out.width = 600, fig.retina = NULL, echo=FALSE}
-knitr::include_graphics("DeJongPaper.png");
-``` 
+ 2. Offspring fitness increases with *m*, but in such a way as to cause dimishing returns as more PI is provided.
 
-## Why parental investment and inbreeding? {.smaller}
-
-No theory addresses parental investment given biparental inbreeding [@Pilakouta2015]
-
- - This is odd, because Parker was a key developer of the foundational theory for both parental investment [@Macnair1978] and biparental inbreeding [@Parker1979] over three decades ago.
-
- - One model considers plant outcrossing versus self-fertilisation [@DeJong2005], with a focus on parent-offspring conflict.
-
-If parental investment changes with biparental inbreeding, it may have widespread implications for evolutionary ecology.
-
- - Change offspring production if per offspring investment increases or decreases
-
- - Change parent-offspring conflict if parental investment and parent-offspring relatedness changes
-
- - Change inbreeding strategy of parents given fixed resources for parental investment
-
- - Cause errors in estimation of inbreeding depression if parental investment varies with inbreeding
-
-## A precise definition of *parental investment*
-
-Anything that a parent does to increase its offspring's fitness *at the expense of its other actual or potential offspring* [@Trivers1972; @Trivers1974]
-
-```{r, out.width = 600, fig.retina = NULL, echo=FALSE}
-knitr::include_graphics("Calliope-nest_edit.jpg");
+```{r, echo=FALSE, fig.height = 4, fig.width=9, dev.args = list(bg = 'transparent')}
+OffATr <- function(r, m, mmin=1, Beta=1, c=1){
+    return( (1/2)*(1+r) * (1 - exp(-c*(m - mmin - Beta*r)) ));
+}
+PI  <- seq(from=0,to=4,by=0.01);
+All <- OffATr(r=0, m=PI, mmin=1, Beta=0, c=1);
+par(mar=c(5,5,2,4));
+plot(PI,All,type="l",lwd=4,ylim=c(0,1),xlim=c(0,4),
+     xlab=expression(paste("Parental investment (",italic(m),")")),
+     ylab=expression(paste("Offspring fitness")),
+     cex.lab=1.25,cex.axis=1.5);
+par(new=TRUE);
+plot(x=PI,y=10/PI,ylim=c(0,10),lwd=0,xaxt="n",yaxt="n",
+     xlab="",ylab="",lty="dashed",type="l",col="white");
+axis(4, cex.axis=0.01, col.axis="black");
+mtext(text=expression(paste("Offspring produced (",italic(n),")")),
+      side=4,line=3, cex=1.5, col="white");
+abline(h=0,lty="dotted",lwd=0.8);
 ```
+
+
+## Key assumptions of parental investment theory {.smaller}
+
+ 1. Parents have a total investment budget (*M*), and parental investment (*m*) is directly and inversely related to total offspring production (*n*) such that: *n = M/m*.
+ 
+ 2. Offspring fitness increases with *m*, but in such a way as to cause dimishing returns as more PI is provided.
+
+```{r, echo=FALSE, fig.height = 4, fig.width=9, dev.args = list(bg = 'transparent')}
+OffATr <- function(r, m, mmin=1, Beta=1, c=1){
+    return( (1/2)*(1+r) * (1 - exp(-c*(m - mmin - Beta*r)) ));
+}
+PI  <- seq(from=0,to=4,by=0.01);
+All <- OffATr(r=0, m=PI, mmin=1, Beta=0, c=1);
+par(mar=c(5,5,2,4));
+plot(PI,All,type="l",lwd=4,ylim=c(0,1),xlim=c(0,4),
+     xlab=expression(paste("Parental investment (",italic(m),")")),
+     ylab=expression(paste("Offspring fitness")),
+     cex.lab=1.25,cex.axis=1.5);
+par(new=TRUE);
+plot(x=PI[PI>=1],y=10/PI[PI>=1],ylim=c(0,10),lwd=2,xaxt="n",yaxt="n",xlim=c(0,4),
+     xlab="",ylab="",lty="dashed",type="l",col="black");
+axis(4, cex.axis=1.5, col.axis="black", at=c(2,4,6,8,10));
+mtext(text=expression(paste("Offspring produced (",italic(n),")")),
+      side=4,line=3, cex=1.5, col="black");
+text(x=3.75,y=9.25,labels="M=10",cex=2.5);
+abline(h=0,lty="dotted",lwd=0.8);
+```
+
+
+## The importance of inbreeding
+
+![Diversity Figure](PIandInbreeders_trsp_sm.png)
+
+## The importance of inbreeding
+
+In all sexual species, individuals must find another individual with which to breed (or breed with themselves).
+
+Inbreeding is defined by inbreeding between related individuals, which share a recent common ancestor and therefore share identical-by-descent alleles.
+
+
+## Key assumptions of inbreeding theory
+
+ 1. Parents that breed with a relative (*r*) will have offspring that carry more identical-by-descent copies of their alleles.
+
+ 2. Parents that inbreed will have offspring with decreased fitness (inbreeding depression).
+
+
+## Parental investment when parents inbreed
+
+Given the aforementioned minimal assumptions about parental investment and inbreeding, is it possible to make any general conclusions about how parents should invest in offspring when their offspring are inbred?
+
+## Parental investment when parents inbreed
+
+Given the aforementioned minimal assumptions about parental investment and inbreeding, is it possible to make any general conclusions about how parents should invest in offspring when their offspring are inbred?
+
+**No theory addresses how parents should invest in inbred versus outbred offspring**
+
+ - Offspring production, and therefore demographic traits and population dynamics
+
+ - Life histories and phenology
+
+ - Intrafamilial conflict over care
+ 
+ - Realised inbreeding depression in offspring
+
+ - Inbreeding strategy, and potentially mating systems
+
+
+## Key contributions of the proposed manuscript
+
+How should inbreeding affect the degree to which parents invest in their offspring, and the number of offspring that parents produce?
+
+ 1. **Parents should universally increase parental investment in offspring with (i) the degree to which they inbreed and (ii) the magnitude of inbreeding depression in their offspring.**
+
+ 2. In contrast to outbreeding, parental investment should increase given strict monogamy instead of uniparental care due to male opportunity costs of inbreeding.
+
+ 3. Parental investment is not affected if parents are inbred, but parent fitness will decrease.
+
+<!--- =================================================================== --->
+<!--- ================ MODEL PART 1 ===================================== --->
+<!--- =================================================================== --->
 
 ## Model of IBD alleles carried by offspring ($\zeta_{\textrm{off}}$)
 
@@ -86,17 +215,6 @@ plot(PI,All,type="l",lwd=4,ylim=c(0,1),
 abline(h=0,lty="dotted",lwd=0.8);
 ```
 
-## Model of IBD alleles carried by offspring ($\zeta_{\textrm{off}}$)
-
-$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right).$$ 
-
-<br><br>
-
-- Assume the population is diploid
-- Assume obligate biparental inbreeding
-- Assume increased parental investment has diminishing returns on increasing offspring fitness
-- Assume no paternal investment (or that it is always constant)
-- Assume sufficient parental investment can **always** compensate for being inbred
 
 ## Basic model (simulated)
 
@@ -183,29 +301,15 @@ renderPlot({
 
 ```
 
-## Reduces to @Macnair1978
 
-$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right)$$ 
+## Specific aims of the model
 
-<br><br>
+ 1. **Show how optimal PI changes with (i) the degree to which a focal parent inbreeds and (ii) the magnitude of inbreeding depression in their offspring.**
 
-$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+0\right)\left(1-e^{-c\left(m-m_{min}-\beta 0\right)}\right)$$ 
-
-<br><br>
-
-$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1-e^{-c\left(m-m_{min}\right)}\right)$$ 
-
-## Reduces to @Parker1979
-
-$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right)$$ 
-
-<br><br>
-
-$$ \delta_{r} = e^{-c(m^{*}_{r}-m_{min}-\beta r)} $$
-
-<br><br>
-
-$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-\delta_{r}\right)$$ 
+ 2. Show how biparental investment is affected if parents inbreed given strict monogamy.
+ 
+ 3. Show how parental investment is affected if a parent is inbred.
+ 
 
 ## Optimum parental investment ($m^{*}$) with $\beta$ & r
 
@@ -258,9 +362,282 @@ text(x=bss[17],y=rg500$gam[17]+0.003,labels="r=1/2",srt=-18,cex=1.25);
 
 ```
 
-## Little effect if focal parent is inbred
+
+## Rate of fitness increase if parents inbreed, but invest as if outbreeding
 
 ```{r, echo=FALSE, dev.args = list(bg = 'transparent')}
+# First the below plots the new figure
+bss <- seq(from=0.5,to=5,by=0.25);
+gamznokin <- function(rvl,betas,mmin=1,c=1){
+    mvl <- rep(0,length(betas));
+    gam <- rep(0,length(betas));
+    for(i in 1:length(bss)){
+        mvl[i] <- findm(low.guess=0,high.guess=10,rval=0,mmin=1,Beta=betas[i],c=1);
+        gam[i] <- OffATr(r=rvl, m=mvl[i], mmin=1, Beta=betas[i], c=1) / mvl[i];
+    }
+    return(list(mvl=mvl,gam=gam));
+}
+rg000nk <- gamznokin(rvl=0.000,betas=bss);
+rg125nk <- gamznokin(rvl=0.125,betas=bss);
+rg250nk <- gamznokin(rvl=0.250,betas=bss);
+rg500nk <- gamznokin(rvl=0.500,betas=bss);
+par(mar=c(5,5,0.25,1),lwd=2);
+plot(x=bss,y=rg000nk$gam,type="l",lwd=2,ylim=c(0.12,0.22),pch=1.5,yaxt="n",
+     xlab=expression(paste("Inbreeding depression (",beta,")")),
+     ylab=expression(paste("Rate of fitness increase (",gamma,"*)")),
+     cex.lab=1.5,cex.axis=1.5);
+axis(side=2,at=c(0.12,0.16,0.20),cex.axis=1.5);
+points(x=bss,y=rg125nk$gam,type="l",lwd=2);
+points(x=bss,y=rg250nk$gam,type="l",lwd=2);
+points(x=bss,y=rg500nk$gam,type="l",lwd=2);
+text(x=bss[12],y=rg000nk$gam[12]+0.003,labels="r=0",srt=-0,cex=1.25);
+text(x=bss[10],y=rg125nk$gam[10]+0.004,labels="r=1/8",srt=-22.5,cex=1.25);
+text(x=bss[7],y=rg250nk$gam[7]+0.005,labels="r=1/4",srt=-44,cex=1.25);
+text(x=bss[4]+0.08,y=rg500nk$gam[4]+0.004,labels="r=1/2",srt=-60,cex=1.25);
+# Next, the below generates a function to find where lines intersect
+# Finds the beta at which a particular r value intersects r=0 for fitness
+findbeta <- function(high.guess,rval,m=FALSE,mmin=1,c=1){
+    low.guess <- 0;
+    outbr <- findm(low.guess=0,high.guess=10,rval=0,mmin=mmin,Beta=0,c=c);
+    outgm <- OffATr(r=0,m=outbr,mmin=mmin,Beta=0,c=c) / outbr;
+    if(m == FALSE){ # If we're not constraining m
+        check  <- 1;
+        bguess <- 0.5 * high.guess;
+        i      <- 0;
+        l      <- low.guess
+        u      <- high.guess;
+        while(abs(check) > 0.000001 & i < 1000000){
+            mst   <- findm(low.guess=0,high.guess=10,rval=rval,mmin=mmin,Beta=bguess,c=c);
+            gam   <- OffATr(r=rval,m=mst,mmin=mmin,Beta=bguess,c=c) / mst;
+            check <- gam - outgm;
+            if(check < 0){
+                u      <- bguess;
+                bguess <- 0.5*(l+bguess); 
+            }else{
+                l      <- bguess;
+                bguess <- 0.5*(u+bguess);
+            }
+            i <- i+1;
+        }
+    }else{ #If we are forcing m to a particular value
+        check  <- 1;
+        bguess <- 0.5 * high.guess;
+        i      <- 0;
+        l      <- low.guess
+        u      <- high.guess;
+        while(abs(check) > 0.000001 & i < 1000000){
+            gam   <- OffATr(r=rval,m=m,mmin=mmin,Beta=bguess,c=c) / m;
+            check <- gam - outgm;
+            if(check < 0){
+                u      <- bguess;
+                bguess <- 0.5*(l+bguess); 
+            }else{
+                l      <- bguess;
+                bguess <- 0.5*(u+bguess);
+            }
+            i <- i+1;
+        }
+    }   
+    return(bguess);
+}
+```
+
+<!--- =================================================================== --->
+<!--- ================ MODEL PART 2 ===================================== --->
+<!--- =================================================================== --->
+
+
+## Specific aims of the model
+
+ 1. Show how optimal PI changes with (i) the degree to which a focal parent inbreeds and (ii) the magnitude of inbreeding depression in their offspring.
+
+ 2. **Show how biparental investment is affected if parents inbreed given strict monogamy.**
+ 
+ 3. Show how parental investment is affected if a parent is inbred.
+
+
+## PI given strict monogamy and inbreeding
+
+Strict monogamy assumes that females and males pair exactly once in life
+
+Assuming outbreeding, optimal PI does not change given strict monogamy
+
+ - Total investment budget increase from *M* to *2M*
+ - Twice as many offspring produced with equal PI per offspring
+ 
+Optimal PI might change under inbreeding due to a male opportunity cost
+
+## PI given strict monogamy and inbreeding
+
+Assume that if a focal female avoids inbreeding, her male relative would outbreed
+
+Further assume: 
+
+ - $m^{*}_{0}$ : Optimal PI under outbreeding
+ - $m^{*}_{r}$ : Optimal PI under inbreeding with relative of relatedness *r*
+ 
+## PI given strict monogamy and inbreeding 
+
+If a focal female avoids inbreeding,
+
+$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1-e^{-c\left(m^{*}_{0}-m_{min}\right)}\right).$$ 
+
+If she instead inbreeds,
+
+$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m^{*}_{r}-m_{min}-\beta r\right)}\right) - \frac{r}{2}\left(1-e^{-c\left(m^{*}_{0}-m_{min}\right)}\right).$$
+
+The second term of the equation above is the indirect loss of fitness that she would have otherwise received through her relative had she not mated with him
+
+## PI given strict monogamy and inbreeding 
+
+```{r, echo=FALSE, dev.args = list(bg = 'transparent')}
+# Below returns m^{*} for outbreeders and inbreeders, respectively
+r00m <- findm(low.guess=0,high.guess=4,rval=0.0,mmin=1,Beta=1,c=1);
+r05m <- findm(low.guess=0,high.guess=4,rval=0.5,mmin=1,Beta=1,c=1);
+# Below finds the tangent slope, \gamma^{*}
+r00g <- OffATr(r=0,   m=r00m, mmin=1, Beta=1, c=1) / r00m;
+r05g <- OffATr(r=0.5, m=r05m, mmin=1, Beta=1, c=1) / r05m;
+fpair <- expression(0.5*(1+r)*(1-exp(-c*(m-mmin-Beta*r))) - 
+                        (r/2)*(1-exp(-c*(z-mmin))),'m');
+fpaird <- D(fpair,'m'); # can print fmd to show solution
+Offpair <- function(r, m, mmin=1, Beta=1, c=1, m0=r00m){
+    direct   <- (1/2)*(1+r) * (1 - exp(-c*(m - mmin - Beta*r)) );
+    indirect <- (r/2)*(1-exp(-c*(r00m-mmin)));
+    return( direct - indirect);
+}
+findmpair <- function(low.guess,high.guess,rval,mmin=1,Beta=1,c=1,m0=r00m){
+    # Note that derivative of zeta has not changed, only the original f
+    fm  <- function(m,r=rval){ 
+        OffATrd(r=rval, mmin=mmin, Beta=Beta, m=m, c=c)*(0-m) + 
+            Offpair(r=rval, mmin=mmin, Beta=Beta, m=m, c=c, m0=m0);
+    }
+    lg  <- fm(m=low.guess, r=rval);
+    hg  <- fm(m=high.guess,r=rval);
+    if(lg > 0){
+        u <- low.guess;
+        l <- high.guess;
+    }else{
+        u <- high.guess;
+        l <- low.guess;
+    }
+    if((fm(l) > 0 & fm(u) > 0) | (fm(l) < 0 & fm(u) < 0)){
+        return("Value of m is outside the range");
+    }else{
+        check  <- 1;
+        mguess <- 0.5 * (l+u);
+        i      <- 0;
+        while(abs(check) > 0.000001 & i < 1000000){
+            check <- fm(r=rval, m=mguess);
+            if(check > 0){
+                u      <- mguess;
+                mguess <- 0.5*(l+mguess); 
+            }else{
+                l      <- mguess;
+                mguess <- 0.5*(u+mguess);
+            }
+            i <- i+1;
+        }
+        return(mguess);
+    }
+} # Running the below returns the
+bss <- seq(from=0.5,to=5,by=0.25);
+gamzp <- function(rvl,betas,mmin=1,c=1,m0=r00m){
+    mvl <- rep(0,length(betas));
+    gam <- rep(0,length(betas));
+    for(i in 1:length(bss)){
+        mvl[i] <- findmpair(low.guess=0,high.guess=10,rval=rvl,
+                            mmin=1,Beta=betas[i],c=1,m0=r00m);
+        gam[i] <- Offpair(r=rvl,m=mvl[i],mmin=1,Beta=betas[i],c=1,m0=m0) / mvl[i];
+    }
+    return(list(mvl=mvl,gam=gam));
+}
+rg000p <- gamzp(rvl=0.000,betas=bss);
+rg125p <- gamzp(rvl=0.125,betas=bss);
+rg250p <- gamzp(rvl=0.250,betas=bss);
+rg500p <- gamzp(rvl=0.500,betas=bss);
+#----------------------------------------------------------------
+par(mar=c(1,5,2,1),lwd=2);
+plot(x=bss,y=rg000p$mvl,type="l",lwd=2,ylim=c(2,6),pch=1.5,xaxt="n",
+     xlab=expression(paste("Inbreeding depression (",beta,")")),
+     ylab=expression(paste("Optimum parental investment (",italic(m),"*)")),
+     cex.lab=1.5,cex.axis=1.5);
+points(x=bss,y=rg125p$mvl,type="l",lwd=2);
+points(x=bss,y=rg250p$mvl,type="l",lwd=2);
+points(x=bss,y=rg500p$mvl,type="l",lwd=2);
+points(x=bss,y=rg125$mvl,type="l",lwd=2,lty="dotted",col="grey30");
+points(x=bss,y=rg250$mvl,type="l",lwd=2,lty="dotted",col="grey30");
+points(x=bss,y=rg500$mvl,type="l",lwd=2,lty="dotted",col="grey30");
+text(x=bss[17],y=rg000p$mvl[17]+0.15,labels="r=0",srt=-0,cex=1.25);
+text(x=bss[17],y=rg125p$mvl[17]+0.15,labels="r=1/8",srt=6,cex=1.25);
+text(x=bss[17],y=rg250p$mvl[17]+0.15,labels="r=1/4",srt=12,cex=1.25);
+text(x=bss[17],y=rg500p$mvl[17]+0.15,labels="r=1/2",srt=18,cex=1.25);
+text(x=bss[18],y=rg125$mvl[18]-0.15,labels="r=1/8",srt=6,cex=0.8,col="grey30");
+text(x=bss[18],y=rg250$mvl[18]-0.15,labels="r=1/4",srt=12,cex=0.8,col="grey30");
+text(x=bss[18],y=rg500$mvl[18]-0.15,labels="r=1/2",srt=18,cex=0.8,col="grey30");
+```
+
+## PI given strict monogamy and inbreeding 
+
+Inbreeding is never beneficial given strict monogamy.
+
+```{r, echo=FALSE, dev.args = list(bg = 'transparent')}
+par(mar=c(5,5,0.25,1),lwd=2);
+plot(x=bss,y=rg000p$gam,type="l",lwd=2,ylim=c(0.08,0.22),pch=1.5,yaxt="n",
+     xlab=expression(paste("Inbreeding depression (",beta,")")),
+     ylab=expression(paste("Rate of fitness increase (",gamma,"*)")),
+     cex.lab=1.5,cex.axis=1.5);
+axis(side=2,at=c(0.12,0.16,0.20),cex.axis=1.5);
+points(x=bss,y=rg125p$gam,type="l",lwd=2);
+points(x=bss,y=rg250p$gam,type="l",lwd=2);
+points(x=bss,y=rg500p$gam,type="l",lwd=2);
+points(x=bss,y=rg125$gam,type="l",lwd=2,lty="dotted",col="grey70");
+points(x=bss,y=rg250$gam,type="l",lwd=2,lty="dotted",col="grey70");
+points(x=bss,y=rg500$gam,type="l",lwd=2,lty="dotted",col="grey70");
+text(x=bss[17],y=rg000p$gam[17]+0.005,labels="r=0",srt=-0,cex=1.25);
+text(x=bss[17],y=rg125p$gam[17]+0.005,labels="r=1/8",srt=-4,cex=1.25);
+text(x=bss[17],y=rg250p$gam[17]+0.005,labels="r=1/4",srt=-6,cex=1.25);
+text(x=bss[17],y=rg500p$gam[17]+0.005,labels="r=1/2",srt=-8,cex=1.25);
+text(x=bss[2],y=rg125$gam[2]+0.004,labels="r=1/8",srt=-7,cex=0.8,col="grey70");
+text(x=bss[2],y=rg250$gam[2]+0.005,labels="r=1/4",srt=-12,cex=0.8,col="grey70");
+text(x=bss[2],y=rg500$gam[2]+0.005,labels="r=1/2",srt=-23,cex=0.8,col="grey70");
+```
+
+<!--- =================================================================== --->
+<!--- ================ MODEL PART 3 ===================================== --->
+<!--- =================================================================== --->
+
+## Specific aims of the model
+
+ 1. Show how optimal PI changes with (i) the degree to which a focal parent inbreeds and (ii) the magnitude of inbreeding depression in their offspring.
+
+ 2. Show how biparental investment is affected if parents inbreed given strict monogamy.
+ 
+ 3. **Show how parental investment is affected if a parent is inbred.**
+
+
+## How relatedness is affected by being inbred
+
+The coefficient of relatedness *r* can be defined as,
+
+$$ r = \frac{2k}{1 + f} $$
+
+Relatedness between two individuals is increased by an increase in $k$. 
+
+$k$ affects the probability that homologous identical-by-descent alleles are paired in offspring
+
+$r$ is decreased by $f$, but $f$ should not directly affect inbreeding depression.
+
+## How PI is affected if a parent is inbred
+
+To understand how $\zeta_{\textrm{off}}$ is affected by $f$ and $k$, we can clarify,
+
+$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+\frac{2k}{1+f}\right)\left(1-e^{-c\left(m-m_{min}-2\beta k\right)}\right).$$
+
+It is easy to see that *f* will not affect optimal PI, and only slightly affect $\gamma^{*}$.
+
+## How PI is affected if a parent is inbred
+
+```{r, echo=FALSE}
 OffATf <- function(f, k, m, B0=1, B1=1, c=1){
     return( (1/2)*(1+(2*k/(1+f))) * (1 - exp(-c*(m - B0 - 2*B1*k)) ));
 }
@@ -339,58 +716,15 @@ text(x=0.75,y=0.8,labels=expression(paste(italic(f==0))),cex=1.25);
 arrows(x0=0.8,y0=0.75,x1=1.1,y1=yof000+0.01,length = 0.15,angle=30,code=2,lwd=2);
 text(x=0.67,y=0.35,labels=expression(paste(italic(f==frac(1,4)))),cex=1.25);
 arrows(x0=0.87,y0=0.36,x1=1.1,y1=yof025-0.01,length = 0.15,angle=30,code=2,lwd=2);
-
 ```
 
-## Parental investment *always* increases with r {.smaller}
 
-When the below is satisfied, $m = m^{*}$.
+<!--- =================================================================== --->
+<!--- ================ DISCUSSION ======================================= --->
+<!--- =================================================================== --->
 
-$$ 0 = \frac{c}{2} \left(1+r\right)e^{-c\left(m-m_{min}-\beta r\right)}\left(0-m\right) + \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right). $$
 
-This comes from the same general equation for finding a line tangent to some function $f$ at the point $a$ (used to to get $m^{*}$ and $\gamma^{*}$),
 
-$$ y = f'\left(a\right)\left(x-a\right) + f\left(a\right).$$
-
-## Parental investment *always* increases with r {.smaller}
-
-So we can substitute, $m^{*}$ below.
-
-$$ 0 = \frac{c}{2} \left(1+r\right)e^{-c\left(m^{*}-m_{min}-\beta r\right)}\left(0-m^{*}\right) + \frac{1}{2}\left(1+r\right)\left(1 -e^{-c\left(m^{*}-m_{min}-\beta r\right)}\right). $$
-
-Ideally, we would demonstrate,
-
-$$ \frac{\partial m^{*}}{\partial r} > 0. $$ <br>
-
-But we cannot isolate $m^{*}$. Instead, we can find $\frac{\partial r}{\partial m^{*}}$
-
-## Parental investment *always* increases with r {.smaller}
-
-So we can substitute, $m^{*}$ below.
-
-$$ 0 = \frac{c}{2} \left(1+r\right)e^{-c\left(m^{*}-m_{min}-\beta r\right)}\left(0-m^{*}\right) + \frac{1}{2}\left(1+r\right)\left(1 -e^{-c\left(m^{*}-m_{min}-\beta r\right)}\right). $$
-
-Differentiating $r$ with respect to $m^{*}$,
-
-$$ \frac{\partial r}{\partial m^{*}} = \frac{m^{*} c}{\beta \left(m^{*} c + 1\right)}. $$
-
-Overall, we can conclude that optimal parental investment will always increase with $r$ given $c>0$ and $\beta>0$.
-
-## Consistency with biparental inbreeding models {.smaller}
-
-We can define $\delta$ as follows,
-
-$$ \delta_{r} = e^{-c(m^{*}_{r}-m_{min}-\beta r)}. $$
-
-Fitness from inbreeding to any degree $r$ can then be determined by,
-
-$$ W_{r} = \frac{n}{2}\left(1+r\right)\left(1-\delta_{r}\right). $$
-
-To account for different numbers of offspring produced (as caused by varying $m$), we can simply include $m$ to scale for offspring produced,
-
-$$ W_{r} = \frac{n}{2 m}\left(1+r\right)\left(1-\delta_{r}\right). $$
-
-The end result is that the prediction for $W_{r}$ becomes identical to that of $\gamma^{*}$ when $n=1$, and is otherwise directly proportional.
 
 ## General predictions and why they are interesting
 
@@ -432,23 +766,92 @@ The end result is that the prediction for $W_{r}$ becomes identical to that of $
 
 - @Mattey2013 found no evidence that outbreeding burying beetles laid more eggs than inbreeding burying beetles (not necessarily contradicting this model, but worth noting)
 
-## Explicitly consider mixed broods?
-
-```{r, out.width = 750, fig.retina = NULL, echo=FALSE}
-knitr::include_graphics("mixedcomic.png");
-```
-
 
 ## References {.smaller}
 
 
 
+<!--- 
+
+## Reduces to @Macnair1978
+
+$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right)$$ 
+
+<br><br>
+
+$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+0\right)\left(1-e^{-c\left(m-m_{min}-\beta 0\right)}\right)$$ 
+
+<br><br>
+
+$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1-e^{-c\left(m-m_{min}\right)}\right)$$ 
+
+## Reduces to @Parker1979
+
+$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right)$$ 
+
+<br><br>
+
+$$ \delta_{r} = e^{-c(m^{*}_{r}-m_{min}-\beta r)} $$
+
+<br><br>
+
+$$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-\delta_{r}\right)$$ 
 
 
 
+## Parental investment *always* increases with r and $\beta$ {.smaller}
+
+When the below is satisfied, $m = m^{*}$.
+
+$$ 0 = \frac{c}{2} \left(1+r\right)e^{-c\left(m-m_{min}-\beta r\right)}\left(0-m\right) + \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right). $$
+
+This comes from the same general equation for finding a line tangent to some function $f$ at the point $a$ (used to to get $m^{*}$ and $\gamma^{*}$),
+
+$$ y = f'\left(a\right)\left(x-a\right) + f\left(a\right).$$
+
+## Parental investment *always* increases with r and $\beta$ {.smaller}
+
+So we can substitute, $m^{*}$ below.
+
+$$ 0 = \frac{c}{2} \left(1+r\right)e^{-c\left(m^{*}-m_{min}-\beta r\right)}\left(0-m^{*}\right) + \frac{1}{2}\left(1+r\right)\left(1 -e^{-c\left(m^{*}-m_{min}-\beta r\right)}\right). $$
+
+Ideally, we would demonstrate,
+
+$$ \frac{\partial m^{*}}{\partial r} > 0. $$ <br>
+
+But we cannot isolate $m^{*}$. Instead, we can find $\frac{\partial r}{\partial m^{*}}$
+
+## Parental investment *always* increases with r and $\beta$ {.smaller}
+
+So we can substitute, $m^{*}$ below.
+
+$$ 0 = \frac{c}{2} \left(1+r\right)e^{-c\left(m^{*}-m_{min}-\beta r\right)}\left(0-m^{*}\right) + \frac{1}{2}\left(1+r\right)\left(1 -e^{-c\left(m^{*}-m_{min}-\beta r\right)}\right). $$
+
+Differentiating $r$ with respect to $m^{*}$,
+
+$$ \frac{\partial r}{\partial m^{*}} = \frac{m^{*} c}{\beta \left(m^{*} c + 1\right)}. $$
+
+Overall, we can conclude that optimal parental investment will always increase with $r$ given $c>0$ and $\beta>0$.
 
 
 
+## Consistency with biparental inbreeding models {.smaller}
+
+We can define $\delta$ as follows,
+
+$$ \delta_{r} = e^{-c(m^{*}_{r}-m_{min}-\beta r)}. $$
+
+Fitness from inbreeding to any degree $r$ can then be determined by,
+
+$$ W_{r} = \frac{n}{2}\left(1+r\right)\left(1-\delta_{r}\right). $$
+
+To account for different numbers of offspring produced (as caused by varying $m$), we can simply include $m$ to scale for offspring produced,
+
+$$ W_{r} = \frac{n}{2 m}\left(1+r\right)\left(1-\delta_{r}\right). $$
+
+The end result is that the prediction for $W_{r}$ becomes identical to that of $\gamma^{*}$ when $n=1$, and is otherwise directly proportional.
+
+--->
 
 
 
