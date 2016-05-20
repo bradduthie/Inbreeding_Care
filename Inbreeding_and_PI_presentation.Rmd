@@ -280,7 +280,7 @@ findm <- function(low.guess,high.guess,rval,mmin=1,Beta=1,c=1){
     return(mguess);
   }
 } # Running the below returns the estimate
-fm  <- expression(zeta[off] == frac(1,2)*(1+r)*(1-e^{(-c*(m-m[min]-beta*r))}));
+fmpl  <- expression(zeta[off] == frac(1,2)*(1+r)*(1-e^{(-c*(m-m[min]-beta*r))}));
 inputPanel(
     
   sliderInput("rval", label = "Relatedness", width="100%",
@@ -314,8 +314,8 @@ renderPlot({
   abline(h=0,lty="dotted",lwd=0.8);
   abline(a=0,b=rmg,lty="solid", lwd=2,col="blue");
   arrows(x0=rmm,y0=mzt/2,x1=rmm,y1=0,length = 0.15,angle=30,code=2,lwd=3,col="blue");
+  text(x=1,y=0.8,labels=fmpl,cex=2);
   text(x=rmm,y=0.5*mzt+0.07,labels=expression(paste(italic(m)^"*")),col="blue",cex=2);
-  text(x=1,y=0.8,fm,cex=2);
   text(x=0.5,y=rmg*0.5+0.07,labels=expression(paste(italic(gamma^"*"))),
        srt=rmg,cex=2,col="blue");
 })
