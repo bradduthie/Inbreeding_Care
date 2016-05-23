@@ -38,6 +38,8 @@ figscale <- 1.0; # Avoid making huge figures.
 Background
 ===================================================
 
+<!---  New paragraph on reproductive decisions and allocation. Some points will be made about the diversity of reproductive decisions and strategies, so it it's difficult to make many general conclusions. However, the final point of this paragraph will hit hard saying that we *have* made a general conclusion, and it's the title of the paper.    --->
+
 Breeding between relatives (inbreeding) can alter offspring genotypes and decrease offspring fitness (inbreeding depression), thereby affecting evolution of phenotypes and population dynamics [@Goodwillie2005; @OGrady2006; @Charlesworth2009]. Evolutionary consequences of inbreeding have been modelled to predict when strategies of inbreeding or avoiding inbreeding will be adaptive [@Parker1979; @Lande1985; @Cheptou2001; @Kokko2006]. Such models assume that parental investment (hereafter PI) does not vary as a consequence of inbreeding [but see @DeJong2005], but if parents can increase their investment in inbred offspring, then it might buffer inbreeding depression and thereby alter selection on inbreeding [@Pilakouta2015]. Here we focus on PI and inbreeding in the context of obligate biparental reproduction. By conceptually unifying biparental inbreeding and PI theory, we show why PI should increase when offspring are inbred, and we predict the fitness consequences of inbreeding given optimal parental investment.
 
 Biparental inbreeding theory has been mostly developed through extensions of the inclusive fitness model of @Parker1979. In this model, a focal parent encounters a focal relative and chooses to either inbreed or avoid inbreeding with them [e.g., @Parker1979; @Parker2006; @Kokko2006; @Duthie2015a]. If the focal parent inbreeds, then the fitness of the resulting offspring will decrease due to inbreeding depression, but the offspring will also carry more of the focal parent's alleles identical-by-descent, some of which will have been inherited from the parent's related mate. The focal parent can thereby increase its inclusive fitness by inbreeding if, after accounting for decreased fitness of inbred offspring (e.g., reduced survival), the proportion of identical-by-descent alleles carried in its inbred offspring exceeds that of outbred offspring. The threshold magnitude of inbreeding depression below which a focal parent increases its inclusive fitness by inbreeding rather than avoiding inbreeding is sex specific because females are assumed to produce a fixed number of offspring, meaning that inbreeding can only increase the reproductive success of their male relatives. In contrast, males can increase their own reproductive success by inbreeding, with potentially negligible costs to reproductive opportunities with other females. Females are therefore predicted to benefit from inbreeding at lower magnitudes of inbreeding depression than males. Such inclusive fitness consequences of biparental inbreeding and resulting sexual conflict are well-established, but all models of biparental inbreeding implicitly assume that PI does not vary as a consequence of inbreeding because inbreeding and outbreeding females both produce the same fixed number of offspring. If parents can decrease the number of offspring they produce, and thereby increase their investment per offspring, then they might be able to mitigate the negative fitness consequences of inbreeding depression.
@@ -48,58 +50,13 @@ In populations where biparental inbreeding occurs, PI and parental fitness might
 
 Our overall goal is to bridge biparental inbreeding and PI theory and explore the consequences for optimal PI and fitness when parents inbreed. We have three specific aims: (1) to show how optimal PI changes when offspring are inbred, and for different magnitudes of inbreeding depression; (2) to show how an inbreeding female's optimal PI is indirectly affected by opportunity costs when both parents invest in offspring; and (3) to show how parental fitness, but not optimal PI, is decreased when an inbreeding female is herself inbred.
 
-<!--- The threshold strength of inbreeding depression below which a focal parent increases its inclusive fitness by inbreeding rather than avoiding inbreeding is sex specific because females are assumed to be resource limited, while males are assumed to be mate limited. Males are therefore predicted to benefit from inbreeding at higher magnitudes of inbreeding depression than females because males can increase their own reproductive success by inbreeding, with potentially negligible costs to reproductive opportunities with other females. In contrast, females can only increase the reproductive succes of their male relatives. In @Parker1979 and its extensions, females always produce a fixed number of offspring --->
-
-
-
-<!---
-The setup of the introduction should address:
-
-* Biparental inbreeding can increase or decrease fitness depending on inbreeding depression
-
- 1. Briefly, traditional biparental inbreeding models follow an inclusive fitness framework to predict whether or not a focal individual should inbreed or avoid inbreeding [@Parker1979; Parker2006; Kokko2006; @Duthie2015a].
-
- 2. But these models have always assumed that females produce a fixed number of offspring, and the amount investment in each offspring is also a constant
-
- 3. If parents can increase the fitness of their inbred offspring by investing more in inbred offspring per capita, they may increase their inclusive fitness benefits. 
---->
-
-<!---
-* Inbreeding theory assumes that offspring number is fixed and parental investment is implicit
---->
-
-<!---
-* Parental investment theory has not considered biparental inbreeding, but theory shows how parents should optimise their per offspring investment to maximise their own fitness increase [@Macnair1978; @Parker1978]
-
- 1. Historically, parental investment theory is considered in the context of parent-offspring conflict, originating from the seminal work of @Trivers1972. But the framework is easy to consider in the context of inbreeding
-
- 2. Offspring fitness is assumed to increase with increasing parental investment, asymptoting to some maximum fitness value. 
-
- 3. Parents have a fixed total investment budget, and must decide how many offspring to produce and how much to therefore invest in each.
-
- 4. This decision might change if offspring are inbred, with fitness consequences for inbreeding versus inbreeding avoidance.
-
-* We instead allow parents to adjust their investment in offspring given different inbreeding
-
-* Empirical studies suggest that parental investment increases offspring fitness relatively more when offspring are inbred [@Aviles2006; @Pilakouta2015].
-
-* We demonstrate that inbreeding should consistently increase optimal parental investment
---->
-
-<!--- The following includes some initial notes, modelling, and analysis on biparental inbreeding and parental investment. The goal is to explore whether or not different degrees of parental investment might be favoured for different degrees of inbreeding, and if inbreeding might be favoured sometimes if enough parental investment can overcome the effect of inbreeding depression. --->
-
-<!--- Something about parent-offspring conflict -- how it is reduced when the offspring are inbred because parents then invest more in their offspring. This links in with the seed size papers, but find a different angle? Separate section to go through @Macnair1978 and @Parker1978 type results but with inbreeding? --->
 
 ******************************
 
 Model
 ===================================================
 
-<!--- Get in here somewhere, perhaps, a female's total pool $M$ of resources, such that she produces a total of $n = M/m$ offspring [see @Parker2002]. This will make the connection between the biparental inbreeding literature and the parental investment literature clearer. Also, @Parker1985 define this explicitly using the same terms, such that n f = (M/m)f(m), where n is offspring number and f is fitness of an offspring. Can weave this directly into the model at the start, and then just assume $n=1$ (noting that it doesn't really matter). Or, could leave it where it is, maybe with a bit more explicit connection before mentioning Appendix 3, where it features more heavily. --->
-
 <!--- Also, @Parker1985 has a useful way of putting the rate of fitness increase: ``A gene which causes a female to allocate its resources as m* equally to each offspring will have the fastest possible replication rate'' -- maybe explain it this way, with citation, to describe $\zeta_{\textrm{off}}$? Essentially, we are showing how this works when outbreeding is no longer assumed. --->
-
-<!--- Note that given the above logic, and that in @Parker1985, the below modelling assumes *either* one parent investment *or* `true monogamy' in which each parent invests equally. The two only differ be a factor of two, so if we assume monogamy, then m* is the same, but parents produce twice as many offspring (this doesn't need to be demonstrated, but it's worth noting). --->
 
 <!--- Adding a second parent, more generally, is a bit counter-intuitive: Total investment should just be m_mum + m_dad. Given true monogamy under these conditions, optimal investment for each parent is just m*/2 (each contributes half investment). But, if the father slacks off and only invests m*/4 (and mum can't do anything about it), then -- paradoxicially -- mum should invest less, not more. The reason is that given the father decreases its m, the mother is now stuck with more offspring than she would have otherwise produced given her budget for investment; her optimal response is to decrease investment in each. This is because when one parent `defects' by investing less, the reduced benefit is offset by the non-defecting parent (and both parents get the same total benefit) and the defector pays none of the costs. In response, the optimal strategy is therefore to also decrease investment. I'm not sure whether it's worth getting into this or not yet. It appears we would need to define $\zeta_{\textrm{off}}(m1,m2)$, then find 2*zeta(m1)/zeta'(m1) ? --->
 
@@ -470,14 +427,6 @@ text(x=4.95,y=0.215,labels="B",cex=2.5);
 ```
 
 Figure 4 shows optimal PI given strict monogamy (Fig. 4A), and the rate of fitness increase from optimal PI (Fig. 4B). Grey dotted lines show values assuming only female PI for comparison. Decreasing $\gamma^{*}$ with increasing $r$ is consistent with biparental inbreeding theory, which demonstrates that if inbreeding with a female completely precludes a male from outbreeding, inbreeding will never be beneficial [@Waser1986; @Duthie2015a]. However, if relatives are forced to pair under strict monogamy, each should invest more per offspring than given single parent investment.
-
-
-
-
-
-<!--- ===================================================================== --->
-<!--- ==================  LEFT OFF HERE =================================== --->
-<!--- ===================================================================== --->
 
 
 Investment and fitness of an inbred parent

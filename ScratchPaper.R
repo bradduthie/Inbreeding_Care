@@ -1403,13 +1403,6 @@ abline(a=0,b=d2g,lty="dashed");
 
 
 
-
-
-
-
-
-
-
 # Below is a function of the general equation for plotting
 OffATr <- function(r, m, mmin=1, Beta=1, c=1){
     return( (1/2)*(1+r) * (1 - exp(-c*(m - mmin - Beta*r)) ));
@@ -1447,5 +1440,565 @@ mtext(text=expression(paste("Offspring produced (",italic(n),")")),
       side=4,line=3, cex=1.5, col="black");
 text(x=3.5,y=9.5,labels="M=10",cex=3);
 abline(h=0,lty="dotted",lwd=0.8);
+
+
+
+
+
+
+########################################################################################
+########################################################################################
+########################################################################################
+########################################################################################
+#### ALL OF THE R CODE ISOLATE FROM THE RMARKDOWN FILE (QUICKER ADJUSTING FIGS)      ###
+########################################################################################
+########################################################################################
+########################################################################################
+########################################################################################
+
+
+rm(list=ls());                                                                      
+
+figscale <- 1.0; # Avoid making huge figures.
+
+# Below is a function of the general equation for plotting
+OffATr <- function(r, m, mmin=1, Beta=1, c=1){
+    return( (1/2)*(1+r) * (1 - exp(-c*(m - mmin - Beta*r)) ));
+}
+# Below is the same equation as an expression for maths
+fm  <- expression(0.5*(1+r)*(1-exp(-c*(m-mmin-Beta*r))),'m');
+# We can use the above to differentiate fm wrt `m`
+fmd <- D(fm,'m'); # can print fmd to show solution
+# Below is fmd for analysis and plotting
+OffATrd <- function(r, m, mmin=1, Beta=1, c=1){
+    return(  0.5 * (1 + r) * (exp(-c * (m - mmin - Beta * r)) * c)  );
+    # Also can simplify: return(  (c/2)*(1+r)*exp(-c*(m-mmin-Beta*r))  );
+} # We'll need the above to find m^{*} and \gamma^{*} 
+# To find m^{*}, can use the function below
+findm <- function(low.guess,high.guess,rval,mmin=1,Beta=1,c=1){
+    fm  <- function(m,r=rval){ 
+        OffATrd(r=rval, mmin=mmin, Beta=Beta, m=m, c=c)*(0-m) + 
+            OffATr(r=rval, mmin=mmin, Beta=Beta, m=m, c=c);
+    }
+    lg  <- fm(m=low.guess, r=rval);
+    hg  <- fm(m=high.guess,r=rval);
+    if(lg > 0){
+        u <- low.guess;
+        l <- high.guess;
+    }else{
+        u <- high.guess;
+        l <- low.guess;
+    }
+    if((fm(l) > 0 & fm(u) > 0) | (fm(l) < 0 & fm(u) < 0)){
+        return("Value of m is outside the range");
+    }else{
+        check  <- 1;
+        mguess <- 0.5 * (l+u);
+        i      <- 0;
+        while(abs(check) > 0.000001 & i < 1000000){
+            check <- fm(r=rval, m=mguess);
+            if(check > 0){
+                u      <- mguess;
+                mguess <- 0.5*(l+mguess); 
+            }else{
+                l      <- mguess;
+                mguess <- 0.5*(u+mguess);
+            }
+            i <- i+1;
+        }
+        return(mguess);
+    }
+} # Running the below returns the estimate
+# Below returns m^{*} for outbreeders and inbreeders, respectively
+r00m <- findm(low.guess=0,high.guess=4,rval=0.0,mmin=1,Beta=1,c=1);
+r05m <- findm(low.guess=0,high.guess=4,rval=0.5,mmin=1,Beta=1,c=1);
+# Below finds the tangent slope, \gamma^{*}
+r00g <- OffATr(r=0,   m=r00m, mmin=1, Beta=1, c=1) / r00m;
+r05g <- OffATr(r=0.5, m=r05m, mmin=1, Beta=1, c=1) / r05m;
+# The code below plots everything
+PI <- seq(from=0,to=4,by=0.01);
+Alleles_IBD_outbr <- OffATr(r=0.0, m=PI, mmin=1, Beta=1, c=1);
+Alleles_IBD_inbr  <- OffATr(r=0.5, m=PI, mmin=1, Beta=1, c=1);
+# -------------------------------------
+r00m.b3 <- findm(low.guess=0,high.guess=6,rval=0.0,mmin=1,Beta=3,c=1);
+r05m.b3 <- findm(low.guess=0,high.guess=6,rval=0.5,mmin=1,Beta=3,c=1);
+r00g.b3 <- OffATr(r=0,   m=r00m.b3, mmin=1, Beta=3, c=1) / r00m.b3;
+r05g.b3 <- OffATr(r=0.5, m=r05m.b3, mmin=1, Beta=3, c=1) / r05m.b3;
+bss <- seq(from=0.5,to=5,by=0.25);
+gamz <- function(rvl,betas,mmin=1,c=1){
+    mvl <- rep(0,length(betas));
+    gam <- rep(0,length(betas));
+    for(i in 1:length(bss)){
+        mvl[i] <- findm(low.guess=0,high.guess=10,rval=rvl,mmin=1,Beta=betas[i],c=1);
+        gam[i] <- OffATr(r=rvl, m=mvl[i], mmin=1, Beta=betas[i], c=1) / mvl[i];
+    }
+    return(list(mvl=mvl,gam=gam));
+}
+rg000 <- gamz(rvl=0.000,betas=bss);
+rg125 <- gamz(rvl=0.125,betas=bss);
+rg250 <- gamz(rvl=0.250,betas=bss);
+rg500 <- gamz(rvl=0.500,betas=bss);
+#-----------------------------------------
+par(mfrow=c(2,1),mar=c(5,5,1,1),lwd=2);
+layout(matrix(data=c(1,2), nrow=2, ncol=1, byrow = TRUE),
+       widths=c(1,1), heights=c(1,1));
+# --------------------------------------------------------------------
+plot(PI,Alleles_IBD_outbr,type="l",lwd=3,ylim=c(0,1),yaxs="i",xaxs="i",
+     xlab=expression(paste("Parental investment (",italic(m),")")),
+     ylab=expression(paste("IBD alleles in offspring (",zeta[off],")")),
+     cex.lab=1.5,cex.axis=1.5);
+abline(h=0,lty="dotted",lwd=0.8);
+points(PI,Alleles_IBD_inbr,type="l",lwd=3,lty="dashed");
+abline(a=0,b=r00g,lty="solid", lwd=1); # Tangent line r = 0
+abline(a=0,b=r05g,lty="dashed",lwd=1); # Tangent line r = 0.5
+text(x=0.15,y=0.9,labels="A",cex=2.5);
+# --------------------------------------------------------------------
+plot(x=bss,y=rg000$mvl,type="l",lwd=2,ylim=c(2,6),pch=1.5,
+     xlab=expression(paste("Inbreeding depression (",beta,")")),
+     ylab=expression(paste("Optimum PI (",italic(m),"*)")),
+     cex.lab=1.5,cex.axis=1.5);
+points(x=bss,y=rg125$mvl,type="l",lwd=2);
+points(x=bss,y=rg250$mvl,type="l",lwd=2);
+points(x=bss,y=rg500$mvl,type="l",lwd=2);
+text(x=bss[17],y=rg000$mvl[17]+0.15,labels="r=0",srt=-0,cex=1.25);
+text(x=bss[17],y=rg125$mvl[17]+0.15,labels="r=1/8",srt=6,cex=1.25);
+text(x=bss[17],y=rg250$mvl[17]+0.15,labels="r=1/4",srt=12.5,cex=1.25);
+text(x=bss[17],y=rg500$mvl[17]+0.15,labels="r=1/2",srt=18,cex=1.25);
+text(x=0.5,y=5.7,labels="B",cex=2.5);
+
+
+# I really feel like this figure is starting us down a road of losing the focal point.
+# The transition is from 'parents should invest more when inbreeding to' 
+# But what if they do X or Y or Z? We go from discovering a general biological principle
+# that is universally applicable and widely testable, to pointing out some mathematical
+# details that don't seem to be testable at all -- what's the point of C??
+# Find gamma assuming investing as if outbreeding
+gamznokin <- function(rvl,betas,mmin=1,c=1){
+    mvl <- rep(0,length(betas));
+    gam <- rep(0,length(betas));
+    for(i in 1:length(bss)){
+        mvl[i] <- findm(low.guess=0,high.guess=10,rval=0,mmin=1,Beta=betas[i],c=1);
+        gam[i] <- OffATr(r=rvl, m=mvl[i], mmin=1, Beta=betas[i], c=1) / mvl[i];
+    }
+    return(list(mvl=mvl,gam=gam));
+}
+rg000nk <- gamznokin(rvl=0.000,betas=bss);
+rg125nk <- gamznokin(rvl=0.125,betas=bss);
+rg250nk <- gamznokin(rvl=0.250,betas=bss);
+rg500nk <- gamznokin(rvl=0.500,betas=bss);
+# Find gamma assuming investing as if full sibling inbreeding
+gamzfsib <- function(rvl,betas,mmin=1,c=1){
+    mvl <- rep(0,length(betas));
+    gam <- rep(0,length(betas));
+    for(i in 1:length(bss)){
+        mvl[i] <- findm(low.guess=0,high.guess=10,rval=0.5,mmin=1,Beta=betas[i],c=1);
+        gam[i] <- OffATr(r=rvl, m=mvl[i], mmin=1, Beta=betas[i], c=1) / mvl[i];
+    }
+    return(list(mvl=mvl,gam=gam));
+}
+rg000fs <- gamzfsib(rvl=0.000,betas=bss);
+rg125fs <- gamzfsib(rvl=0.125,betas=bss);
+rg250fs <- gamzfsib(rvl=0.250,betas=bss);
+rg500fs <- gamzfsib(rvl=0.500,betas=bss);
+#--- Start building the figure below
+par(mfrow=c(3,1),mar=c(0.25,5,1,1),lwd=2);
+layout(matrix(data=c(1,3), nrow=3, ncol=1, byrow = TRUE),
+       widths=c(1,1), heights=c(1,1))
+#----------------------------------------------------------------
+par(mar=c(0.5,5,0.25,1),lwd=2);
+plot(x=bss,y=rg000$gam,type="l",lwd=2,ylim=c(0.09,0.22),pch=1.5,yaxt="n",
+     ylab="",xaxt="n",cex.lab=1.5,cex.axis=1.5);
+axis(side=2,at=c(0.10,0.15,0.20),cex.axis=1.5);
+points(x=bss,y=rg125$gam,type="l",lwd=2);
+points(x=bss,y=rg250$gam,type="l",lwd=2);
+points(x=bss,y=rg500$gam,type="l",lwd=2);
+text(x=bss[18],y=rg000$gam[18]+0.0036,labels="r=0",srt=-0,cex=1.25);
+text(x=bss[18],y=rg125$gam[18]+0.0036,labels="r=1/8",srt=-5.5,cex=1.25);
+text(x=bss[18],y=rg250$gam[18]+0.0036,labels="r=1/4",srt=-9,cex=1.25);
+text(x=bss[18],y=rg500$gam[18]+0.0036,labels="r=1/2",srt=-11,cex=1.25);
+text(x=4.95,y=0.215,labels="A",cex=2.5);
+#----------------------------------------------------------------
+par(mar=c(0.5,5,0.25,1),lwd=2);
+plot(x=bss,y=rg000nk$gam,type="l",lwd=2,ylim=c(0.09,0.22),pch=1.5,yaxt="n",
+     ylab=expression(paste("Rate of fitness increase (",gamma,"*)")),
+     xaxt="n",cex.lab=1.5,cex.axis=1.5);
+axis(side=2,at=c(0.10,0.15,0.20),cex.axis=1.5);
+points(x=bss,y=rg125nk$gam,type="l",lwd=2);
+points(x=bss,y=rg250nk$gam,type="l",lwd=2);
+points(x=bss,y=rg500nk$gam,type="l",lwd=2);
+text(x=bss[12],y=rg000nk$gam[12]+0.004,labels="r=0",srt=-0,cex=1.25);
+text(x=bss[10],y=rg125nk$gam[10]+0.004,labels="r=1/8",srt=-15,cex=1.25);
+text(x=bss[7],y=rg250nk$gam[7]+0.005,labels="r=1/4",srt=-34,cex=1.25);
+text(x=bss[4]+0.04,y=rg500nk$gam[4]+0.002,labels="r=1/2",srt=-55,cex=1.25);
+text(x=4.95,y=0.215,labels="B",cex=2.5);
+#----------------------------------------------------------------
+par(mar=c(5,5,0.25,1),lwd=2);
+plot(x=bss,y=rg000fs$gam,type="l",lwd=2,ylim=c(0.09,0.22),pch=1.5,yaxt="n",
+     xlab=expression(paste("Inbreeding depression (",beta,")")),
+     ylab="",cex.lab=1.5,cex.axis=1.5);
+axis(side=2,at=c(0.10,0.15,0.20),cex.axis=1.5);
+points(x=bss,y=rg125fs$gam,type="l",lwd=2);
+points(x=bss,y=rg250fs$gam,type="l",lwd=2);
+points(x=bss,y=rg500fs$gam,type="l",lwd=2);
+text(x=bss[3],y=rg000fs$gam[3]+0.005,labels="r=0",srt=-8,cex=1.25);
+text(x=bss[3],y=rg125fs$gam[3]+0.005,labels="r=1/8",srt=-7.5,cex=1.25);
+text(x=bss[3],y=rg250fs$gam[3]+0.005,labels="r=1/4",srt=-8,cex=1.25);
+text(x=bss[3],y=rg500fs$gam[3]+0.005,labels="r=1/2",srt=-12,cex=1.25);
+text(x=4.95,y=0.215,labels="C",cex=2.5);
+#----------------------------------------------------------------
+# Next, the below generates a function to find where lines intersect
+# Finds the beta at which a particular r value intersects r=0 for fitness
+findbeta <- function(high.guess,rval,m=FALSE,mmin=1,c=1){
+    low.guess <- 0;
+    outbr <- findm(low.guess=0,high.guess=10,rval=0,mmin=mmin,Beta=0,c=c);
+    outgm <- OffATr(r=0,m=outbr,mmin=mmin,Beta=0,c=c) / outbr;
+    if(m == FALSE){ # If we're not constraining m
+        check  <- 1;
+        bguess <- 0.5 * high.guess;
+        i      <- 0;
+        l      <- low.guess
+        u      <- high.guess;
+        while(abs(check) > 0.000001 & i < 1000000){
+            mst   <- findm(low.guess=0,high.guess=10,rval=rval,mmin=mmin,Beta=bguess,c=c);
+            gam   <- OffATr(r=rval,m=mst,mmin=mmin,Beta=bguess,c=c) / mst;
+            check <- gam - outgm;
+            if(check < 0){
+                u      <- bguess;
+                bguess <- 0.5*(l+bguess); 
+            }else{
+                l      <- bguess;
+                bguess <- 0.5*(u+bguess);
+            }
+            i <- i+1;
+        }
+    }else{ #If we are forcing m to a particular value
+        check  <- 1;
+        bguess <- 0.5 * high.guess;
+        i      <- 0;
+        l      <- low.guess
+        u      <- high.guess;
+        while(abs(check) > 0.000001 & i < 1000000){
+            gam   <- OffATr(r=rval,m=m,mmin=mmin,Beta=bguess,c=c) / m;
+            check <- gam - outgm;
+            if(check < 0){
+                u      <- bguess;
+                bguess <- 0.5*(l+bguess); 
+            }else{
+                l      <- bguess;
+                bguess <- 0.5*(u+bguess);
+            }
+            i <- i+1;
+        }
+    }   
+    return(bguess);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# New equations needed to present the results below
+fpair <- expression(0.5*(1+r)*(1-exp(-c*(m-mmin-Beta*r))) - 
+                        (r/2)*(1-exp(-c*(z-mmin))),'m');
+fpaird <- D(fpair,'m'); # can print fmd to show solution
+Offpair <- function(r, m, mmin=1, Beta=1, c=1, m0=r00m){
+    direct   <- (1/2)*(1+r) * (1 - exp(-c*(m - mmin - Beta*r)) );
+    indirect <- (r/2)*(1-exp(-c*(r00m-mmin)));
+    return( direct - indirect);
+}
+findmpair <- function(low.guess,high.guess,rval,mmin=1,Beta=1,c=1,m0=r00m){
+    # Note that derivative of zeta has not changed, only the original f
+    fm  <- function(m,r=rval){ 
+        OffATrd(r=rval, mmin=mmin, Beta=Beta, m=m, c=c)*(0-m) + 
+            Offpair(r=rval, mmin=mmin, Beta=Beta, m=m, c=c, m0=m0);
+    }
+    lg  <- fm(m=low.guess, r=rval);
+    hg  <- fm(m=high.guess,r=rval);
+    if(lg > 0){
+        u <- low.guess;
+        l <- high.guess;
+    }else{
+        u <- high.guess;
+        l <- low.guess;
+    }
+    if((fm(l) > 0 & fm(u) > 0) | (fm(l) < 0 & fm(u) < 0)){
+        return("Value of m is outside the range");
+    }else{
+        check  <- 1;
+        mguess <- 0.5 * (l+u);
+        i      <- 0;
+        while(abs(check) > 0.000001 & i < 1000000){
+            check <- fm(r=rval, m=mguess);
+            if(check > 0){
+                u      <- mguess;
+                mguess <- 0.5*(l+mguess); 
+            }else{
+                l      <- mguess;
+                mguess <- 0.5*(u+mguess);
+            }
+            i <- i+1;
+        }
+        return(mguess);
+    }
+} # Running the below returns the
+r05mpB0 <- findmpair(low.guess=0,high.gues=10,rval=0.5,Beta=0);
+r05gpB0 <- Offpair(r=0.5, m=r05mpB0, mmin=1, Beta=0, c=1, m0=r00m) / r05mpB0;
+r05mpB1 <- findmpair(low.guess=0,high.gues=10,rval=0.5,Beta=1);
+r05gpB1 <- Offpair(r=0.5, m=r05mpB0, mmin=1, Beta=1, c=1, m0=r00m) / r05mpB1;
+
+
+
+#---------------- Some general patterns now plotted
+bss <- seq(from=0.5,to=5,by=0.25);
+gamzp <- function(rvl,betas,mmin=1,c=1,m0=r00m){
+    mvl <- rep(0,length(betas));
+    gam <- rep(0,length(betas));
+    for(i in 1:length(bss)){
+        mvl[i] <- findmpair(low.guess=0,high.guess=10,rval=rvl,
+                            mmin=1,Beta=betas[i],c=1,m0=r00m);
+        gam[i] <- Offpair(r=rvl,m=mvl[i],mmin=1,Beta=betas[i],c=1,m0=m0) / mvl[i];
+    }
+    return(list(mvl=mvl,gam=gam));
+}
+rg000p <- gamzp(rvl=0.000,betas=bss);
+rg125p <- gamzp(rvl=0.125,betas=bss);
+rg250p <- gamzp(rvl=0.250,betas=bss);
+rg500p <- gamzp(rvl=0.500,betas=bss);
+par(mfrow=c(2,1),mar=c(0.25,5,1,1),lwd=2);
+layout(matrix(data=c(1,2), nrow=2, ncol=1, byrow = TRUE),
+       widths=c(1,1), heights=c(1,1))
+#----------------------------------------------------------------
+par(mar=c(1,5,2,1),lwd=2);
+plot(x=bss,y=rg000p$mvl,type="l",lwd=2,ylim=c(2,6),pch=1.5,xaxt="n",
+     xlab="",
+     ylab=expression(paste("Optimum parental investment (",italic(m),"*)")),
+     cex.lab=1.5,cex.axis=1.5);
+points(x=bss,y=rg125p$mvl,type="l",lwd=2);
+points(x=bss,y=rg250p$mvl,type="l",lwd=2);
+points(x=bss,y=rg500p$mvl,type="l",lwd=2);
+#points(x=bss,y=rg125$mvl,type="l",lwd=2,lty="dotted",col="grey70");
+#points(x=bss,y=rg250$mvl,type="l",lwd=2,lty="dotted",col="grey70");
+#points(x=bss,y=rg500$mvl,type="l",lwd=2,lty="dotted",col="grey70");
+text(x=bss[17],y=rg000p$mvl[17]+0.15,labels="r=0",srt=-0,cex=1.25);
+text(x=bss[17],y=rg125p$mvl[17]+0.15,labels="r=1/8",srt=6,cex=1.25);
+text(x=bss[17],y=rg250p$mvl[17]+0.15,labels="r=1/4",srt=12,cex=1.25);
+text(x=bss[17],y=rg500p$mvl[17]+0.15,labels="r=1/2",srt=18,cex=1.25);
+#text(x=bss[18],y=rg125$mvl[18]-0.15,labels="r=1/8",srt=6,cex=0.8,col="grey70");
+#text(x=bss[18],y=rg250$mvl[18]-0.15,labels="r=1/4",srt=12,cex=0.8,col="grey70");
+#text(x=bss[18],y=rg500$mvl[18]-0.15,labels="r=1/2",srt=18,cex=0.8,col="grey70");
+text(x=4.95,y=5.9,labels="A",cex=2.5);
+#----------------------------------------------------------------
+par(mar=c(5,5,0.25,1),lwd=2);
+plot(x=bss,y=rg000p$gam,type="l",lwd=2,ylim=c(0.08,0.22),pch=1.5,yaxt="n",
+     xlab=expression(paste("Inbreeding depression (",beta,")")),
+     ylab=expression(paste("Rate of fitness increase (",gamma,"*)")),
+     cex.lab=1.5,cex.axis=1.5);
+axis(side=2,at=c(0.12,0.16,0.20),cex.axis=1.5);
+points(x=bss,y=rg125p$gam,type="l",lwd=2);
+points(x=bss,y=rg250p$gam,type="l",lwd=2);
+points(x=bss,y=rg500p$gam,type="l",lwd=2);
+#points(x=bss,y=rg125$gam,type="l",lwd=2,lty="dotted",col="grey70");
+#points(x=bss,y=rg250$gam,type="l",lwd=2,lty="dotted",col="grey70");
+#points(x=bss,y=rg500$gam,type="l",lwd=2,lty="dotted",col="grey70");
+text(x=bss[17],y=rg000p$gam[17]+0.005,labels="r=0",srt=-0,cex=1.25);
+text(x=bss[17],y=rg125p$gam[17]+0.005,labels="r=1/8",srt=-4,cex=1.25);
+text(x=bss[17],y=rg250p$gam[17]+0.005,labels="r=1/4",srt=-6,cex=1.25);
+text(x=bss[17],y=rg500p$gam[17]+0.005,labels="r=1/2",srt=-8,cex=1.25);
+#text(x=bss[2],y=rg125$gam[2]+0.004,labels="r=1/8",srt=-7,cex=0.8,col="grey70");
+#text(x=bss[2],y=rg250$gam[2]+0.005,labels="r=1/4",srt=-12,cex=0.8,col="grey70");
+#text(x=bss[2],y=rg500$gam[2]+0.005,labels="r=1/2",srt=-23,cex=0.8,col="grey70");
+text(x=4.95,y=0.215,labels="B",cex=2.5);
+
+
+
+
+OffATf <- function(f, k, m, B0=1, B1=1, c=1){
+    return( (1/2)*(1+(2*k/(1+f))) * (1 - exp(-c*(m - B0 - 2*B1*k)) ));
+}
+findmf <- function(low.guess,high.guess,kval,fval,B1=1,c=1,B0=1){
+    OffATf <- function(m, f=fval, k=kval, B0=1, B1=1, c=1){
+        return( (1/2)*(1+(2*k/(1+f))) * (1 - exp(-c*(m - B0 - 2*B1*k)) ));
+    }
+    OffATff <- function(m, k=kval, f=fval, B0=1, B1=1, c=1){
+        return( 0.5 * (1 + (2 * k/(f + 1))) * (exp(-c * (m - B0 - 2 * B1 * k)) * c) );
+    }    
+    fm <- function(m, f=fval, k=kval, B0=1, B1=1, c=1){
+        OffATff(m=m, f=fval, k=kval, B0=B0, B1=B1, c=c)*(0-m) + 
+            OffATf(m=m, f=fval, k=kval, B0=B0, B1=B1, c=c);
+    }
+    lg  <- fm(m=low.guess, k=kval, f=fval);
+    hg  <- fm(m=high.guess,k=kval, f=fval);
+    if(lg > 0){
+        u <- low.guess;
+        l <- high.guess;
+    }else{
+        u <- high.guess;
+        l <- low.guess;
+    }
+    if((fm(l) > 0 & fm(u) > 0) | (fm(l) < 0 & fm(u) < 0)){
+        return("Value of m is outside the range");
+    }else{
+        check  <- 1;
+        mguess <- 0.5 * (l+u);
+        i      <- 0;
+        while(abs(check) > 0.001 & i < 10000){
+            check <- fm(k=kval, f=fval, m=mguess);
+            if(check > 0){
+                u      <- mguess;
+                mguess <- 0.5*(l+mguess); 
+            }else{
+                l      <- mguess;
+                mguess <- 0.5*(u+mguess);
+            }
+            i <- i+1;
+        }
+        return(mguess);
+    }
+} # Running the below returns the estimate
+imopt.f000 <- findmf(low.guess=0,high.guess=4,kval=0.25,fval=0.0, B1=1);
+imopt.f025 <- findmf(low.guess=0,high.guess=4,kval=0.25,fval=0.25, B1=1);
+itang.f000 <- OffATf(m=imopt.f000, f=0, k=0.25, B0=1, B1=1, c=1) / imopt.f000;
+itang.f025 <- OffATf(m=imopt.f025, f=0.25, k=0.25, B0=1, B1=1, c=1) / imopt.f025;
+omopt.f000 <- findmf(low.guess=0,high.guess=4,kval=0.0,fval=0.0, B1=1);
+omopt.f025 <- findmf(low.guess=0,high.guess=4,kval=0.0,fval=0.25, B1=1);
+otang.f000 <- OffATf(m=omopt.f000, f=0, k=0.0, B0=1, B1=1, c=1) / omopt.f000;
+otang.f025 <- OffATf(m=omopt.f025, f=0.25, k=0.0, B0=1, B1=1, c=1) / omopt.f025;
+
+
+
+par(oma=c(4,1,1,1));
+moBB <- 1;
+mvals   <- seq(from=1, to=6, by=0.01);
+par(mfrow=c(1,2),mar=c(1,5,2,1),lwd=2);
+# First assume that Beta = 1.
+mvr000  <- OffATr(r=0.000, m=mvals, mmin=1, Beta=moBB, c=1) / mvals;
+mvr125  <- OffATr(r=0.125, m=mvals, mmin=1, Beta=moBB, c=1) / mvals;
+mvr250  <- OffATr(r=0.250, m=mvals, mmin=1, Beta=moBB, c=1) / mvals;
+mvr500  <- OffATr(r=0.500, m=mvals, mmin=1, Beta=moBB, c=1) / mvals;
+mstr000 <- findm(low.guess=0,high.guess=6,rval=0.000,Beta=moBB,c=1,mmin=1);
+mstr125 <- findm(low.guess=0,high.guess=6,rval=0.125,Beta=moBB,c=1,mmin=1);
+mstr250 <- findm(low.guess=0,high.guess=6,rval=0.250,Beta=moBB,c=1,mmin=1);
+mstr500 <- findm(low.guess=0,high.guess=6,rval=0.500,Beta=moBB,c=1,mmin=1);
+mstrgm0 <- OffATr(r=0.000, m=mstr000, mmin=1, Beta=moBB, c=1) / mstr000;
+mstrgm1 <- OffATr(r=0.125, m=mstr125, mmin=1, Beta=moBB, c=1) / mstr125;
+mstrgm2 <- OffATr(r=0.250, m=mstr250, mmin=1, Beta=moBB, c=1) / mstr250;
+mstrgm5 <- OffATr(r=0.500, m=mstr500, mmin=1, Beta=moBB, c=1) / mstr500;
+plot(x=mvals,y=mvr000,type="l",lwd=3,ylim=c(0.0,0.21),pch=1.5,yaxt="n",
+     ylab=expression(paste("Rate of fitness increase (",gamma,"*)")),
+     cex.lab=1.5,cex.axis=1.5,xaxs="i",yaxs="i",xaxt="n");
+axis(side=2,at=c(0,0.05,0.10,0.15,0.20),labels=TRUE,cex.axis=1.5);
+axis(side=1,at=c(1,2,3,4,5,6),cex.axis=1.5);
+points(x=mvals,y=mvr125,type="l",lwd=3);
+points(x=mvals,y=mvr250,type="l",lwd=3);
+points(x=mvals,y=mvr500,type="l",lwd=3);
+points(x=mstr000,y=mstrgm0,cex=1.5,pch=21,bg="grey70");
+points(x=mstr125,y=mstrgm1,cex=1.5,pch=21,bg="grey70");
+points(x=mstr250,y=mstrgm2,cex=1.5,pch=21,bg="grey70");
+points(x=mstr500,y=mstrgm5,cex=1.5,pch=21,bg="grey70");
+text(x=mvals[450],y=mvr000[450]+0.005,labels="r=0",  srt=-25,cex=0.95);
+text(x=mvals[450],y=mvr125[450]+0.005,labels="r=1/8",srt=-25,cex=0.95);
+text(x=mvals[450],y=mvr250[450]+0.005,labels="r=1/4",srt=-25,cex=0.95);
+text(x=mvals[450],y=mvr500[450]+0.006,labels="r=1/2",srt=-30,cex=0.95);
+text(x=5.5,y=0.198,labels="A",cex=2.5);
+#--- Now show the place where Beta = 3.
+par(mar=c(1,1,2,4),lwd=2);
+moBB    <- 3;
+mvr000  <- OffATr(r=0.000, m=mvals, mmin=1, Beta=moBB, c=1) / mvals;
+mvr125  <- OffATr(r=0.125, m=mvals, mmin=1, Beta=moBB, c=1) / mvals;
+mvr250  <- OffATr(r=0.250, m=mvals, mmin=1, Beta=moBB, c=1) / mvals;
+mvr500  <- OffATr(r=0.500, m=mvals, mmin=1, Beta=moBB, c=1) / mvals;
+mstr000 <- findm(low.guess=0,high.guess=6,rval=0.000,Beta=moBB,c=1,mmin=1);
+mstr125 <- findm(low.guess=0,high.guess=6,rval=0.125,Beta=moBB,c=1,mmin=1);
+mstr250 <- findm(low.guess=0,high.guess=6,rval=0.250,Beta=moBB,c=1,mmin=1);
+mstr500 <- findm(low.guess=0,high.guess=6,rval=0.500,Beta=moBB,c=1,mmin=1);
+mstrgm0 <- OffATr(r=0.000, m=mstr000, mmin=1, Beta=moBB, c=1) / mstr000;
+mstrgm1 <- OffATr(r=0.125, m=mstr125, mmin=1, Beta=moBB, c=1) / mstr125;
+mstrgm2 <- OffATr(r=0.250, m=mstr250, mmin=1, Beta=moBB, c=1) / mstr250;
+mstrgm5 <- OffATr(r=0.500, m=mstr500, mmin=1, Beta=moBB, c=1) / mstr500;
+plot(x=mvals,y=mvr000,type="l",lwd=3,ylim=c(0.0,0.21),pch=1.5,yaxt="n",
+     xlab="",ylab="", cex.lab=1.5,cex.axis=1.5,xaxs="i",yaxs="i",xaxt="n");
+axis(side=1,at=c(1,2,3,4,5,6),cex.axis=1.5);
+points(x=mvals,y=mvr125,type="l",lwd=3);
+points(x=mvals,y=mvr250,type="l",lwd=3);
+points(x=mvals,y=mvr500,type="l",lwd=3);
+points(x=mstr000,y=mstrgm0,cex=1.5,pch=21,bg="grey70");
+points(x=mstr125,y=mstrgm1,cex=1.5,pch=21,bg="grey70");
+points(x=mstr250,y=mstrgm2,cex=1.5,pch=21,bg="grey70");
+points(x=mstr500,y=mstrgm5,cex=1.5,pch=21,bg="grey70");
+text(x=mvals[450],y=mvr000[450]+0.005,labels="r=0",  srt=-22,cex=0.95);
+text(x=mvals[450],y=mvr125[450]+0.005,labels="r=1/8",srt=-22,cex=0.95);
+text(x=mvals[450],y=mvr250[450]+0.005,labels="r=1/4",srt=-22,cex=0.95);
+text(x=mvals[450],y=mvr500[450]+0.005,labels="r=1/2",srt=-22,cex=0.95);
+text(x=5.5,y=0.198,labels="B",cex=2.5);
+mtext(expression(paste("Parental investment (",italic(m),")")),
+      outer=TRUE,side=1,line=2.1,cex=2);
+
+
+
+
+
+
+
+
+
+Alleles_IBD_f000 <- OffATf(k=0.25, f=0.0, m=PI, B0=1, B1=1, c=1);
+par(mar=c(5,5,2,2));
+plot(PI,Alleles_IBD_f000,type="l",lwd=1,ylim=c(0,1),lty="solid",
+     xlab=expression(paste("Parental investment (",italic(m),")")),
+     ylab=expression(paste("IBD alleles in offspring (",zeta[off],")")),
+     cex.lab=1.5,cex.axis=1.5,yaxs="i",xaxs="i");
+abline(h=0,lty="dotted",lwd=0.8);
+Alleles_IBD_f025 <- OffATf(k=0.25, f=0.25, m=PI, B0=1, B1=1, c=1);
+abline(b=itang.f000,a=0,lty="solid",lwd=0.5,col="grey40");
+abline(b=itang.f025,a=0,lty="solid",lwd=0.5,col="grey40");
+polygon(x=c(PI,rev(PI)),y=c(Alleles_IBD_f000,rev(Alleles_IBD_f025)),col="grey70",border=NA);
+points(PI,Alleles_IBD_f025,type="l",lwd=1,col="black",lty="solid");
+points(PI,Alleles_IBD_f000,type="l",lwd=1,col="black",lty="solid");
+yof000 <- OffATf(k=0.25, f=0.0,  m=imopt.f000, B0=1, B1=1, c=1);
+yof025 <- OffATf(k=0.25, f=0.25, m=imopt.f025, B0=1, B1=1, c=1);
+xline  <- seq(from=1,to=imopt.f000,by=0.001);
+points(x=xline,y=rep(yof000,length(xline)),type="l",lwd=1);
+points(x=xline,y=rep(yof025,length(xline)),type="l",lwd=1);
+yline  <- seq(from=0,to=yof025,by=0.001);
+points(x=rep(imopt.f025,length(yline)),y=yline,type="l",lwd=1);
+text(x=3.5,y=0.255,labels=expression(paste(italic(m^{"*"}))),cex=1.75);
+arrows(x0=3.345,y0=0.205,x1=imopt.f025+0.04,y1=0.01,length = 0.15,angle=30,code=2,lwd=2);
+text(x=0.75,y=0.8,labels=expression(paste(italic(f==0))),cex=1.25);
+arrows(x0=0.8,y0=0.75,x1=1.1,y1=yof000+0.01,length = 0.15,angle=30,code=2,lwd=2);
+text(x=0.67,y=0.35,labels=expression(paste(italic(f==frac(1,4)))),cex=1.25);
+arrows(x0=0.87,y0=0.36,x1=1.1,y1=yof025-0.01,length = 0.15,angle=30,code=2,lwd=2);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
