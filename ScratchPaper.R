@@ -1566,12 +1566,19 @@ text(x=bss[17],y=rg250$mvl[17]+0.15,labels="r=1/4",srt=12.5,cex=1.25);
 text(x=bss[17],y=rg500$mvl[17]+0.15,labels="r=1/2",srt=18,cex=1.25);
 text(x=0.5,y=5.7,labels="B",cex=2.5);
 
+# --------------------------------------------------------------------
+# --------------------------------------------------------------------
+#                         < LEFT OFF HERE >
+# --------------------------------------------------------------------
+# --------------------------------------------------------------------
 
+# --------------------------------------------------------------------
 # I really feel like this figure is starting us down a road of losing the focal point.
-# The transition is from 'parents should invest more when inbreeding to' 
-# But what if they do X or Y or Z? We go from discovering a general biological principle
+# The transition is from 'parents should invest more when inbreeding to ... but
+# what if they do X or Y or Z?' We go from discovering a general biological principle
 # that is universally applicable and widely testable, to pointing out some mathematical
-# details that don't seem to be testable at all -- what's the point of C??
+# details that don't seem to be testable at all -- what's the actual point of C??
+# --------------------------------------------------------------------
 # Find gamma assuming investing as if outbreeding
 gamznokin <- function(rvl,betas,mmin=1,c=1){
     mvl <- rep(0,length(betas));
@@ -1754,7 +1761,140 @@ findmpair <- function(low.guess,high.guess,rval,mmin=1,Beta=1,c=1,m0=r00m){
 r05mpB0 <- findmpair(low.guess=0,high.gues=10,rval=0.5,Beta=0);
 r05gpB0 <- Offpair(r=0.5, m=r05mpB0, mmin=1, Beta=0, c=1, m0=r00m) / r05mpB0;
 r05mpB1 <- findmpair(low.guess=0,high.gues=10,rval=0.5,Beta=1);
-r05gpB1 <- Offpair(r=0.5, m=r05mpB0, mmin=1, Beta=1, c=1, m0=r00m) / r05mpB1;
+r05gpB1 <- Offpair(r=0.5, m=r05mpB1, mmin=1, Beta=1, c=1, m0=r00m) / r05mpB1;
+
+
+
+
+
+
+Alleles_IBD_outbr_pair <- Offpair(r=0.0, m=PI, mmin=1, Beta=1, c=1);
+Alleles_IBD_inbr_pair  <- Offpair(r=0.5, m=PI, mmin=1, Beta=1, c=1);
+#-----------------------------------------
+par(mfrow=c(2,1),mar=c(5,5,1,1),lwd=2);
+layout(matrix(data=c(1,2), nrow=2, ncol=1, byrow = TRUE),
+       widths=c(1,1), heights=c(1,1));
+# --------------------------------------------------------------------
+plot(PI,Alleles_IBD_outbr_pair,type="l",lwd=3,ylim=c(0,1),yaxs="i",xaxs="i",
+     xlab=expression(paste("Parental investment (",italic(m),")")),
+     ylab=expression(paste("IBD alleles in offspring (",zeta[off],")")),
+     cex.lab=1.5,cex.axis=1.5);
+abline(h=0,lty="dotted",lwd=0.8);
+points(PI,Alleles_IBD_inbr_pair,type="l",lwd=3,lty="dashed");
+abline(a=0,b=r00g,lty="solid", lwd=1); # Tangent line r = 0
+abline(a=0,b=r05gpB1,lty="dashed",lwd=1); # Tangent line r = 0.5
+text(x=0.15,y=0.9,labels="A",cex=2.5);
+# --------------------------------------------------------------------
+plot(x=bss,y=rg000$mvl,type="l",lwd=2,ylim=c(2,6),pch=1.5,
+     xlab=expression(paste("Inbreeding depression (",beta,")")),
+     ylab=expression(paste("Optimum PI (",italic(m),"*)")),
+     cex.lab=1.5,cex.axis=1.5);
+points(x=bss,y=rg125$mvl,type="l",lwd=2);
+points(x=bss,y=rg250$mvl,type="l",lwd=2);
+points(x=bss,y=rg500$mvl,type="l",lwd=2);
+text(x=bss[17],y=rg000$mvl[17]+0.15,labels="r=0",srt=-0,cex=1.25);
+text(x=bss[17],y=rg125$mvl[17]+0.15,labels="r=1/8",srt=6,cex=1.25);
+text(x=bss[17],y=rg250$mvl[17]+0.15,labels="r=1/4",srt=12.5,cex=1.25);
+text(x=bss[17],y=rg500$mvl[17]+0.15,labels="r=1/2",srt=18,cex=1.25);
+text(x=0.5,y=5.7,labels="B",cex=2.5);
+
+
+
+
+
+
+
+
+#--- Start building the figure below
+par(mfrow=c(3,1),mar=c(0.25,5,1,1),lwd=2);
+layout(matrix(data=c(1,3), nrow=3, ncol=1, byrow = TRUE),
+       widths=c(1,1), heights=c(1,1))
+#----------------------------------------------------------------
+par(mar=c(1,5,1,1),lwd=2);
+plot(x=bss,y=rg000p$gam,type="l",lwd=2,ylim=c(0.08,0.22),pch=1.5,yaxt="n",
+     xlab=expression(paste("Inbreeding depression (",beta,")")),
+     ylab=expression(paste("Rate of fitness increase (",gamma,"*)")),
+     cex.lab=1.5,cex.axis=1.5);
+axis(side=2,at=c(0.12,0.16,0.20),cex.axis=1.5);
+points(x=bss,y=rg125p$gam,type="l",lwd=2);
+points(x=bss,y=rg250p$gam,type="l",lwd=2);
+points(x=bss,y=rg500p$gam,type="l",lwd=2);
+text(x=bss[17],y=rg000p$gam[17]+0.005,labels="r=0",srt=-0,cex=1.25);
+text(x=bss[17],y=rg125p$gam[17]+0.005,labels="r=1/8",srt=-4,cex=1.25);
+text(x=bss[17],y=rg250p$gam[17]+0.005,labels="r=1/4",srt=-6,cex=1.25);
+text(x=bss[17],y=rg500p$gam[17]+0.005,labels="r=1/2",srt=-8,cex=1.25);
+text(x=4.95,y=0.215,labels="A",cex=2.5);
+#----------------------------------------------------------------
+r000_000pt <- Offpair(r=0.000, m=r00m, mmin=1, Beta=bss, c=1, m0=r00m) / r00m;
+r125_000pt <- Offpair(r=0.125, m=r00m, mmin=1, Beta=bss, c=1, m0=r00m) / r00m;
+r250_000pt <- Offpair(r=0.250, m=r00m, mmin=1, Beta=bss, c=1, m0=r00m) / r00m;
+r500_000pt <- Offpair(r=0.500, m=r00m, mmin=1, Beta=bss, c=1, m0=r00m) / r00m;
+par(mar=c(0.5,5,0.25,1),lwd=2);
+plot(x=bss,y=r000_000pt,type="l",lwd=2,ylim=c(0.00,0.22),pch=1.5,yaxt="n",
+     ylab=expression(paste("Rate of fitness increase (",gamma,"*)")),
+     xaxt="n",cex.lab=1.5,cex.axis=1.5);
+axis(side=2,at=c(0.10,0.15,0.20),cex.axis=1.5);
+points(x=bss,y=r125_000pt,type="l",lwd=2);
+points(x=bss,y=r250_000pt,type="l",lwd=2);
+points(x=bss,y=r500_000pt,type="l",lwd=2);
+text(x=bss[12],y=r000_000pt[12]+0.005,labels="r=0",srt=-0,cex=1.25);
+text(x=bss[10],y=r125_000pt[10]+0.005,labels="r=1/8",srt=-15,cex=1.25);
+text(x=bss[7],y=r250_000pt[7]+0.005,labels="r=1/4",srt=-34,cex=1.25);
+text(x=bss[4]+0.05,y=r500_000pt[4]+0.003,labels="r=1/2",srt=-55,cex=1.25);
+text(x=4.95,y=0.215,labels="B",cex=2.5);
+#----------------------------------------------------------------
+r000_000pt <- Offpair(r=0.000, m=r05mpB1, mmin=1, Beta=bss, c=1, m0=r00m) / r05mpB1;
+r125_000pt <- Offpair(r=0.125, m=r05mpB1, mmin=1, Beta=bss, c=1, m0=r00m) / r05mpB1;
+r250_000pt <- Offpair(r=0.250, m=r05mpB1, mmin=1, Beta=bss, c=1, m0=r00m) / r05mpB1;
+r500_000pt <- Offpair(r=0.500, m=r05mpB1, mmin=1, Beta=bss, c=1, m0=r00m) / r05mpB1;
+par(mar=c(5,5,0.25,1),lwd=2);
+plot(x=bss,y=rg000fs$gam,type="l",lwd=2,ylim=c(0.09,0.22),pch=1.5,yaxt="n",
+     xlab=expression(paste("Inbreeding depression (",beta,")")),
+     ylab="",cex.lab=1.5,cex.axis=1.5);
+axis(side=2,at=c(0.10,0.15,0.20),cex.axis=1.5);
+points(x=bss,y=rg125fs$gam,type="l",lwd=2);
+points(x=bss,y=rg250fs$gam,type="l",lwd=2);
+points(x=bss,y=rg500fs$gam,type="l",lwd=2);
+text(x=bss[3],y=rg000fs$gam[3]+0.004,labels="r=0",srt=-15,cex=1.25);
+text(x=bss[3],y=rg125fs$gam[3]+0.004,labels="r=1/8",srt=-18,cex=1.25);
+text(x=bss[3],y=rg250fs$gam[3]+0.004,labels="r=1/4",srt=-20,cex=1.25);
+text(x=bss[3],y=rg500fs$gam[3]+0.005,labels="r=1/2",srt=-33,cex=1.25);
+text(x=4.95,y=0.215,labels="C",cex=2.5);
+#----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1774,11 +1914,9 @@ rg000p <- gamzp(rvl=0.000,betas=bss);
 rg125p <- gamzp(rvl=0.125,betas=bss);
 rg250p <- gamzp(rvl=0.250,betas=bss);
 rg500p <- gamzp(rvl=0.500,betas=bss);
-par(mfrow=c(2,1),mar=c(0.25,5,1,1),lwd=2);
-layout(matrix(data=c(1,2), nrow=2, ncol=1, byrow = TRUE),
-       widths=c(1,1), heights=c(1,1))
+par(mfrow=c(3,2),mar=c(0.25,0.25,0.25,0.25),lwd=2);
 #----------------------------------------------------------------
-par(mar=c(1,5,2,1),lwd=2);
+par(mar=c(1,5,1,1),lwd=2);
 plot(x=bss,y=rg000p$mvl,type="l",lwd=2,ylim=c(2,6),pch=1.5,xaxt="n",
      xlab="",
      ylab=expression(paste("Optimum parental investment (",italic(m),"*)")),
@@ -1786,19 +1924,13 @@ plot(x=bss,y=rg000p$mvl,type="l",lwd=2,ylim=c(2,6),pch=1.5,xaxt="n",
 points(x=bss,y=rg125p$mvl,type="l",lwd=2);
 points(x=bss,y=rg250p$mvl,type="l",lwd=2);
 points(x=bss,y=rg500p$mvl,type="l",lwd=2);
-#points(x=bss,y=rg125$mvl,type="l",lwd=2,lty="dotted",col="grey70");
-#points(x=bss,y=rg250$mvl,type="l",lwd=2,lty="dotted",col="grey70");
-#points(x=bss,y=rg500$mvl,type="l",lwd=2,lty="dotted",col="grey70");
 text(x=bss[17],y=rg000p$mvl[17]+0.15,labels="r=0",srt=-0,cex=1.25);
 text(x=bss[17],y=rg125p$mvl[17]+0.15,labels="r=1/8",srt=6,cex=1.25);
 text(x=bss[17],y=rg250p$mvl[17]+0.15,labels="r=1/4",srt=12,cex=1.25);
 text(x=bss[17],y=rg500p$mvl[17]+0.15,labels="r=1/2",srt=18,cex=1.25);
-#text(x=bss[18],y=rg125$mvl[18]-0.15,labels="r=1/8",srt=6,cex=0.8,col="grey70");
-#text(x=bss[18],y=rg250$mvl[18]-0.15,labels="r=1/4",srt=12,cex=0.8,col="grey70");
-#text(x=bss[18],y=rg500$mvl[18]-0.15,labels="r=1/2",srt=18,cex=0.8,col="grey70");
 text(x=4.95,y=5.9,labels="A",cex=2.5);
 #----------------------------------------------------------------
-par(mar=c(5,5,0.25,1),lwd=2);
+par(mar=c(1,5,1,1),lwd=2);
 plot(x=bss,y=rg000p$gam,type="l",lwd=2,ylim=c(0.08,0.22),pch=1.5,yaxt="n",
      xlab=expression(paste("Inbreeding depression (",beta,")")),
      ylab=expression(paste("Rate of fitness increase (",gamma,"*)")),
@@ -1807,17 +1939,26 @@ axis(side=2,at=c(0.12,0.16,0.20),cex.axis=1.5);
 points(x=bss,y=rg125p$gam,type="l",lwd=2);
 points(x=bss,y=rg250p$gam,type="l",lwd=2);
 points(x=bss,y=rg500p$gam,type="l",lwd=2);
-#points(x=bss,y=rg125$gam,type="l",lwd=2,lty="dotted",col="grey70");
-#points(x=bss,y=rg250$gam,type="l",lwd=2,lty="dotted",col="grey70");
-#points(x=bss,y=rg500$gam,type="l",lwd=2,lty="dotted",col="grey70");
 text(x=bss[17],y=rg000p$gam[17]+0.005,labels="r=0",srt=-0,cex=1.25);
 text(x=bss[17],y=rg125p$gam[17]+0.005,labels="r=1/8",srt=-4,cex=1.25);
 text(x=bss[17],y=rg250p$gam[17]+0.005,labels="r=1/4",srt=-6,cex=1.25);
 text(x=bss[17],y=rg500p$gam[17]+0.005,labels="r=1/2",srt=-8,cex=1.25);
-#text(x=bss[2],y=rg125$gam[2]+0.004,labels="r=1/8",srt=-7,cex=0.8,col="grey70");
-#text(x=bss[2],y=rg250$gam[2]+0.005,labels="r=1/4",srt=-12,cex=0.8,col="grey70");
-#text(x=bss[2],y=rg500$gam[2]+0.005,labels="r=1/2",srt=-23,cex=0.8,col="grey70");
 text(x=4.95,y=0.215,labels="B",cex=2.5);
+#----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
