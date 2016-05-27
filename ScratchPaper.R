@@ -2135,11 +2135,143 @@ arrows(x0=0.87,y0=0.36,x1=1.1,y1=yof025-0.01,length = 0.15,angle=30,code=2,lwd=2
 
 
 
-
-
-
-
-
+gamzVrkin <- function(rvl,kin,betas,mmin=1,c=1,oc=0){
+    mvl <- rep(0,length(betas));
+    gam <- rep(0,length(betas));
+    for(i in 1:length(bss)){
+        mvl[i] <- findm(low.guess=0,high.guess=10,rval=kin,mmin=1,Beta=betas[i],c=1);
+        if(oc==0){
+            gam[i] <- OffATr(r=rvl, m=mvl[i], mmin=1, Beta=betas[i], c=1) / mvl[i];
+        }else{
+            gam[i] <- Offpair(r=rvl, m=mvl[i], mmin=1, Beta=betas[i], c=1, m0=r00m) / mvl[i];
+        }
+    }
+    return(list(mvl=mvl,gam=gam));
+} 
+#-----------------------------------------------------------
+r0500m000 <- gamzVrkin(rvl=0.500,kin=0.000,betas=bss,oc=0); 
+r0250m000 <- gamzVrkin(rvl=0.250,kin=0.000,betas=bss,oc=0);
+r0125m000 <- gamzVrkin(rvl=0.125,kin=0.000,betas=bss,oc=0);
+r0000m000 <- gamzVrkin(rvl=0.000,kin=0.000,betas=bss,oc=0);
+#-----------------------------------------------------------
+r0500m125 <- gamzVrkin(rvl=0.500,kin=0.125,betas=bss,oc=0);
+r0250m125 <- gamzVrkin(rvl=0.250,kin=0.125,betas=bss,oc=0);
+r0125m125 <- gamzVrkin(rvl=0.125,kin=0.125,betas=bss,oc=0);
+r0000m125 <- gamzVrkin(rvl=0.000,kin=0.125,betas=bss,oc=0);
+#-----------------------------------------------------------
+r0500m250 <- gamzVrkin(rvl=0.500,kin=0.250,betas=bss,oc=0);
+r0250m250 <- gamzVrkin(rvl=0.250,kin=0.250,betas=bss,oc=0);
+r0125m250 <- gamzVrkin(rvl=0.125,kin=0.250,betas=bss,oc=0);
+r0000m250 <- gamzVrkin(rvl=0.000,kin=0.250,betas=bss,oc=0);
+#-----------------------------------------------------------
+r0500m500 <- gamzVrkin(rvl=0.500,kin=0.500,betas=bss,oc=0);
+r0250m500 <- gamzVrkin(rvl=0.250,kin=0.500,betas=bss,oc=0);
+r0125m500 <- gamzVrkin(rvl=0.125,kin=0.500,betas=bss,oc=0);
+r0000m500 <- gamzVrkin(rvl=0.000,kin=0.500,betas=bss,oc=0);
+#-----------------------------------------------------------
+#-----------------------------------------------------------
+r0500m000c <- gamzVrkin(rvl=0.500,kin=0.000,betas=bss,oc=1); 
+r0250m000c <- gamzVrkin(rvl=0.250,kin=0.000,betas=bss,oc=1);
+r0125m000c <- gamzVrkin(rvl=0.125,kin=0.000,betas=bss,oc=1);
+r0000m000c <- gamzVrkin(rvl=0.000,kin=0.000,betas=bss,oc=1);
+#-----------------------------------------------------------
+r0500m125c <- gamzVrkin(rvl=0.500,kin=0.125,betas=bss,oc=1);
+r0250m125c <- gamzVrkin(rvl=0.250,kin=0.125,betas=bss,oc=1);
+r0125m125c <- gamzVrkin(rvl=0.125,kin=0.125,betas=bss,oc=1);
+r0000m125c <- gamzVrkin(rvl=0.000,kin=0.125,betas=bss,oc=1);
+#-----------------------------------------------------------
+r0500m250c <- gamzVrkin(rvl=0.500,kin=0.250,betas=bss,oc=1);
+r0250m250c <- gamzVrkin(rvl=0.250,kin=0.250,betas=bss,oc=1);
+r0125m250c <- gamzVrkin(rvl=0.125,kin=0.250,betas=bss,oc=1);
+r0000m250c <- gamzVrkin(rvl=0.000,kin=0.250,betas=bss,oc=1);
+#-----------------------------------------------------------
+r0500m500c <- gamzVrkin(rvl=0.500,kin=0.500,betas=bss,oc=1);
+r0250m500c <- gamzVrkin(rvl=0.250,kin=0.500,betas=bss,oc=1);
+r0125m500c <- gamzVrkin(rvl=0.125,kin=0.500,betas=bss,oc=1);
+r0000m500c <- gamzVrkin(rvl=0.000,kin=0.500,betas=bss,oc=1);
+#-----------------------------------------------------------
+par(mfrow=c(4,2),mar=c(0.5,0.5,0.5,0.5),oma=c(5.5,5.5,1,1));
+#-----------------------------------------------------------
+plot(x=bss,y=r0500m000$gam,type="n",lwd=2,ylim=c(0.09,0.22),pch=1.5,yaxt="n",
+     xlab="",xaxt="n",ylab="",cex.lab=1.5,cex.axis=1.5);
+axis(side=2,at=c(0.10,0.15,0.20),cex.axis=1.5);
+points(x=bss,y=r0500m000$gam,type="l",lwd=4);
+points(x=bss,y=r0250m000$gam,type="l",lwd=3);
+points(x=bss,y=r0125m000$gam,type="l",lwd=2);
+points(x=bss,y=r0000m000$gam,type="l",lwd=1);
+text(x=4.95,y=0.215,labels="A",cex=2.5);
+text(x=1.20,y=0.212,labels=expression(paste("m*"[r==0])),cex=2.5);
+#-----------------------------------------------------------
+plot(x=bss,y=r0500m000c$gam,type="n",lwd=2,ylim=c(0.09,0.22),pch=1.5,yaxt="n",
+     xlab="",xaxt="n",ylab="",cex.lab=1.5,cex.axis=1.5);
+points(x=bss,y=r0500m000c$gam,type="l",lwd=4);
+points(x=bss,y=r0250m000c$gam,type="l",lwd=3);
+points(x=bss,y=r0125m000c$gam,type="l",lwd=2);
+points(x=bss,y=r0000m000c$gam,type="l",lwd=1);
+text(x=4.95,y=0.215,labels="B",cex=2.5);
+text(x=1.20,y=0.212,labels=expression(paste("m*"[r==0])),cex=2.5);
+#-----------------------------------------------------------
+plot(x=bss,y=r0500m125$gam,type="n",lwd=2,ylim=c(0.09,0.22),pch=1.5,yaxt="n",
+     xlab="",xaxt="n",ylab="",cex.lab=1.5,cex.axis=1.5);
+axis(side=2,at=c(0.10,0.15,0.20),cex.axis=1.5);
+points(x=bss,y=r0500m125$gam,type="l",lwd=4);
+points(x=bss,y=r0250m125$gam,type="l",lwd=3);
+points(x=bss,y=r0125m125$gam,type="l",lwd=2);
+points(x=bss,y=r0000m125$gam,type="l",lwd=1);
+text(x=4.95,y=0.215,labels="C",cex=2.5);
+text(x=1.20,y=0.212,labels=expression(paste("m*"[r==1/8])),cex=2.5);
+#-----------------------------------------------------------
+plot(x=bss,y=r0500m125c$gam,type="n",lwd=2,ylim=c(0.09,0.22),pch=1.5,yaxt="n",
+     xlab="",xaxt="n",ylab="",cex.lab=1.5,cex.axis=1.5);
+points(x=bss,y=r0500m125c$gam,type="l",lwd=4);
+points(x=bss,y=r0250m125c$gam,type="l",lwd=3);
+points(x=bss,y=r0125m125c$gam,type="l",lwd=2);
+points(x=bss,y=r0000m125c$gam,type="l",lwd=1);
+text(x=4.95,y=0.215,labels="D",cex=2.5);
+text(x=1.20,y=0.212,labels=expression(paste("m*"[r==1/8])),cex=2.5);
+#-----------------------------------------------------------
+plot(x=bss,y=r0500m250$gam,type="n",lwd=2,ylim=c(0.09,0.22),pch=1.5,yaxt="n",
+     xlab="",xaxt="n",ylab="",cex.lab=1.5,cex.axis=1.5);
+axis(side=2,at=c(0.10,0.15,0.20),cex.axis=1.5);
+points(x=bss,y=r0500m250$gam,type="l",lwd=4);
+points(x=bss,y=r0250m250$gam,type="l",lwd=3);
+points(x=bss,y=r0125m250$gam,type="l",lwd=2);
+points(x=bss,y=r0000m250$gam,type="l",lwd=1);
+text(x=4.95,y=0.215,labels="E",cex=2.5);
+text(x=1.20,y=0.212,labels=expression(paste("m*"[r==1/4])),cex=2.5);
+#-----------------------------------------------------------
+plot(x=bss,y=r0500m250c$gam,type="n",lwd=2,ylim=c(0.09,0.22),pch=1.5,yaxt="n",
+     xlab="",xaxt="n",ylab="",cex.lab=1.5,cex.axis=1.5);
+points(x=bss,y=r0500m250c$gam,type="l",lwd=4);
+points(x=bss,y=r0250m250c$gam,type="l",lwd=3);
+points(x=bss,y=r0125m250c$gam,type="l",lwd=2);
+points(x=bss,y=r0000m250c$gam,type="l",lwd=1);
+text(x=4.95,y=0.215,labels="F",cex=2.5);
+text(x=1.20,y=0.212,labels=expression(paste("m*"[r==1/4])),cex=2.5);
+#-----------------------------------------------------------
+plot(x=bss,y=r0500m500$gam,type="n",lwd=2,ylim=c(0.09,0.22),pch=1.5,yaxt="n",
+     xlab="", ylab="",cex.lab=1.5,cex.axis=1.5);
+axis(side=2,at=c(0.10,0.15,0.20),cex.axis=1.5);
+points(x=bss,y=r0500m500$gam,type="l",lwd=4);
+points(x=bss,y=r0250m500$gam,type="l",lwd=3);
+points(x=bss,y=r0125m500$gam,type="l",lwd=2);
+points(x=bss,y=r0000m500$gam,type="l",lwd=1);
+text(x=4.95,y=0.215,labels="G",cex=2.5);
+text(x=1.20,y=0.212,labels=expression(paste("m*"[r==1/2])),cex=2.5);
+#-----------------------------------------------------------
+plot(x=bss,y=r0500m500$gam,type="n",lwd=2,ylim=c(0.09,0.22),pch=1.5,yaxt="n",
+     xlab="",ylab="",cex.lab=1.5,cex.axis=1.5);
+points(x=bss,y=r0500m500c$gam,type="l",lwd=4);
+points(x=bss,y=r0250m500c$gam,type="l",lwd=3);
+points(x=bss,y=r0125m500c$gam,type="l",lwd=2);
+points(x=bss,y=r0000m500c$gam,type="l",lwd=1);
+text(x=4.95,y=0.215,labels="H",cex=2.5);
+text(x=1.20,y=0.212,labels=expression(paste("m*"[r==1/2])),cex=2.5);
+#-----------------------------------------------------------
+mtext(text=expression(paste("Inbreeding depression (",beta,")")),
+      side=1,line=3, cex=1.5, col="black" , outer=TRUE);
+mtext(text=expression(paste("Rate of fitness increase (",gamma,"*)")),
+      side=2,line=2, cex=1.5, col="black", outer=TRUE);
 
 
 
