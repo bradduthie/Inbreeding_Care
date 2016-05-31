@@ -110,6 +110,8 @@
 
 \clearpage
 
+\section*{Inbreeding depression that cannot be mitigated by PI}
+
 \noindent{Suppose} we assume that some amount of reduction in offspring fitness due to inbreeding cannot be mitigated by parental investment, $(1 - \Delta r)$, such that offspring fitness decreases linearly with increasing $\Delta$ and $r$ regardless of $m$. In this case, $\zeta_{\textrm{off}}$ is simply,
 \begin{equation}
 \zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right) \left(1 - \Delta r\right).
@@ -120,13 +122,15 @@ Figure S1-\ref{DELTA} compares $\Delta=0$ (solid curve) with $\Delta=1/2$ (dashe
 
 \begin{figure}
 \begin{center}				
-\includegraphics[scale=0.8]{DELTA.pdf}
+\includegraphics[scale=0.7]{DELTA.pdf}
 \end{center}
-\caption{Add in a caption later}
+\caption{Relationship between parental investment and the proportion of a focal female's identical-by-descent alleles that are are carried in its offspring in the absence (solid curve) and presence (dashed curve) of inbreeding depression that cannot be mitigated by increasing parental investment. In both curves, females inbreed with first order relatives ($r=1/2$), the minimum amount of investment for offspring viability is one ($m_{min}=1$), the curve of parent investment with offspring fitness is identical ($c=1$), and there is a small amount of inbreeding depression that can be mitigated by parental investment ($\beta=1$). For the solid curve, these parameters are identical to those of the dashed line in Figure 1A of the main text. However, in the dashed curve here, some additional inbreeding depression ($\Delta=1$) cannot be mitigated by inbreeding depression, leading to lower offspring fitness (compare the slope of the straight solid line with the slope of the straight dotted line, each of which passes through the origin and lies tangent to $\zeta_{\textrm{off}}(m)$ curves and defines optimal female fitness $\gamma^{*}$). Despite unavoidably lower offspring fitness ($\zeta_{\textrm{off}}$), and therefore lower optimal parent fitness ($\gamma^{*}$), optimal PI ($m^{*}$) does not change, as indicated by the point on the x-axis ($m^{*}=2.847$) where straight lines are tangent to $\zeta_{\textrm{off}}(m)$ curves.}
 \label{DELTA}
 \end{figure}
 
 \clearpage
+
+\section*{Fitness ($\gamma$) across PI ($m$) given $\beta=1$ \& $\beta=3$}
 
 \noindent Figure S1-\ref{optima} below shows how $\gamma$ changes as a function of $m$, and graphically identifies $m^{*}$ where $\gamma$ is maximised (i.e., $\gamma = \gamma^{*}$). Values of $m^{*}$ are identified by grey dots where $\gamma$ is at its peak for four different $r$ values. Figure S1-\ref{optima}A identifies $m^{*}$ where $\beta$ is sufficiently low to make inbreeding beneficial ($\gamma$ peaks at higher values when $r$ is higher), and Fig. S1-\ref{optima}A identifies $m^{*}$ where $\beta$ is sufficiently high to make outbreeding beneficial ($\gamma$ peaks at higher values when $r$ is lower). As in Fig. 1B, the figure below shows that $m^{*}$ always increases with increasing $r$ and $\beta$. Consequently, inbreeding parents might often be expected to invest considerably more in fewer offspring, relative to outbreeding parents.
 
@@ -139,6 +143,8 @@ Figure S1-\ref{DELTA} compares $\Delta=0$ (solid curve) with $\Delta=1/2$ (dashe
 \end{figure}
 
 \clearpage
+
+\section*{Fitness consequences of sub-optimal PI}
 
 \noindent One goal of theory is to provide unified explanations for otherwise disparate natural phenomena, and to thereby generate broadly applicable predictions that follow from a minimal set of general assumptions. Most broadly, the Price equation provides a unified framework for understanding covarying change \cite[][]{Price1970}, which applies universally to evolutionary biology by isolating phenotypic change caused by natural selection from phentopic change caused by other evolutionary processes \cite[][]{Gardner2008}. Inclusive fitness theory focuses exclusively on natural selection to make general predictions about how selection will lead to evolutionary adaptations and the appearance of design in nature \cite[][]{Gardner2014}. While the mathematical bridge between the Price equation and inclusive fitness theory continues to be developed \cite[][]{Grafen2006, Grafen2014b}, inclusive fitness theory remains a powerful tool for understanding adaptation and predicting the general direction of selection. In the main text, we used inclusive fitness theory as a framework to unify previous theory developed for understanding adaptation in the context of inbreeding \cite[][]{Parker1979, Parker2006} and parental investment \cite[e.g.,][]{Macnair1978, Parker1978}, and to thereby make general predictions for how natural selection should act across all sexual species when PI can vary with inbreeding. Our interest was to broadly understand the general effect of natural selection, not to predict specific inclusive fitness consequences for different magnitudes of inbreeding or PI provided by individual parents. Nevertheless, by predicting the fitness consequences for individuals that inbreed and allocate PI sub-optimally (i.e., $m < m^{*}$), it is possible to gain some additional insight into how selection might affect individual's fitnesses in real populations. 
 
@@ -154,7 +160,7 @@ Overall, Figure S1-\ref{AllMstars} thereby shows the fitness consequences of var
 
 \begin{figure}[H]
 \begin{center}				
-\includegraphics[scale=0.8]{AllMstars.pdf}
+\includegraphics[scale=0.85]{AllMstars.pdf}
 \end{center}
 \caption{Relationship between the magnitude of inbreeding depression and the rate of a focal parents's fitness increase given optimum parental investment ($m^{*}$) for four degrees of relatedness between a focal parent and its mate ($r=\{0, 1/8, 1/4, 1/2\}$, rows top to bottom) and single parent investment (left column) versus strict monogamy (right column). Each panel therefore shows a unique combinuation of optimum parental investment given either single parent investment or strict monogamy. Within panels, parent fitness is plotted as a function of inbreeding depression for all combinations of $r$: $r=0$ (thin line), $r=1/8$ (medium thin line), $r=1/4$ (medium thick line) and $r=1/2$ (thick line).}
 \label{AllMstars}
