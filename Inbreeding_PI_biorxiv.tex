@@ -99,13 +99,12 @@
 \newline
 % authors go here:
 \\
-A. Bradley Duthie\textsuperscript{1},
-Author 2\textsuperscript{2},
+A. Bradley Duthie\textsuperscript{1,*},
+Author 2\textsuperscript{1},
 Author 3\textsuperscript{1},
 Author 4\textsuperscript{1},
-Author 5\textsuperscript{2},
-Author 6\textsuperscript{2},
-Author 7\textsuperscript{1,*}
+Author 5\textsuperscript{1},
+Author 6\textsuperscript{1}
 \\
 \bigskip
 \bf{1} Institute of Biological and Environmental Sciences, School of Biological Sciences, Zoology Building, Tillydrone Avenue, University of Aberdeen, Aberdeen AB24 2TZ, United Kingdom
@@ -176,6 +175,8 @@ $\gamma$                & Parent's rate of fitness increase &
 \label{parameters}
 \end{table}
 
+\vspace{-1cm}
+
 \subsection*{Parental investment and fitness when offspring are inbred}
 
 \marginpar{
@@ -219,12 +220,12 @@ In finding $m^{*}$ and $\gamma^{*}$, we identify how selection will act on PI an
 We have assumed that parents are themselves outbred, but this is unrealistic for populations in which inbreeding is expected to occur \cite[][]{Duthie2015a}. We therefore consider how the degree to which a focal female is herself inbred will affect her optimum parental care ($m^{*}$) and rate of increase in fitness ($\gamma^{*}$).
 
 \marginpar{
-\vspace{1cm} 
+\vspace{0.5cm} 
 \color{Gray} 
 \textbf{Figure \ref{inbred_parent}:} 
 Relationship between parental investment and the proportion of a focal female's identical-by-descent alleles that are are carried in its offspring for females that are outbred (upper curve) versus females that are inbred (lower curve). Grey shading between curves shows the fitness difference between outbred and inbred females across different degrees of parental invesment.
 }
-\begin{wrapfigure}[18]{l}{75mm}
+\begin{wrapfigure}[14]{l}{75mm}
 \includegraphics[width=75mm]{inbred_parent.pdf}
 \captionsetup{labelformat=empty} 
 \caption{} 
@@ -274,7 +275,7 @@ Figure \ref{mcurves_bip}A shows how $\zeta_{\textrm{off}}$ increases as a functi
 \textbf{Figure \ref{gammas_bip}:} 
 Assuming strict monogamy, the relationship between the magnitude of inbreeding depression and the rate of a focal female's fitness increase across four degrees of relatedness between a focal female and her mate given that (A) focal females invest optimally given their degree of inbreeding, and (B) females invest at the optimum for outbreeding.
 }
-\begin{wrapfigure}[25]{l}{75mm}
+\begin{wrapfigure}[23]{l}{75mm}
 \includegraphics[width=75mm]{gammas_bip.pdf}
 \captionsetup{labelformat=empty} 
 \caption{} 
@@ -306,7 +307,11 @@ Parent-offspring conflict is a focal theoretical interest of many models of PI \
 
 We suggest that future empirical and theoretical research will benefit by further considering how biparental inbreeding and PI are expected to interact to affect parent and offspring fitness. This theory has potentially widespread empirical implications, and extensions of our model can further inform theory on the interaction between inbreeding and parental investment.
 
-\section*{Appendix 1: Sample derivations of $m^{*}$ and $\gamma^{*}$}
+\subsection*{Acknowledgments}
+
+This work was funded by a European Research Council Starting Grant to JMR.
+
+\subsection*{Appendix 1: Sample derivations of $m^{*}$ and $\gamma^{*}$}
 
 In general, the equation for a line tangent to some function $f$ at the point $a$ is,
 \begin{equation}
@@ -326,7 +331,7 @@ Substituting $\zeta_{\textrm{off}}(m)$ and $\partial \zeta_{\textrm{off}} / \par
 \end{equation}
 A solution for $m^{*}$ can be obtained numerically for the example in which $m_{min}=1$, $\beta=1$, and $c=1$. If $r=0$, $m^{*}_{r=0}=2.146$, and if $r=1/2$, $m^{*}_{r=1/2}=2.847$. Solutions for the slopes defining $\gamma^{*}_{r=0}$ and $\gamma^{*}_{r=1/2}$ can be obtained by finding the straight line that runs through the two points $(0,0)$ and $(m^{*}$ , $\zeta_{\textrm{off}}(m^{*}))$. In the case of $r=0$, $\zeta_{\textrm{off}}(m^{*})=0.341$, so we find, $\gamma^{*}_{r=0}=(0.341 - 0)/(2.146 - 0)=0.159$. In the case of $r=1/2$, $\zeta_{\textrm{off}}(m^{*})=0.555$, so we find, $\gamma^{*}_{r=1/2}=(0.555-0)/(2.847-0)=0.195$. 
 
-\section*{Appendix 2: $m^{*}$ increases with increasing $r$}
+\subsection*{Appendix 2: $m^{*}$ increases with increasing $r$}
 
 Here we show that optimal parental investment always increases with increasing inbreeding given ID and $c>0$. Because we are only interested in the sign of this increase, it will be sufficient to show that $\partial r / \partial m^{*} > 0$ given $\beta>0$ and $c>0$. 
 
@@ -352,7 +357,7 @@ We now differentiate $r$ with respect to $m^{*}$,
 \end{equation}
 Given the above, $\partial r / \partial m^{*} > 0$ assuming $\beta>0$ (ID), $c>0$ (offspring fitness increases with parental investment), and $m^{*}>0$ (optimum parental investment is positive). These assumptions are biologically realistic; we therefore conclude that the positive association between optimal parental investment ($m^{*}$) and inbreeding ($r$) is general. As inbreeding increases, so should optimal parental investment in offspring.
 
-\section*{Appendix 3: Consistency with biparental inbreeding models}
+\subsection*{Appendix 3: Consistency with biparental inbreeding models}
 
 It is trivial to show that a female that inbreeds with a first order relative ($r=1/2$) has a higher fitness than a female that outbreeds ($r=0$) given $m_{min}=1$, $\beta=1$, and $c=1$ at optimal values of $m^{*}_{r=1/2}$ and $m^{*}_{r=0}$. To do this, we define $\delta_{r}$ as follows,
 \begin{equation}
@@ -370,173 +375,10 @@ Fitness given $r=0$ and $r=1/2$, and $m^{*}_{r=0}$ and $m^{*}_{r=1/2}$, can be d
 
 To show that inbreeding with first order relatives returns a higher fitness than outbreeding given the above conditions assumed in our model, we can simply use the above equation directly to compare the fitness given both $r=1/2$ and $r=0$, noting that $\delta_{r=1/2}=0.26$ and $\delta_{r=0}=0.32$ (note that $\delta_{r=1/2}<\delta_{r=0}$ because inbreeding parents are investing more in their offspring, $m^{*}_{r=1/2}=2.847$ versus $m^{*}_{r=0}=2.146$). Consequently, we can use the above equation to show that the fitness gain of an optimally investing female that inbreeds with a first order relative is 0.195, compared with 0.159 for the outbreeding female; these values are identical to our earlier calculated values of $\gamma^{*}_{r=1/2}$ and $\gamma^{*}_{r=0}$.
 
+\begin{small}
 \bibliography{duthiebib}
 \bibliographystyle{amnatnat}
-
+\end{small}
 
 \end{document}
-
-
-% avoid blank space here 
-\marginpar{
-\vspace{.7cm} % adjust vertical position relative to text with \vspace{} - note that you can enter negative numbers to move margin caption up
-\color{Gray} % this gives caption a grey color to set it apart from text body
-\textbf{Figure \ref{mcurves_uni}:} % note that \ref{fig1} refers to the wrapfigure
-Setting up your figure + caption like this looks fancy and does not disrupt the flow of the text. But it requires more manual adjustments (position, spacing, labeling) compared to using standard \LaTeX figure environments.
-}
-\begin{wrapfigure}[19]{l}{75mm}
-% the number in [] of wrapfigure is optional and gives the number of text lines that should be wrapped around the text. Adjust according to your figures height
-\includegraphics[width=75mm]{mcurves_uni.pdf}
-\captionsetup{labelformat=empty} % makes sure dummy caption is blank
-\caption{} % add dummy caption - otherwise \label won't work and figure numbering will not count up
-\label{mcurves_uni} % use \ref{fig1} to reference to this figure
-\end{wrapfigure} % avoid blank space here
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-In the introduction you will see an example of text wrapping around the figure with a figure caption on the margin (Fig. \ref{fig1}). This is done by combining the \verb!wrapfigure! with 
-% avoid blank space here 
-\marginpar{
-\vspace{.7cm} % adjust vertical position relative to text with \vspace{} - note that you can enter negative numbers to move margin caption up
-\color{Gray} % this gives caption a grey color to set it apart from text body
-\textbf{Figure \ref{fig1}. Example of a margin caption.} % note that \ref{fig1} refers to the corresponding wrapfigure
-Setting up your figure + caption like this looks fancy and does not disrupt the flow of the text. But it requires more manual adjustments (position, spacing, labeling) compared to using standard \LaTeX figure environments.
-}
-\begin{wrapfigure}[19]{l}{75mm}
-% the number in [] of wrapfigure is optional and gives the number of text lines that should be wrapped around the text. Adjust according to your figures height
-\includegraphics[width=75mm]{fig1.pdf}
-\captionsetup{labelformat=empty} % makes sure dummy caption is blank
-\caption{} % add dummy caption - otherwise \label won't work and figure numbering will not count up
-\label{fig1} % use \ref{fig1} to reference to this figure
-\end{wrapfigure} % avoid blank space here
-the \verb!marginnote! environment. Please note that in this case the figure (\verb!wrapfigure!) and the figure caption (\verb!marginpar!) have to be separated as you can tell from the code. The \verb!wrapfigure! environment can be a bit tricky when it comes to text formatting. Thus some general hints: (a) try to avoid line breaks in the code as this may result in weird formatting around the figure, (b) the figure should not span multiple headlines (sections) and (c) if you encounter problems with the line break right after the \verb!wrapfigure! try using \verb!\mbox{}! to prevent premature line breaks (\mbox{see example in code}). As stated in the figure caption, setting up figures this way requires a bit more manual adjustments but it makes figures blend in nicely without interrupting flow of text.
-
-
-
-
-
-
-
-
-\section*{Materials and Methods}
-
-\subsection*{Tables.} 
-
-In this section you will find an example of a table using the \verb!table! plus the \verb!adjustwidth! environment and should give you a minimal example for tables in \LaTeX (Table \ref{tab1}).
-
-\begin{table}[!ht]
-\begin{adjustwidth}{-1.5in}{0in} % comment out/remove adjustwidth environment if table fits in text column.
-\centering
-\caption{{\bf Example Table.} This table demonstrates how to use the  adjustwidth environment if you need that tad bit of extra width for your figures or tables.}
-\begin{tabular}{|l|l|l|l|l|l|l|}
-\hline
-\multicolumn{4}{|l|}{\bf Heading 1} & \multicolumn{3}{|l|}{\bf Heading 2}\\ \hline
-cell 1 - row 1 & cell 2 - row 1 & cell 3 - row 1 & cell 4 - row 1 & cell 5 - row 1 & cell 6 - row 1 & cell 7 - row 1 \\ \hline
-cell 1 - row 2 & cell 2 - row 2 & cell 3 - row 2 & cell 4 - row 2 & cell 5 - row 2 & cell 6 - row 2 & cell 7 - row 2 \\ \hline
-cell 1 - row 3 & cell 2 - row 3 & cell 3 - row 3 & cell 4 - row 3 & cell 5 - row 3 & cell 6 - row 3 & cell 7 - row 3 \\ \hline
-\end{tabular}
-\label{tab1}
-\end{adjustwidth}
-\end{table}
-
-\paragraph{Paragraph.}
-Instead of adding more and more subsections you can use the \verb!\paragraph{}! command to give structure to your manuscript.
-
-\subsection*{Formulas.}
-For mathematical formulas you should use the math environment. See this example:
-
-\begin{center}
-$f(A_{ik},A_{jk}) = min(A_{ik},A_{jk}) - C_{1} max(A_{ik},A_{jk}) e^{-C_{2}min(A_{ik},A_{jk})}$
-\end{center}
-
-% newpage forces a page break if you want to clearly separate materials from results
-\newpage
-
-\section*{Results}
-\subsection*{Standard floating figures.}
-Figure \ref{fig2} is wrapped into a standard floating environment. That means that \LaTeX will determine the exact placement of the figure. Even though you can state preferences (see code) it can be tricky to get the right placement - especially when working on very tight manuscripts. If you want exact placement, add \verb!\usepackage{float}! to this file's header and use [H] in the figure environment's placement options.
-
-
-\begin{figure}[ht] %s state preferences regarding figure placement here
-
-% use to correct figure counter if necessary
-%\renewcommand{\thefigure}{2}
-
-\includegraphics[width=\textwidth]{fig2.pdf}
-
-\caption{\color{Gray} \textbf{Example of a standard floating figure}. \textbf{A-F}, This figure is wrapped into the standard floating environment.}
-
-\label{fig2} % \label works only AFTER \caption within figure environment
-
-\end{figure}
-
-\subsection*{Page break in figures.}
-The standard floating figures in \LaTeX do not cope well with page breaks which can make it difficult to fit in large figures. One way to deal with this is to separate figure and caption but \verb!\caption{}! might still give troubles at page breaks. Figure 3 demonstrates a way to manually set up figure and caption such that it continues onto the next page.
-\vspace{.5cm} % set vertical space between text and figure
-\begin{adjustwidth}{-2in}{0in}
-\begin{flushright}
-\includegraphics[width=163mm]{fig3.pdf}
-\end{flushright}
-\justify 
-\color{Gray}
-\textbf {Figure 3. Example of a wide figure with multi-page caption.}
-\textbf{A}, Proin lectus ex, venenatis vel ornare eget, hendrerit tempus justo. Pellentesque molestie purus sed pretium tincidunt. Curabitur facilisis, orci vitae mollis fringilla, elit erat fermentum justo, nec luctus nunc sapien vel dolor. Cras enim justo, ullamcorper ut commodo at, posuere et ex. Fusce cursus sapien id augue maximus convallis. Praesent egestas massa in enim volutpat varius. In aliquam turpis urna, at elementum turpis eleifend at. \textbf{B}, Proin risus erat, tincidunt quis massa non, sollicitudin congue metus. Aliquam quis magna vulputate, posuere est eu, tempor nisi. Cras gravida tempus felis, vitae lacinia lacus volutpat quis. Pellentesque et eros eu mi suscipit tempus. Proin in augue scelerisque. \textbf{C}, Donec a tempor tortor, et dignissim enim. Cras in ipsum sed velit bibendum imperdiet. Aenean aliquet mauris maximus, sodales ligula sit amet, placerat felis. In tristique nisi eu risus rutrum, ac lacinia lorem cursus. Nunc eget condimentum purus. Maecenas imperdiet nisl eu accumsan gravida. \textbf{D}, Nullam tincidunt, magna sed auctor ultrices, leo mi eleifend velit, quis varius ex diam non tellus. Nam tincidunt vehicula turpis, ut euismod turpis elementum vel.
-\end{adjustwidth}
-
-
-%\clearpage makes sure that all above content is printed at this point and does not invade into the upcoming content
-%\clearpage
-
-\section*{Discussion}
-\subsection*{Subsection heading.}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam bibendum finibus diam, gravida sagittis lorem gravida vitae. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla in diam tristique ante posuere tristique. Donec interdum purus sit amet nisl accumsan consectetur. Fusce aliquet libero mi, quis ornare dolor congue ullamcorper. Nulla nulla urna, molestie in urna sed, lacinia volutpat eros. Ut mi libero, elementum scelerisque ipsum vel, hendrerit fermentum turpis. Aliquam sit amet leo sodales, egestas augue id, fermentum nulla. Aenean vel cursus ante, et pellentesque eros. Nulla ac neque nec justo posuere commodo sit amet sit amet justo. Aliquam tincidunt tempor ex nec tincidunt. In ullamcorper vehicula lobortis. 
-
-%\clearpage
-
-\section*{Supporting Information}
-If you intend to keep supporting files separately you can do so and just provide figure captions here. Optionally make clicky links to the online file using \verb!\href{url}{description}!.
-
-%These commands reset the figure counter and add "S" to the figure caption (e.g. "Figure S1"). This is in case you want to add actual figures and not just captions.
-\setcounter{figure}{0}
-\renewcommand{\thefigure}{S\arabic{figure}}
-
-% You can use the \nameref{label} command to cite supporting items in the text.
-\subsection*{S1 Figure}
-\label{example_label}
-{\bf Caption of Figure S1.} \textbf{A}, If you want to reference supporting figures in the text, use the \verb!\nameref{}!. command. This will reference the section's heading: \nameref{example_label}.
-
-\subsection*{S2 Video}
-\label{example_video}
-{\bf Example Video.} Use \href{www.youtube.com}{clicky links} to the online sources of the files.
-
-%\clearpage
-
-\section*{Acknowledgments}
-We thank just about everybody.
-
-\nolinenumbers
-
-%This is where your bibliography is generated. Make sure that your .bib file is actually called library.bib
-\bibliography{library}
-
-%This defines the bibliographies style. Search online for a list of available styles.
-\bibliographystyle{abbrv}
-
-
 
