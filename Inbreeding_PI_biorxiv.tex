@@ -1,124 +1,143 @@
-\documentclass[12pt]{article}
-\usepackage[top=1.25in, bottom=1in, left=1.25in, right=1in]{geometry}
+\documentclass[10pt,letterpaper]{article}
+\usepackage[top=0.85in,left=2.75in,footskip=0.75in,marginparwidth=2in]{geometry}
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{setspace}
 \usepackage{natbib}
 \usepackage{rotating}
-\usepackage{graphicx}
 \usepackage{multirow}
-\usepackage{lineno}
 \usepackage{datetime}
 \setkomafont{\rmfamily\bfseries\boldmath}
 \usepackage{wrapfig,floatrow}
 \usepackage{float}
-\usepackage{fancyhdr}
 \usepackage[font=small,labelfont=bf]{caption}
 \usepackage{mathabx}
 \usepackage{color}
 \usepackage{wasysym}
-\usepackage{soul}
-\usepackage{lipsum}
-\floatstyle{plain}
-\restylefloat{figure}
+%\usepackage{caption}
 
+% use Unicode characters - try changing the option if you run into troubles with special characters (e.g. umlauts)
+\usepackage[utf8]{inputenc}
 
-\newcommand*{\TitleFont}{
-      \usefont{\encodingdefault}{\rmdefault}{r}{n}
-      \fontsize{16}{20}
-      \selectfont}
+% clean citations
+%\usepackage{cite}
 
-\usepackage{fancyheadings}
-\pagestyle{fancyplain}
-\fancyhf{} 
-\renewcommand{\headrulewidth}{0pt} 
-\rhead[]{\thepage}
+% hyperref makes references clicky. use \url{www.example.com} or \href{www.example.com}{description} to add a clicky url
+\usepackage{nameref,hyperref}
+\hypersetup{
+     colorlinks   = true,
+     citecolor    = blue,
+     linkcolor    = black
+}
 
+% line numbers
+\usepackage[right]{lineno}
+
+% improves typesetting in LaTeX
+\usepackage{microtype}
+\DisableLigatures[f]{encoding = *, family = * }
+
+% text layout - change as needed
+%\raggedright
+\setlength{\parindent}{0.5cm}
+\textwidth 5.25in 
+\textheight 8.75in
+
+% Remove % for double line spacing
+%\usepackage{setspace} 
+%\doublespacing
+
+% use adjustwidth environment to exceed text width (see examples in text)
+\usepackage{changepage}
+
+% adjust caption style
+\usepackage[aboveskip=1pt,labelfont=bf,labelsep=period,singlelinecheck=off]{caption}
+
+% remove brackets from references
 \makeatletter
-\renewcommand\section{\@startsection{section}{1}{0in}{-0.5\baselineskip}{0.1\baselineskip}{\normalfont\large\bfseries}}
+\renewcommand{\@biblabel}[1]{\quad#1.}
 \makeatother
 
-\makeatletter
-\renewcommand\subsection{\@startsection{subsection}{1}{-0.25in}{-0.5\baselineskip}{0.1\baselineskip}{\normalfont\normalsize\bfseries\textit}}
-\makeatother
-
-\makeatletter
-\renewcommand\subsubsection{\@startsection{subsubsection}{1}{-0.25in}{-0.5\baselineskip}{0.1\baselineskip}{\normalfont\normalsize\textit}}
-\makeatother
-
-
-\title{Inbreeding parents should invest more resources in fewer offspring}
-\author{{\bf A. Bradley Duthie\textsuperscript{1,*}, et al.\textsuperscript{1}}, \\ {\footnotesize \textsuperscript{1} Institute of Biological and Environmental Sciences, School of Biological Sciences, Zoology Building, Tillydrone Avenue, University of Aberdeen, Aberdeen AB24 2TZ, United Kingdom \textsuperscript{*} E-mail: aduthie@abdn.ac.uk}}
-\author{Submitted to \emph{Proceedings of the Royal Society B} \\ \\ Manuscript elements: Figure 1, Figure 2, Figure 3, Figure 4, Figure 5, Table 1, Appendix 1, Appendix 2, Appendix 3, Supporting Information S1\\ \\ \textbf{Key Words:} Inbreeding, parental investment, mate choice, reproductive strategy, relatedness, inclusive fitness}
-\author{}
-\date{}
-
-
+% headrule, footrule and page numbers
+\usepackage{lastpage,fancyhdr,graphicx}
+\usepackage{epstopdf}
+\pagestyle{myheadings}
 \pagestyle{fancy}
-\lfoot{DUTHIE ET AL}
-\lhead{INBREEDING AND PARENTAL INVESTMENT}
-\renewcommand{\headrulewidth}{0pt}
+\fancyhf{}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\footrule}{\hrule height 2pt \vspace{2mm}}
+\fancyheadoffset[L]{2.25in}
+\fancyfootoffset[L]{2.25in}
 
+% use \textcolor{color}{text} for colored text (e.g. highlight to-do areas)
+\usepackage{color}
+
+% define custom colors (this one is for figure captions)
+\definecolor{Gray}{gray}{.25}
+
+% this is required to include graphics
+\usepackage{graphicx}
+
+% use if you want to put caption to the side of the figure - see example in text
+\usepackage{sidecap}
+
+% use for have text wrap around figures
+\usepackage{wrapfig}
+\usepackage[pscoord]{eso-pic}
+\usepackage[fulladjust]{marginnote}
+\reversemarginpar
+
+% document begins here
 \begin{document}
-\maketitle
+\vspace*{0.35in}
 
-\begin{center}
-\vspace{5 mm}
-
-\noindent {\bf A. Bradley Duthie\textsuperscript{1,*}, et al.\textsuperscript{1}}, \\ 
-
-\vspace{5 mm}
-
-\noindent{\footnotesize \textsuperscript{1} Institute of Biological and Environmental Sciences, School of Biological Sciences, Zoology Building, Tillydrone Avenue, University of Aberdeen, Aberdeen AB24 2TZ, United Kingdom \textsuperscript{*} E-mail: aduthie@abdn.ac.uk}
-
-\vspace{15 mm}
-
-\noindent Submitted to \emph{Proceedings of the Royal Society B}  \\ 
-
-\vspace{15 mm} 
-
-\noindent Manuscript elements: Figure 1, Figure 2, Figure 3, Figure 4, Figure 5, Table 1, Appendix 1, Appendix 2, Appendix 3, Supporting Information S1 \\ 
-
-\vspace{15 mm}
-
-\noindent \textbf{Key Words:} Inbreeding, parental investment, mate choice, reproductive strategy, relatedness, inclusive fitness
+% title goes here:
+\begin{flushleft}
+{\LARGE
+\textbf\newline{Inbreeding parents should invest more resources in fewer offspring}
+}
 \newline
+% authors go here:
+\\
+A. Bradley Duthie\textsuperscript{1},
+Author 2\textsuperscript{2},
+Author 3\textsuperscript{1},
+Author 4\textsuperscript{1},
+Author 5\textsuperscript{2},
+Author 6\textsuperscript{2},
+Author 7\textsuperscript{1,*}
+\\
+\bigskip
+\bf{1} Institute of Biological and Environmental Sciences, School of Biological Sciences, Zoology Building, Tillydrone Avenue, University of Aberdeen, Aberdeen AB24 2TZ, United Kingdom
+%\\
+%\bf{2} Affiliation B
+\\
+\bigskip
+*  aduthie@abdn.ac.uk, brad.duthie@gmail.com
 
-\vspace{15 mm}
-\noindent Word count: 4,923 (excluding legends, appendices, and references). Abstract word count: 200
+\end{flushleft}
 
-\end{center}
-
-\linenumbers
-\modulolinenumbers[2]
-\doublespacing
-
-\clearpage
-
-\section*{Abstract} 
-
+\section*{Abstract}
 In all sexually reproducing organisms, there is the potential for breeding between relatives (inbreeding). While inbreeding typically decreases offspring viability, it can also increase the inclusive fitness of parents by increasing the rate at which identical-by-descent alleles are carried in inbred offspring. Inbreeding theory assumes that any negative effects of inbreeding depression are fixed, so individuals cannot adjust their parental investment (PI) in response to inbreeding. Similarly, PI theory assumes that offspring are always outbred. We conceptually synthesise inbreeding theory and PI theory to show how each can be interpreted as special cases within a broader inclusive fitness framework in which inbreeding and PI predictably covary. Our model demonstrates that (1) optimal PI should always increase, and reproductive output should thereby decrease, whenever offspring are inbred and inbreeding depression in offspring viability is non-negligible. (2) Optimal PI is unaffected if a focal parent is inbred, and (3) optimal PI increases with increasing inbreeding under monogamy relative to single parent investment, but inbreeding is always maladaptive under monogamy. We conclude that empirical studies must consider inbreeding strategies and PI jointly to fully understand the adaptive evolution of each, and we discuss how our conceptual synthesis can inform theory on intrafamilial conflict.
 
+%Fitting multiple figures into very tight manuscripts while keeping it pleasant to read is challenging. Therefore figures are often simply attached to the very end of a manuscript file. While easier for the authors, this practice is inconvenient for readers. This \LaTeX template shows how to generate a compiled PDF with figures embedded into the text. It provides several examples of how to embed figures or tables directly into the text thus giving you a range of options from which you should choose the one best suited for your manuscript. Check out Schlegel et al., (2016) as example of use \cite{Schlegel2016}.
 
+% now start line numbers
+%\linenumbers
+
+% the * after section prevents numbering
 \section*{Introduction}
-
-
-% Jane, I can see where you were going with the empirical citations early in the introduction, but I worry that they might have the opposite of the intended effect, or at least put readers in the wrong frame of mind. To me, at least, citing these studies as evidence that, e.g., PI can ameliorate ID comes across as implying that the merits of the question and theory are somehow dependent upon this empirical result being true (or at least, dependent on others being interested in similar questions). I don't think this is the case, and my hope is to focus as much as possible (especially in the intro) on forging new theoretical ground rather than reconciling empirical results or formally modelling verbal theory (which I don't think is what we're doing here anyway). The theoretical knowledge gained from this modelling would be just as interesting (perhaps even more interesting) if empirical studies never found that PI ameliorated the negative consequences of inbreeding -- if this were the case, then we'd have something even more exciting on our hands because it would mean that this very general and natural extension of inclusive fitness theory was incompatible with empirical observation. This would mean either that some deep foundational assumptions of PI and/or inbreeding theory are bad, or that these empirical studies are somehow wrong. 
-
 Natural selection is a universal biological process by which inherited traits are preserved within populations if they increase an individual's lifetime reproductive success, which classically defines individual fitness \cite[][]{Darwin1859, Dawkins1982}. Inclusive fitness theory \cite[][]{Hamilton1964, Hamilton1964a} provides a key extension to this classical definition of fitness, recognising that natural selection will more generally act on individual phenotypes to maximise the rate of increase of replica allele copies \cite[][]{Grafen2006}. Inclusive fitness accounts for both an individual's own reproductive success and that of relatives who share identical-by-descent alleles. It provides key evolutionary insights \cite[][]{Gardner2014}, perhaps most iconically reconciling self-sacrificial behaviour by appealing to the increased reproductive success of related beneficiaries \cite[][]{Hamilton1964}, and identifying causes of conflict between parents and offspring, and among siblings, over parental investment \cite[hereafter `PI';][]{Trivers1972, Trivers1974}.
 
 It is less widely appreciated that the reproductive success of relatives can also be increased by inbreeding, and that selection for inbreeding tolerance or preference might therefore occur despite decreased viability of inbred offspring \cite[i.e., ``inbreeding depression'';][]{Parker1979}. Inclusive fitness theory has focused solely on individuals' decisions to inbreed or avoid inbreeding, assuming no concurrent modulation of PI or offspring production \cite[e.g.,][]{Parker2006, Kokko2006, Duthie2015a}. But this assumption ignores that inbreeding increases both parent-offspring relatedness and the potential to increase offspring viability through PI. If individuals can vary the number of offspring that they produce, and thereby adjust their investment per offspring, then they might be able to mitigate the negative fitness consequences of inbreeding depression, leading to general predictions for how selection should affect the evolution of PI and inbreeding.
 
-Biparental inbreeding theory has been developed primarily by extending Parker's \citeyearpar{Parker1979} basic inclusive fitness model, wherein a focal parent encounters a focal relative and chooses to either inbreed or avoid inbreeding with them \cite[e.g.,][]{Parker1979, Parker2006, Kokko2006, Duthie2015a}. If the focal parent inbreeds, then the viability of resulting offspring decreases due to inbreeding depression (hereafter `ID'), but the offspring will carry additional copies of the focal parent's alleles that are inherited from the parent's related mate. The focal parent can thereby increase its inclusive fitness by inbreeding if the number of identical-by-descent alleles in its inbred offspring exceeds that of outbred offspring after accounting for any ID in offspring viability. The magnitude of ID below which inbreeding rather than avoiding inbreeding increases a parent's inclusive fitness is sex-specific, assuming that females are resource limited and therefore always produce a fixed number of offspring, while male reproduction is limited only by mating opportunities (i.e., traditional sex roles). Under such conditions, inbreeding females can only increase their inclusive fitness indirectly by increasing the reproductive success of their male relatives, but inbreeding males can increase their inclusive fitness directly by increasing their own reproductive success. Only males are therefore predicted to benefit by inbreeding given strong ID, while both females and males are predicted to benefit by inbreeding given weak ID. These predictions are sensitive to the assumption that there is a low or negligible opportunity cost of male mating. If inbreeding instead precludes a male from siring an additional outbred offspring (e.g., as a consequence of monogamy and associated PI), then inbreeding is never beneficial \cite[][]{Waser1986}. However, all of these inclusive fitness consequences of inbreeding assume that PI is fixed; no theory considers inbreeding decisions when PI is allocated optimally. % This kind of ending is what's needed. When we start talking about x, y, and z and the feedbacks among them, we're talking about theoretical details instead of the important conceptual point. I think it's much better to unify all of the many things that we examine under the common conceptual umbrella of inclusive fitness theory -- i.e., another way of looking at it; we're not varying PI to see all of the feedbacks. We're doing what should have always been done for a complete understanding of PI and inbreeding theory. Everything then becomes a logical consequence of inclusive fitness theory, rather than a bunch of independent ideas that are loosely tied together with an inclusive fitness theory framework -- no x, y, and z interacting and feeding back -- it's all just a one logical consequence of `w' that bundles things up in one tidy conceptual package. Once readers get the conceptual ideal (in the maths), they don't have to think about feedbacks -- just inclusive fitness.
+Biparental inbreeding theory has been developed primarily by extending Parker's \citeyearpar{Parker1979} basic inclusive fitness model, wherein a focal parent encounters a focal relative and chooses to either inbreed or avoid inbreeding with them \cite[e.g.,][]{Parker1979, Parker2006, Kokko2006, Duthie2015a}. If the focal parent inbreeds, then the viability of resulting offspring decreases due to inbreeding depression (hereafter `ID'), but the offspring will carry additional copies of the focal parent's alleles that are inherited from the parent's related mate. The focal parent can thereby increase its inclusive fitness by inbreeding if the number of identical-by-descent alleles in its inbred offspring exceeds that of outbred offspring after accounting for any ID in offspring viability. The magnitude of ID below which inbreeding rather than avoiding inbreeding increases a parent's inclusive fitness is sex-specific, assuming that females are resource limited and therefore always produce a fixed number of offspring, while male reproduction is limited only by mating opportunities (i.e., traditional sex roles). Under such conditions, inbreeding females can only increase their inclusive fitness indirectly by increasing the reproductive success of their male relatives, but inbreeding males can increase their inclusive fitness directly by increasing their own reproductive success. Only males are therefore predicted to benefit by inbreeding given strong ID, while both females and males are predicted to benefit by inbreeding given weak ID. These predictions are sensitive to the assumption that there is a low or negligible opportunity cost of male mating. If inbreeding instead precludes a male from siring an additional outbred offspring (e.g., as a consequence of monogamy and associated PI), then inbreeding is never beneficial \cite[][]{Waser1986}. However, all of these inclusive fitness consequences of inbreeding assume that PI is fixed; no theory considers inbreeding decisions when PI is allocated optimally.
 
-% I think the two focal assumptions of PI theory really should be stated as such -- they highlight the generality of PI theory and the conclusions that follow under outbreeding (really, you just need these two big assumptions, and you get the answer for optimal PI).
-Similarly, a general framework for PI theory is well-established under outbreeding, but how optimal PI changes when offspring are inbred remains unexplored. Importantly, PI does not simply represent raw resources provided to an offspring (e.g., food), but is rather anything that a parent does to increase its offspring's viability at the expense of its other actual or potential offspring \cite[][]{Trivers1972, Trivers1974}. One key assumption of PI theory is therefore that the degree to which a parent invests in each offspring is directly and inversely related to the number of offspring that it produces. A second key assumption is that offspring viability increases with increasing PI, but with diminishing returns on viability as more PI is provided. Given these two assumptions, the optimal PI for which parent fitness is maximised can be determined, as has been done in the context of examining the magnitude and evolution of parent-offspring conflict over PI \cite[e.g.,][]{Macnair1978, Parker1978, Parker1985, DeJong2005, Kuijper2012}. Such models assume that offspring are outbred \cite[or result from self-fertilisation,][]{DeJong2005}, but in wild populations inbreeding is  commonplace, and directly affects both offspring viability and parent-offspring relatedness \cite[][]{Crnokrak1999, OGrady2006, Charlesworth2009}, and therefore might profoundly affect a parent's optimal PI. Yet no theory predicts how parents should adjust their PI in order to maximise fitness given different degrees of inbreeding. % I see the rationale behind the suggested citations, but I don't think it helps to cite empirical studies where PI is extended -- I thinks this actually makes the theory come off as much more narrow than it really is, and inverts the real motivation behind why the question is important. The importance should follow from the generality of the assumptions, not how many empirical systems study the specific subjects (we're rocking the whole tree trunk, not linking branches!). PI and inbreeding *must* go hand in hand for any species that falls within our (very general) assumptions, which I believe encompasses *every* sexual species -- even species that don't invest much or inbreed frequently; the relationship that we find between PI and inbreeding is not contingent upon some threshold value of either. I don't think we want readers thinking ``hey, PI and inbreeding really do go hand in hand because look at all of these systems where inbreeding and extended PI co-occur -- we need to know how they interact!''. I think that the question needs to be motivated by a critical hole in theoretical knowledge that might fundamentally change how we *think* about inbreeding and PI, not about conclusions for any specific empirical systems (which to me is more of a Discussion topic). For example, there are big contributions to theoretical knowledge that don't directly affect how we study real systems, and there are small contributions to theoretical knowledge that really affect empirical predictions. I think our theory here is actually big on both counts (new theoretical knowledge *with* big empirical consequences). But we don't need to cite a bunch of systems to make this convincing -- the basic assumptions of inclusive fitness theory and PI & inbreeding theory apply to all sexual species, therefore any conclusions that follow logically from these assumptions *must* necessarily apply. 
+Similarly, a general framework for PI theory is well-established under outbreeding, but how optimal PI changes when offspring are inbred remains unexplored. Importantly, PI does not simply represent raw resources provided to an offspring (e.g., food), but is rather anything that a parent does to increase its offspring's viability at the expense of its other actual or potential offspring \cite[][]{Trivers1972, Trivers1974}. One key assumption of PI theory is therefore that the degree to which a parent invests in each offspring is directly and inversely related to the number of offspring that it produces. A second key assumption is that offspring viability increases with increasing PI, but with diminishing returns on viability as more PI is provided. Given these two assumptions, the optimal PI for which parent fitness is maximised can be determined, as has been done in the context of examining the magnitude and evolution of parent-offspring conflict over PI \cite[e.g.,][]{Macnair1978, Parker1978, Parker1985, DeJong2005, Kuijper2012}. Such models assume that offspring are outbred \cite[or result from self-fertilisation,][]{DeJong2005}, but in wild populations inbreeding is  commonplace, and directly affects both offspring viability and parent-offspring relatedness \cite[][]{Crnokrak1999, OGrady2006, Charlesworth2009}, and therefore might profoundly affect a parent's optimal PI. Yet no theory predicts how parents should adjust their PI in order to maximise fitness given different degrees of inbreeding.
 
 Further, both PI and fitness might be affected if parents are themselves inbred, or if investment is shared between parents. It is unrealistic to assume that focal parents will necessarily be outbred in a population where the opportunity for inbreeding exists. If parents are inbred, it will affect the rate at which they pass identical-by-descent alleles to their offspring \cite[e.g.,][]{Duthie2015a}; hence the consequences of inbred focal parents on PI and fitness cannot necessarily be ignored. Additionally, while optimal PI and fitness are not expected to differ between single parent investment and monogamous biparental investment given outbreeding \cite[][]{Parker1985}, this might not be the case given inbreeding because monogamy entails a mating opportunity cost \cite[][]{Waser1986} to a focal female's related male. We therefore consider optimal PI and consequences for inclusive fitness when a focal parent is inbred, and when PI is biparental.
 
 We conceptually synthesise two different theoretical frameworks initially developed by \cite{Parker1979} and \cite{Macnair1978} to generate new predictions that are generally applicable across all sexual species. The first framework \cite[][]{Parker1979} predicts ID thresholds below which focal parents increase their fitness by inbreeding rather than avoiding inbreeding. The second framework \cite[][]{Macnair1978} predicts optimal PI in outbred offspring. We have three specific aims: (1) to show how optimal PI changes when offspring are inbred, and for different magnitudes of ID; (2) to show how parental fitness and optimal PI are affected when a parent is itself inbred; and (3) to show how an inbreeding parent's optimal PI is indirectly affected by opportunity costs when both parents invest in offspring.
-
-%Inclusive fitness consequences of inbreeding are well-established, but all models of inbreeding implicitly assume that PI does not vary as a consequence of inbreeding because inbreeding and outbreeding females both produce the same fixed number of offspring. 
 
 \section*{Model}
 
@@ -126,28 +145,91 @@ We consider a focal diploid parent (hereafter assumed to be female) that can adj
 \begin{equation} \label{maineq}
 \zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right).
 \end{equation}
-Parameters are summarised in Table \ref{parameters}. Eq. \ref{maineq} can be conceptualised in two pieces. First, the expression $\left(1/2\right) \left(1 + r\right)$ is the fitness increment that a female gains from identical-by-descent alleles carried by her offspring, as affected by the coefficient of relatedness between the female and the sire of her offspring ($r$) scaled by $1/2$ to give each parent's genetic contribution to its offspring. Second, the expression $\left(1 - \exp\left[-c\left(m-m_{min}-\beta r\right)\right]\right)$ is the individual offspring's viability as a function of $m$ and $r$. Offspring viability is also affected by a minimum value of $m$ required for viability to be positive ($m_{min}$), ID ($\beta$), and the shape of the curve relating PI to viability ($c$; i.e., how `diminishing' the returns are on $\zeta_{\textrm{off}}$ from increasing $m$). When a focal female inbreeds, the first expression increases because more identical-by-descent alleles are carried by inbred offspring, but the second expression decreases if $\beta>0$ due to ID in offspring viability.
+Parameters are summarised in Table 1. Eq. \ref{maineq} can be conceptualised in two pieces. First, the expression $\left(1/2\right) \left(1 + r\right)$ is the fitness increment that a female gains from identical-by-descent alleles carried by her offspring, as affected by the coefficient of relatedness between the female and the sire of her offspring ($r$) scaled by $1/2$ to give each parent's genetic contribution to its offspring. Second, the expression $\left(1 - \exp\left[-c\left(m-m_{min}-\beta r\right)\right]\right)$ is the individual offspring's viability as a function of $m$ and $r$. Offspring viability is also affected by a minimum value of $m$ required for viability to be positive ($m_{min}$), ID ($\beta$), and the shape of the curve relating PI to viability ($c$; i.e., how `diminishing' the returns are on $\zeta_{\textrm{off}}$ from increasing $m$). When a focal female inbreeds, the first expression increases because more identical-by-descent alleles are carried by inbred offspring, but the second expression decreases if $\beta>0$ due to ID in offspring viability.
 
 When $r=0$ and $\beta=0$ (outbreeding), Eq. \ref{maineq} reduces to standard models of PI \cite[e.g.,][]{Macnair1978, Parker1978} but with the usual parameter $K$ replaced by $1/2$, and thereby specifically representing identical-by-descent alleles instead of an arbitrary constant affecting offspring fitness. Similarly, given $\delta = \exp\left[-c\left(m-m_{min}-\beta r\right)\right]$, Eq. \ref{maineq} reduces to Parker's \citeyearpar{Parker1979} standard model of biparental inbreeding where $\delta$ defines reduced viability of inbred versus outbred offspring \cite[see][]{Kokko2006, Parker2006, Duthie2015a}.  All offspring have equal viability as $m \to \infty$. Consequently, our model assumes that sufficient PI can always compensate for ID in offspring, although the amount of PI required for complete compensation might be very high (Supporting Information p. S1-2 relaxes this assumption).
+\marginpar{
+\vspace{0.5cm} % adjust vertical position relative to text with \vspace{} - note that you can enter negative numbers to move margin caption up
+\color{Gray} % this gives caption a grey color to set it apart from text body
+\textbf{Table 1:} % note that \ref{fig1} refers to the corresponding wrapfigure
+List of parameter values and descriptions.
+}
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Parameter & Description &
+\hline
+$M$                     & Parent's total investment budget  &
+$m$                     & Parent's investment per offspring &
+$n$                     & Parent's total offspring production &
+$\zeta_{\textrm{off}}$  & Identical-by-descent allele copies carried per offspring &
+$r$                     & Relatedness of a mate to the focal parent &
+$m_{min}$               & Minimum parental investment required for offspring viability &
+$\beta$                 & Inbreeding depression in offspring viability &
+$c$                     & Curve of parental investment with offspring fitness &
+$\gamma$                & Parent's rate of fitness increase &
+\hline	
+\end{tabular}
+\end{center}
+\caption*{}
+\label{parameters}
+\end{table}
 
 \subsection*{Parental investment and fitness when offspring are inbred}
 
-Equation \ref{maineq} can be analysed to determine optimal PI ($m^{*}$), and the rate at which identical-by-descent alleles are passed given $m^{*}$ \cite[][]{Kuijper2012}, which we define as $\gamma^{*}$. Before analysing Eq. \ref{maineq} generally, we provide a simple example contrasting outbreeding ($r=0$) with inbreeding between first order relatives ($r=1/2$). For simplicity, we assume that $m_{min}=1$, $\beta=1$, and $c=1$ (see Appendix 1 for sample derivations of $m^{*}$ and $\gamma^{*}$ under these conditions). % This now explains that we're going to do a general analysis after one example walking readers through the idea. But I think that by this point, readers need to already appreciate the generality of the model. If this example came prior to the previous section, I'd understand the worry, but we've *already* presented a general model (above) -- the model itself is the big general theoretical contribution, not the analysis that follows! All of Figures 1 & 2 are just the icing on the cake -- just a visual interpretation of the logical implications of Eq. 1. Most readers will be helped out by the visual; a minority will probably prefer the appendices. But the toy example walks everyone through the logic, moving through the nuts and bolts of the model from an arbitrary but sensible starting point to obtain conclusions. I should also note that I don't think this example runs a risk in the same way that Duthie and Reid (PLoS One 2015) did. In that paper, there was much less **theoretical** novelty -- its importance rested on the general empirical implications of (mostly) already developed theory. We relaxed the already widely-recognised inclusive fitness assumption of non-additive interactions to show that predictions greatly change for focal individuals that inbreed. Non-additivity is a well-worn theoretical idea (just unconsidered in the context of inbreeding), but we showed that it has widespread importance for empirical prediction. In contrast, the point of this manuscript isn't that predictions change when an assumption is relaxed -- the point is that two major frameworks of theory can be conceptually unified to identify a general direction of selection. I want readers to come away thinking: ''Hey! Inbreeding and PI theory aren't separate things anymore! What was once two different theories are really just two special cases of equation 1!''.
+\marginpar{
+\vspace{0.5cm} 
+\color{Gray} 
+\textbf{Figure \ref{mcurves_uni}:} 
+(A) Relationship between parental investment and the proportion of a focal female's identical-by-descent alleles that are are carried in its offspring for females that outbreed (solid curve) and females that inbreed with first order relatives (dashed curve). Tangent lines identify optimal parental investment, and their slopes define a female's rate of fitness increase when outbreeding (solid line) and inbreeding (dashed line). Dotted horizontal line shows zero on the y-axis. (B) Relationship between the magnitude of inbreeding depression and optimal parental investment across four degrees of relatedness between a focal female and her mate. Across all $\beta$ and $r$ presented, $m_{min}=1$ and $c=1$.
+}
+\begin{wrapfigure}[25]{l}{75mm}
+% the number in [] of wrapfigure is optional and gives the number of text lines that should be wrapped around the text. Adjust according to your figures height
+\includegraphics[width=75mm]{mcurves_uni.pdf}
+\captionsetup{labelformat=empty} % makes sure dummy caption is blank
+\caption{} % add dummy caption - otherwise \label won't work and figure numbering will not count up
+\label{mcurves_uni} % use \ref{fig1} to reference to this figure
+\end{wrapfigure} % avoid blank space here
+Equation \ref{maineq} can be analysed to determine optimal PI ($m^{*}$), and the rate at which identical-by-descent alleles are passed given $m^{*}$ \cite[][]{Kuijper2012}, which we define as $\gamma^{*}$. Before analysing Eq. \ref{maineq} generally, we provide a simple example contrasting outbreeding ($r=0$) with inbreeding between first order relatives ($r=1/2$). For simplicity, we assume that $m_{min}=1$, $\beta=1$, and $c=1$ (see Appendix 1 for sample derivations of $m^{*}$ and $\gamma^{*}$ under these conditions).
 
-Figure \ref{mcurves_uni}A shows how $\zeta_{\textrm{off}}$ increases with $m$ given $r=0$ (solid curve) and $r=1/2$ (dashed curve). Given $r=0$, $\zeta_{\textrm{off}}=0$ when $m \leq m_{min}$, meaning that offspring are only viable when $m>m_{min}$. Increasing $r$ increases the minimum amount of PI required to produce a viable offspring to $m_{min}+\beta r$, so when $r=1/2$, $\zeta_{\textrm{off}}=0$ when $m \leq 3/2$. Nevertheless, because inbred offspring carry more identical-by-descent copies of their parents' alleles, sufficiently high $m$ causes $\zeta_{\textrm{off}}$ of inbred offspring to exceed that of outbred offspring (shown by the intersection between the solid and dashed curves in Figure 1A). The point on the line running through the origin that is tangent to $\zeta_{\textrm{off}}(m)$ defines optimal PI for outbreeding $m^{*}_{r=0}=2.146$ (solid line) and inbreeding $m^{*}_{r=1/2}=2.847$ (dashed line) parents (Supporting Information p. S1-4 shows how $\gamma$ varies as a function of $m$, peaking where $m=m^{*}$) . The slope of each straight line is the rate of a parent's fitness increase at optimal PI given outbreeding $\gamma^{*}_{r=0}=0.159$ (solid line) and inbreeding $\gamma^{*}_{r=1/2}=0.195$ (dashed line). To maximise fitness, individuals that inbreed with first order relatives ($r=1/2$) should therefore invest more in offspring than individuals that outbreed ($m^{*}_{r=1/2}>m^{*}_{r=0}$). This result is general across different values of $r$ (see Appendix 2); as $r$ increases, so does $m^{*}$. All else being equal, individuals that inbreed more should therefore invest more per capita in fewer total offspring. 
+Figure \ref{mcurves_uni}A shows how $\zeta_{\textrm{off}}$ increases with $m$ given $r=0$ (solid curve) and $r=1/2$ (dashed curve). Given $r=0$, $\zeta_{\textrm{off}}=0$ when $m \leq m_{min}$, meaning that offspring are only viable when $m>m_{min}$. Increasing $r$ increases the minimum amount of PI required to produce a viable offspring to $m_{min}+\beta r$, so when $r=1/2$, $\zeta_{\textrm{off}}=0$ when $m \leq 3/2$. Nevertheless, because inbred offspring carry more identical-by-descent copies of their parents' alleles, sufficiently high $m$ causes $\zeta_{\textrm{off}}$ of inbred offspring to exceed that of outbred offspring (shown by the intersection between the solid and dashed curves in Figure 1A). The point on the line running through the origin that is tangent to $\zeta_{\textrm{off}}(m)$ defines optimal PI for outbreeding $m^{*}_{r=0}=2.146$ (solid line) and inbreeding $m^{*}_{r=1/2}=2.847$ (dashed line) parents (Supporting Information p. S1-4 shows how $\gamma$ varies as a function of $m$, peaking where $m=m^{*}$). The slope of each straight line is the rate of a parent's fitness increase at optimal PI given outbreeding $\gamma^{*}_{r=0}=0.159$ (solid line) and inbreeding $\gamma^{*}_{r=1/2}=0.195$ (dashed line). To maximise fitness, individuals that inbreed with first order relatives ($r=1/2$) should therefore invest more in offspring than individuals that outbreed ($m^{*}_{r=1/2}>m^{*}_{r=0}$). This result is general across different values of $r$ (see Appendix 2); as $r$ increases, so does $m^{*}$. All else being equal, individuals that inbreed more should therefore invest more per capita in fewer total offspring. 
 
-% I'm confused by the suggestion to first look at a general equation. Eq 1 has already been presented -- that *is* the general equation. The general solution for finding the tangent of a curve that passes through a particular point is a well-established mathematical trick that doesn't add to the generality of the biology at all. There's no *real* biological insight that comes from this method -- it's just a bit of maths that makes things a bit more precise than drawing a line connecting the origin to the curve with a straight edge. If we really wanted to, we could get all of the key insights by thinking very hard about Eq 1 -- all of the analysis is just presented to help make thinking about Eq 1 easier, and to show how this new way of thinking applies to biological questions. The primary goal is to present and explain the theory modelled by Eq 1 intuitively, not present model results.
 A general relationship between $\beta$ and $m^{*}$ for different values of $r$ can be determined numerically. In Fig. \ref{mcurves_uni}B, this relationship is illustrated across a range of $\beta$ for $r$ values corresponding to outbreeding ($r=0$) and inbreeding between outbred cousins ($r=1/8$), half-siblings ($r=1/4$), and full siblings ($r=1/2$). Overall, Figure \ref{mcurves_uni}B shows how optimal PI increases with increasing ID and $r$, and that the difference in magnitude of investment per offspring is often expected to be high for individuals that inbreed rather than outbreed (e.g., when $\beta=3.25$, optimal PI doubles, $m^{*}_{r=1/2} \approx 2m^{*}_{r=0}$). 
 
-Assuming that individuals allocate PI optimally, their $\gamma^{*}$ values can be compared across different values of $r$ and $\beta$. In the example comparing $r=0$ and $r=1/2$ when $\beta=1$, inbreeding increases fitness more than outbreeding when both inbreeding and outbreeding individuals invest optimally ($\gamma^{*}_{r=1/2}>\gamma^{*}_{r=0}$). This can also be confirmed by reducing our model to the results of established biparental inbreeding models (see Appendix 3). If, however, $\beta=3$ instead of $\beta=1$, then $\gamma^{*}_{r=0}=0.159$ and $\gamma^{*}_{r=1/2}=0.146$. Given this higher $\beta$, individuals that outbreed will therefore have higher fitness than individuals that inbreed with first order relatives. Figure \ref{gammas_uni}A shows more generally how $\gamma^{*}$ changes with $\beta$ and $r$ given optimal PI. Across all $\beta$, the highest $\gamma^{*}$ occurs either when $r=1/2$ ($\beta < 2.335$) or $r=0$ ($\beta > 2.335$), and never for intermediate values of $r$. If parents are capable of investing optimally, it is therefore beneficial to either maximise or minimise inbreeding, depending on the magnitude of ID.
-% Again here, Eq. 1 *is* the general solution -- these examples and general figures are meaningless except as a tool to make Eq 1 intuitive (we're certainly not going to make quantitative empirical predictions from them). We could simulate across the *entire* parameter space if we wanted to (m, mmin, beta, r, and c) and present figures showing the complete relationship among all of them. But if the end result is that readers only look at the figures to memorise how each variable changes with each other variable, then we'll have failed. To me, success will be achieved when the reader no longer finds any of these examples or figures informative because they have internalised an intuitive understanding of Eq 1. I know that Eq 1 seems innocuous and perhaps even obvious in hindsight, but discovering it is what took by far the most time and effort. Everything that follows after is detail -- different ways of presenting the theoretical discovery.
 
-In finding $m^{*}$ and $\gamma^{*}$, we identify how selection will act on PI and inbreeding, but in some populations, individuals might be unable to discriminate between relatives and non-relatives, and hence unable to adjust their PI when inbreeding. We therefore consider the inclusive fitness consequences when parents cannot adjust their PI when inbreeding, and therefore $\gamma < \gamma^{*}$. Figure \ref{gammas_uni}B shows $\gamma$ values for inbreeding parents when they invest at the relatively low optimum $m^{*}$ of outbreeding parents. When inbreeding parents allocate PI as if they are outbreeding, $\gamma$ always decreases, and this fitness decrease becomes more severe with increasing $r$. While the fitness of a parent that inbreeds with a first order relative ($r=1/2$) exceeds that of an outbreeding parent when $\beta < 2.335$, if the inbreeding parent invests at the outbreeding parent's optimum, then its fitness is higher only when $\beta < 1.079$. Consequently, if parents are unable to recognise that they are inbreeding and adjust their PI accordingly, their fitness might be decreased severely relative to optimally investing parents. % If inbreeding parents invest at the optimum of outbreeding parents (and are therefore not increasing PI sufficiently to maximise their own fitness), it does change the magnitude of \beta in our model, below which inbreeding rather than outbreeding increases inclusive fitness. But this doesn't mean that Parker's thresholds are somehow wrong or changed -- \delta in Parker's model is just ID in offspring; there's no assumption about what is the underlying cause of \delta. Hence \delta just absorbs sub-optimal PI -- Parker's thresholds don't change given suboptimal PI, ID changes (hence all of the emphasis earlier on PI mitigating ID). 
+\marginpar{
+\vspace{1cm} 
+\color{Gray} 
+\textbf{Figure \ref{gammas_uni}:} 
+Relationship between the magnitude of inbreeding depression and the rate of a focal female's fitness increase across four degrees of relatedness between a focal female and her mate assuming that (A) focal females invest optimally given their degree of inbreeding and (B) females invest at the optimum for outbreeding.
+}
+\begin{wrapfigure}[25]{l}{75mm}
+\includegraphics[width=75mm]{gammas_uni.pdf}
+\captionsetup{labelformat=empty} 
+\caption{} 
+\label{gammas_uni} % use \ref{fig1} to reference to this figure
+\end{wrapfigure} % avoid blank space here
+Assuming that individuals allocate PI optimally, their $\gamma^{*}$ values can be compared across different values of $r$ and $\beta$. In the example comparing $r=0$ and $r=1/2$ when $\beta=1$, inbreeding increases fitness more than outbreeding when both inbreeding and outbreeding individuals invest optimally ($\gamma^{*}_{r=1/2}>\gamma^{*}_{r=0}$). This can also be confirmed by reducing our model to the results of established biparental inbreeding models (see Appendix 3). If, however, $\beta=3$ instead of $\beta=1$, then $\gamma^{*}_{r=0}=0.159$ and $\gamma^{*}_{r=1/2}=0.146$. Given this higher $\beta$, individuals that outbreed will therefore have higher fitness than individuals that inbreed with first order relatives. Figure \ref{gammas_uni}A shows more generally how $\gamma^{*}$ changes with $\beta$ and $r$ given optimal PI. Across all $\beta$, the highest $\gamma^{*}$ occurs either when $r=1/2$ ($\beta < 2.335$) or $r=0$ ($\beta > 2.335$), and never for intermediate values of $r$. If parents are capable of investing optimally, it is therefore beneficial to either maximise or minimise inbreeding, depending on the magnitude of ID.
+
+In finding $m^{*}$ and $\gamma^{*}$, we identify how selection will act on PI and inbreeding, but in some populations, individuals might be unable to discriminate between relatives and non-relatives, and hence unable to adjust their PI when inbreeding. We therefore consider the inclusive fitness consequences when parents cannot adjust their PI when inbreeding, and therefore $\gamma < \gamma^{*}$. Figure \ref{gammas_uni}B shows $\gamma$ values for inbreeding parents when they invest at the relatively low optimum $m^{*}$ of outbreeding parents. When inbreeding parents allocate PI as if they are outbreeding, $\gamma$ always decreases, and this fitness decrease becomes more severe with increasing $r$. While the fitness of a parent that inbreeds with a first order relative ($r=1/2$) exceeds that of an outbreeding parent when $\beta < 2.335$, if the inbreeding parent invests at the outbreeding parent's optimum, then its fitness is higher only when $\beta < 1.079$. Consequently, if parents are unable to recognise that they are inbreeding and adjust their PI accordingly, their fitness might be decreased severely relative to optimally investing parents.
 
 \subsection*{Investment and fitness of an inbred parent}
 
 We have assumed that parents are themselves outbred, but this is unrealistic for populations in which inbreeding is expected to occur \cite[][]{Duthie2015a}. We therefore consider how the degree to which a focal female is herself inbred will affect her optimum parental care ($m^{*}$) and rate of increase in fitness ($\gamma^{*}$).
 
+\marginpar{
+\vspace{1cm} 
+\color{Gray} 
+\textbf{Figure \ref{inbred_parent}:} 
+Relationship between parental investment and the proportion of a focal female's identical-by-descent alleles that are are carried in its offspring for females that are outbred (upper curve) versus females that are inbred (lower curve). Grey shading between curves shows the fitness difference between outbred and inbred females across different degrees of parental invesment.
+}
+\begin{wrapfigure}[18]{l}{75mm}
+\includegraphics[width=75mm]{inbred_parent.pdf}
+\captionsetup{labelformat=empty} 
+\caption{} 
+\label{inbred_parent} % use \ref{fig1} to reference to this figure
+\end{wrapfigure} % avoid blank space here
 To account for an inbred parent, we decompose the coefficient of relatedness $r$ into two parts \cite[see][]{Hamilton1972, Michod1979}. The first is the constituent coefficient of kinship $k$, which is the probability that a two randomly sampled homologous alleles between the focal female and her mate are identical-by-descent. The second is the focal female's own inbreeding coefficient $f$, which is the probability that two homologous alleles within the focal female are identical-by-descent. The coefficient $r$ can be defined as such,
 \begin{equation} \label{rdef}
 r = \frac{2k}{1 + f}.
@@ -156,15 +238,24 @@ Because ID is widely assumed to be caused by the pairing of deleterious recessiv
 \begin{equation} \label{maineqr}
 \zeta_{\textrm{off}} = \frac{1}{2}\left(1+\frac{2k}{1+f}\right)\left(1-e^{-c\left(m-m_{min}-2\beta k\right)}\right).
 \end{equation}
-Note that if $f=0$ (the focal female is outbred), then Eq. \ref{maineqr} reduces to Eq. \ref{maineq} because $r=2k$. Because the $f$ of a focal parent does not affect ID in its offspring, and instead only affects the fitness increment $1/2\left(1+ 2 k / \left[1 + f\right]\right)$, optimal PI ($m^{*}$) is unaffected by $f$  (see also Appendix 2). The degree to which a female is herself inbred therefore does not affect optimal PI. % I think the point about k affecting ID really needs to come after we've introduced r. 
+Note that if $f=0$ (the focal female is outbred), then Eq. \ref{maineqr} reduces to Eq. \ref{maineq} because $r=2k$. Because the $f$ of a focal parent does not affect ID in its offspring, and instead only affects the fitness increment $1/2\left(1+ 2 k / \left[1 + f\right]\right)$, optimal PI ($m^{*}$) is unaffected by $f$  (see also Appendix 2). The degree to which a female is herself inbred therefore does not affect optimal PI. 
 
 Further, the degree to which a female is inbred should only slightly affect $\gamma^{*}$, and only if $k>0$. Figure \ref{inbred_parent} illustrates the difference between two curves predicting $\zeta_{\textrm{off}}(m)$ for $f=0$ and $f=1/4$ given $k=1/4$. The bottom curve of Fig. \ref{inbred_parent} shows $\zeta_{\textrm{off}}(m)$ given $f=1/4$, and the top curve shows $\zeta_{\textrm{off}}(m)$ given $f=0$, with the difference between $\zeta_{\textrm{off}}(m)$ represented by grey shading. Where $m=m^{*}$, $\zeta_{\textrm{off}}$ is slightly higher for $f=0$, meaning that $\gamma^{*}$ (here, technically, identical-by-descent alleles carried by offspring per copy in the focal parent) is higher for outbred individuals even though optimal investment per offspring has not changed ($m^{*}_{f=0}=m^{*}_{f=1/4}$). Thin grey lines in the figure show tangent lines for each curve. Overall, Fig \ref{inbred_parent} shows a weak effect on $\gamma^{*}$ across a relatively wide range of $f$ (outbred individuals versus individuals of full sibling matings). Consequently, the degree to which an individual is inbred will have a relatively minor effect on its rate of fitness increase, but no effect on the optimal PI.
 
-
 \subsection*{Effects of biparental investment}
 
-% Our model hasn't assume that only females provide PI -- we have assumed this as a tool *to explain Eq 1*.
-% A lot of the suggested changes made the modelling sound arbitrary -- things we happen to consider. Instead, I think it is more accurate and stronger to note that these changes are *necessary* extensions of the theory.
+\marginpar{
+\vspace{0.5cm} 
+\color{Gray} 
+\textbf{Figure \ref{mcurves_bip}:} 
+Assuming strict monogamy, the (A) relationship between parental investment and the proportion of a focal female's identical-by-descent alleles that are are carried in its offspring for females that outbreed (solid curve) and females that inbreed with first order relatives (dashed curve). Tangent lines identify optimal parental investment, and their slopes define a female's rate of fitness increase when outbreeding (solid line) and inbreeding (dashed line). Dotted horizontal line shows zero on the y-axis. (B) Relationship between the magnitude of inbreeding depression and optimal parental investment across four degrees of relatedness between a focal female and her mate.
+}
+\begin{wrapfigure}[25]{l}{75mm}
+\includegraphics[width=75mm]{mcurves_bip.pdf}
+\captionsetup{labelformat=empty} 
+\caption{} 
+\label{mcurves_bip} % use \ref{fig1} to reference to this figure
+\end{wrapfigure} % avoid blank space here
 We have assumed that only one parent provides PI. We now consider the opposite extreme, where PI is provided by both parents, which pair exactly once in life and therefore have completely overlapping fitness interests \cite[i.e., strict monogamy; see][]{Parker1985}. Given outbreeding, $m^{*}$ does not change from single parent PI, but twice as many offspring are produced due to a doubled investment budget $2M$ \cite[][]{Parker1985}. However, $m^{*}$ for monogamy will differ from $m^{*}$ for single parent PI if monogamous parents are related because a male is by definition precluded from mating with another female, and therefore pays a complete opportunity cost for inbreeding \cite[][]{Waser1986}. A focal female will thereby lose any indirect fitness increment that she would have otherwise received from having her related mate also breed with other females. To incorporate this cost, it is now necessary to consider both the direct and indirect fitness consequences of inbreeding explicitly. We assume that if a focal female avoids inbreeding, her male relative will instead outbreed, and that parents invest optimally for any given $\beta$; we define $m^{*}_{0}$ as optimal investment for outbreeding and $m^{*}_{r}$ as optimal investment for inbreeding to the degree $r$. Therefore, if a focal female avoids inbreeding,
 \begin{equation} \label{optPI}
 \zeta_{\textrm{off}} = \frac{1}{2}\left(1-e^{-c\left(m^{*}_{0}-m_{min}\right)}\right).
@@ -173,32 +264,33 @@ If she instead inbreeds,
 \begin{equation} \label{optPIoc}
 \zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m^{*}_{r}-m_{min}-\beta r\right)}\right) - \frac{r}{2}\left(1-e^{-c\left(m^{*}_{0}-m_{min}\right)}\right).
 \end{equation} 
-The first term of Eq. \ref{optPIoc} represents the fitness increment the focal female receives from inbreeding (as is identical to the right-hand side of Eq. \ref{maineq}), while the second term represents the indirect loss of fitness that she would have otherwise received through her male relative had she not inbred with him. The decrease in $\zeta_{\textrm{off}}(m_{r})$ caused by this fitness loss causes an overall increase in $m^{*}_{r}$. Monogamous parents should therefore each invest even more per offspring when inbreeding than when only females provide PI, assuming a male could have otherwise outbred. For example, if $r=1/2$ and $\beta=1$, $m^{*}_{r}= 3.191$ given strict monogamy, instead of $2.847$ when only females provide PI.  However, while $\gamma^{*}_{r=1/2}=0.195$ given single parent PI, $\gamma^{*}_{r=1/2}=0.138$ given strict monogamy, and is therefore less than the fitness increase from outbreeding, $\gamma^{*}_{r=0}=0.159$. Across all values of $\beta$, in fact, $\gamma^{*}_{r=1/2} < \gamma^{*}_{r=0}$ given strict monogamy, meaning that the rate of fitness increase from inbreeding never exceeds outbreeding. % The *result* is not general. The *theory* is general.
-% That the first term *equals* the rhs of Eq 1 doesn't really matter -- what matters is that it is *identical* -- i.e., not that the maths works out to be the same, but that the theory derives from the same place.
+The first term of Eq. \ref{optPIoc} represents the fitness increment the focal female receives from inbreeding (as is identical to the right-hand side of Eq. \ref{maineq}), while the second term represents the indirect loss of fitness that she would have otherwise received through her male relative had she not inbred with him. The decrease in $\zeta_{\textrm{off}}(m_{r})$ caused by this fitness loss causes an overall increase in $m^{*}_{r}$. Monogamous parents should therefore each invest even more per offspring when inbreeding than when only females provide PI, assuming a male could have otherwise outbred. For example, if $r=1/2$ and $\beta=1$, $m^{*}_{r}= 3.191$ given strict monogamy, instead of $2.847$ when only females provide PI.  However, while $\gamma^{*}_{r=1/2}=0.195$ given single parent PI, $\gamma^{*}_{r=1/2}=0.138$ given strict monogamy, and is therefore less than the fitness increase from outbreeding, $\gamma^{*}_{r=0}=0.159$. Across all values of $\beta$, in fact, $\gamma^{*}_{r=1/2} < \gamma^{*}_{r=0}$ given strict monogamy, meaning that the rate of fitness increase from inbreeding never exceeds outbreeding. 
 
 Figure \ref{mcurves_bip}A shows how $\zeta_{\textrm{off}}$ increases as a function of $m$ given $r=0$ (solid curve) and $r=1/2$ (dashed curve) when strictly monogamous parents invest equally in offspring, as compared to single parent investment for identical parameter values shown in Fig. \ref{mcurves_uni}A. In contrast to single parent investment, $\gamma^{*}_{r=1/2}$ (slope of the dashed line) is now lower when $r=1/2$ than when $r=0$, meaning that the fitness of individuals that inbreed with first order relatives is lower than individuals that outbreed given strict monogamy. Figure \ref{mcurves_bip}B shows $m^{*}$ for two strictly monogamous parents across different values of $r$ and $\beta$. In comparison with single parent investment in Fig. \ref{mcurves_uni}B, $m^{*}$ is always slightly higher given strict monogamy if $r>0$ (Fig. \ref{mcurves_bip}B), but in both cases $m^{*}$ increases with increasing $r$ and $\beta$. 
 
+\marginpar{
+\vspace{0.5cm} 
+\color{Gray} 
+\textbf{Figure \ref{gammas_bip}:} 
+Assuming strict monogamy, the relationship between the magnitude of inbreeding depression and the rate of a focal female's fitness increase across four degrees of relatedness between a focal female and her mate given that (A) focal females invest optimally given their degree of inbreeding, and (B) females invest at the optimum for outbreeding.
+}
+\begin{wrapfigure}[25]{l}{75mm}
+\includegraphics[width=75mm]{gammas_bip.pdf}
+\captionsetup{labelformat=empty} 
+\caption{} 
+\label{gammas_bip} % use \ref{fig1} to reference to this figure
+\end{wrapfigure} % avoid blank space here
 Figure \ref{gammas_bip}A shows how $\gamma$ varies with $\beta$ given that monogamous parents invest optimally (\ref{gammas_bip}A) and invest at an optimum PI for outbreeding (\ref{gammas_bip}B). In contrast to single parent investment illustrated in Fig. \ref{gammas_uni}A, $\gamma^{*}$ is always maximised by $r=0$, meaning that inbreeding never increases fitness. Fitness decreases even further when inbreeding individuals allocate PI at $m^{*}$ for outbreeding (compare Figs. \ref{gammas_uni}B and \ref{gammas_bip}B; see Supporting Information p. S1-5 for $\gamma$ values across $\beta$ and $r$ assuming parents invest at different $m^{*}_{r}$). Universally decreasing $\gamma$ with increasing $r$ is consistent with biparental inbreeding theory, which demonstrates that if inbreeding with a female completely precludes a male from outbreeding, inbreeding will never be beneficial \cite[][]{Waser1986, Duthie2015a}. However, if relatives become paired under strict monogamy, each should invest more per offspring than given single parent investment.
-
 
 \section*{Discussion}
 
-% Jane, I liked your wording here and in the introduction -- I think that combining them for this new leading sentence works well.
 Inbreeding alters parent-offspring relatedness and offspring viability, affecting selection on parental investment and reproductive interactions between potential mates, and thereby potentially altering evolutionary dynamics of entire reproductive systems. By synthesising biparental inbreeding theory and PI theory, we show that when offspring are inbred, the optimal PI provided by a parent should always increase, and this increase in optimal PI should be greatest given strong inbreeding depression in offspring viability. In contrast, optimal PI does not change when a focal female is herself inbred. We also show that, in contrast to outbreeding \cite[][]{Parker1985}, optimal PI increases when both parents invest given strict monogamy as opposed to single parent PI; under such conditions, optimal PI increases, but the fitness of inbreeding parents never exceeds that of outbreeding parents. Our conceptual synthesis illustrates how previous theory developed for biparental inbreeding \cite[][]{Parker1979, Parker2006} and PI \cite[][]{Macnair1978, Parker1978} can be understood as special cases within a broader inclusive fitness framework in which inbreeding and PI predictably covary.
-
-% XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX %
-% XXX XXX XXX XXX XXX XXX  LEFT OFF HERE  XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX %
-% XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX %
 
 \subsection*{Inbreeding and PI in empirical systems}
 
 Theory can inform empirical hypothesis testing by logically connecting useful biological assumptions to novel empirical predictions. Given a small number of biologically useful assumptions about PI and inbreeding, we have demonstrated that selection will increase PI (and thereby decrease total offspring production) with increasing relatedness between parents and increasing magnitude of ID (Fig. \ref{mcurves_uni}B). Empirical application of this theory will benefit by testing both model assumptions and predictions.
 
 One assumption of our model that might vary widely among empirical systems is that ID can be buffered by PI. Multiple studies estimate magnitudes of ID in offspring fitness \cite[][]{Charlesworth2009, Szulkin2012}, but because PI might encompass a range of behaviours, each of which is an instance of allocation from an unknown total PI budget, PI is notoriously difficult to measure \cite[][]{Parker2002}. One approach is to vary PI experimentally by excluding a parent during offspring development. \cite{Pilakouta2015} quantified the fitness of burying beetle (\textit{Nicrophorus vespilloides}) offspring in the presence and absence of maternal care, and for inbred and outbred offspring, finding that maternal care increased survival relatively more for inbred than outbred offspring, consistent with the assumption that PI can buffer ID. Similarly, in the subsocial spider \textit{Anelosimus} cf. \textit{jucundus}, in which care is provided by solitary females, \cite{Aviles2006} found evidence of ID only late in life when parental care was absent. They also hypothesise that maternal care might buffer ID. Interestingly, offspring production does not decrease when \textit{A.} cf. \textit{jucundus} females inbreed as our model predicts, and as is predicted if females respond to inbreeding by increasing PI per offspring at the cost of total offspring production. This lack of decrease in offspring production with inbreeding suggests that a different assumption of our model might be inconsistent with \textit{A.} cf. \textit{jucundus}, preventing females from adaptively adjusting PI in response to inbreeding. 
-
-% By definition, females *must* be incapable of increasing investment in their offspring without decreasing offspring number. If they are doing something for one offspring that does not somehow decrease total offspring number, then it is not PI.
-% I'm confused as to why this comes off as trying to justify assumptions -- they don't need to be justified by empirical data in this way to be important (see comments above) -- this isn't how theory works. Even if most species cannot mitigate ID, that doesn't affect the generality of the theory at all (the conceptual synthesis is still there -- we've just 'lost' the phenotypic gambit) -- just considerations for testing it. I've removed the sentence, as I don't think it's completely necessary and might cause confusion.
-% This gets to a more fundamental confusion, I think, about the role of assumptions in theory. I don't think assumptions are things to simply accept as true, nor does the biological truth of assumptions necessarily reflect the usefulness of theory. Rather, theory logically connects assumptions with predictions -- empirical studies can thereby benefit by testing both predictions and assumptions. If all assumptions are true (and the theory is good), then predictions *must* follow. Or, if some predictions turn out to be false, then one or more assumptions cannot be true. By pointing out empirical systems in which our assumptions appear true or false, we can use the theory developed in this manuscript to better understand the relationship between inbreeding and PI. 
 
 A second assumption of our model that will likely vary among empirical systems is that individuals are able to discriminate among kin and thereby adjust their PI accordingly when they inbreed. Like PI, kin discrimination is often difficult to measure, but if parents are unable to infer that they are inbreeding, then they will almost certainly allocate PI sub-optimally, resulting in a decrease in the fitness of inbreeding parents (Fig. \ref{gammas_uni}B) and viability of inbred offspring. For inbred offspring, sub-optimal PI will effectively increase the magnitude of measured ID, which would otherwise be weaker if PI were allocated optimally. To our knowledge, no empirical studies have tested whether or not PI varies with inbreeding in species that are known to discriminate among kin, but two studies found a strong negative correlation between parent inbreeding and the number of pups per litter in wolves \cite[\textit{Canis lupus};][]{Liberg2005, Fredrickson2007}. Wolves are highly social (and generally monogamous), and are likely able to discriminate among kin to vary their inbreeding in response to severe ID \cite[][]{Raikkonen2009, Geffen2011}. \cite{Liberg2005} and \cite{Fredrickson2007} interpret decreased reproductive output as a negative fitness consequence of inbreeding, as might be expected if ID causes increased early offspring mortality. Our model suggests an alternative hypothesis; fewer pups per litter might be partially driven by an adaptive strategy whereby parents invest more in fewer total offspring. Distinguishing between ID and adjusted PI will require careful observation of variation in PI in wild populations, but our model demonstrates that reduced reproductive output cannot necessarily be assumed to be a negative fitness consequence of inbreeding.
 
@@ -213,8 +305,6 @@ Sexual conflict might also be minimised if a focal individual that decreases its
 Parent-offspring conflict is a focal theoretical interest of many models of PI \cite[e.g.,][]{Macnair1978, Parker1978, Parker1985, DeJong2005}. We have assumed that parents control PI, and that offspring are unable to influence the extent to which PI is provided (e.g., through begging). Offspring are predicted to benefit at higher PI than parent optima \cite[][]{Parker1978, Parker2002}, thereby generating conflict, but such conflict might be decreased in the case of inbreeding. Inbreeding parents are more closely related to their offspring than outbreeding parents, generating the increase in parents' optimal PI in our model; in the extreme case in which $r=1$ (self-fertilisation), no conflict over PI should exist. \cite{DeJong2005} model PI conflict in the context of optimal seed mass from the perspective of parent plants and their seeds given varying rates of self-fertilisation, showing that conflict over seed mass decreases with increasing self-fertilisation rate. \cite{DeJong2005} assume seed mass is under the control of seeds rather than parent plants, and find that a comparative analysis of seed size among closely related plant species generally supports this hypothesis. In general, the same principles of parent-offspring conflict are expected to apply for biparental inbreeding as in self-fertilisation. Parent-offspring conflict should decrease with increasing inbreeding, and reduced conflict might in turn affect offspring behaviour. For example, \cite{Mattey2014} observed both increased parental care and decreased offspring begging in an experimental study of \textit{N. vispilloides} when offspring were inbred. A reduction in begging behaviour is consistent with our model when inbreeding increases and parent-offspring fitness interests with respect to PI are more closely aligned.
 
 We suggest that future empirical and theoretical research will benefit by further considering how biparental inbreeding and PI are expected to interact to affect parent and offspring fitness. This theory has potentially widespread empirical implications, and extensions of our model can further inform theory on the interaction between inbreeding and parental investment.
-
-%Finally, we have shown that optimal PI does not change when a focal female is herself inbred, but her fitness, defined in as the rate at which she increases copies of her identical-by-descent alleles, is decreased. This theory has potentially widespread empirical implications, and extensions of our model can further inform theory on the interaction between inbreeding and parental investment.
 
 \section*{Appendix 1: Sample derivations of $m^{*}$ and $\gamma^{*}$}
 
@@ -256,16 +346,6 @@ From the above, $r$ can be isolated,
 \begin{equation}
 r = \frac{1}{\beta}\left(m^{*} - m_{min} + \frac{1}{c}\ln\left(\frac{1}{\left(1 + m^{*} c\right)}\right)\right)
 \end{equation}
-%\begin{align*}
-%0 &= -m^{*} c e^{-c\left(m^{*}-m_{min}-\beta r\right)} + 1-e^{-c\left(m^{*}-m_{min}-\beta r\right)} \\
-%1 &= m^{*} c e^{-c\left(m^{*}-m_{min}-\beta r\right)} + e^{-c\left(m^{*}-m_{min}-\beta r\right)} \\
-%1 &= e^{-c\left(m^{*}-m_{min}-\beta r\right)} \left(1 + m^{*} c\right) \\
-%e^{-c\left(m^{*}-m_{min}-\beta r\right)} &= \frac{1}{\left(1 + m^{*} c\right)} \\
-%-c\left(m^{*}-m_{min}-\beta r\right) &= \ln\left(\frac{1}{\left(1 + m^{*} c\right)}\right) \\
-%m^{*}-m_{min}-\beta r &= -\frac{1}{c}\ln\left(\frac{1}{\left(1 + m^{*} c\right)}\right) \\
-%\beta r &= m^{*} - m_{min} + \frac{1}{c}\ln\left(\frac{1}{\left(1 + m^{*} c\right)}\right) \\
-%r &= \frac{1}{\beta}\left(m^{*} - m_{min} + \frac{1}{c}\ln\left(\frac{1}{\left(1 + m^{*} c\right)}\right)\right)
-%\end{align*}
 We now differentiate $r$ with respect to $m^{*}$,
 \begin{equation}
 \frac{\partial r}{\partial m^{*}} = \frac{m^{*} c}{\beta \left(m^{*} c + 1\right)} 
@@ -290,109 +370,173 @@ Fitness given $r=0$ and $r=1/2$, and $m^{*}_{r=0}$ and $m^{*}_{r=1/2}$, can be d
 
 To show that inbreeding with first order relatives returns a higher fitness than outbreeding given the above conditions assumed in our model, we can simply use the above equation directly to compare the fitness given both $r=1/2$ and $r=0$, noting that $\delta_{r=1/2}=0.26$ and $\delta_{r=0}=0.32$ (note that $\delta_{r=1/2}<\delta_{r=0}$ because inbreeding parents are investing more in their offspring, $m^{*}_{r=1/2}=2.847$ versus $m^{*}_{r=0}=2.146$). Consequently, we can use the above equation to show that the fitness gain of an optimally investing female that inbreeds with a first order relative is 0.195, compared with 0.159 for the outbreeding female; these values are identical to our earlier calculated values of $\gamma^{*}_{r=1/2}$ and $\gamma^{*}_{r=0}$.
 
-
-
-
 \bibliography{duthiebib}
 \bibliographystyle{amnatnat}
-
-\clearpage
-
-\noindent \textbf{Table 1:}  List of parameter values and descriptions. \\
-
-\noindent \textbf{Figure 1:} (A) Relationship between parental investment and the proportion of a focal female's identical-by-descent alleles that are are carried in its offspring for females that outbreed (solid curve) and females that inbreed with first order relatives (dashed curve). Tangent lines identify optimal parental investment, and their slopes define a female's rate of fitness increase when outbreeding (solid line) and inbreeding (dashed line). Dotted horizontal line shows zero on the y-axis. (B) Relationship between the magnitude of inbreeding depression and optimal parental investment across four degrees of relatedness between a focal female and her mate. Across all $\beta$ and $r$ presented, $m_{min}=1$ and $c=1$. \\ 
-
-\noindent \textbf{Figure 2:} Relationship between the magnitude of inbreeding depression and the rate of a focal female's fitness increase across four degrees of relatedness between a focal female and her mate assuming that (A) focal females invest optimally given their degree of inbreeding and (B) females invest at the optimum for outbreeding. \\
-
-\noindent \textbf{Figure 3:} Relationship between parental investment and the proportion of a focal female's identical-by-descent alleles that are are carried in its offspring for females that are outbred (upper curve) versus females that are inbred (lower curve). Grey shading between curves shows the fitness difference between outbred and inbred females across different degrees of parental invesment. \\
-
-\noindent \textbf{Figure 4:} Assuming strict monogamy, the (A) relationship between parental investment and the proportion of a focal female's identical-by-descent alleles that are are carried in its offspring for females that outbreed (solid curve) and females that inbreed with first order relatives (dashed curve). Tangent lines identify optimal parental investment, and their slopes define a female's rate of fitness increase when outbreeding (solid line) and inbreeding (dashed line). Dotted horizontal line shows zero on the y-axis. (B) Relationship between the magnitude of inbreeding depression and optimal parental investment across four degrees of relatedness between a focal female and her mate. \\
-
-\noindent \textbf{Figure 5:} Assuming strict monogamy, the relationship between the magnitude of inbreeding depression and the rate of a focal female's fitness increase across four degrees of relatedness between a focal female and her mate given that (A) focal females invest optimally given their degree of inbreeding, and (B) females invest at the optimum for outbreeding. \\
-
-
-\clearpage
-\begin{figure}
-\begin{center}				
-\includegraphics[scale=0.8]{mcurves_uni.pdf}
-\end{center}
-\caption{(A) Relationship between parental investment and the proportion of a focal female's identical-by-descent alleles that are are carried in its offspring for females that outbreed (solid curve) and females that inbreed with first order relatives (dashed curve). Tangent lines identify optimal parental investment, and their slopes define a female's rate of fitness increase when outbreeding (solid line) and inbreeding (dashed line). Dotted horizontal line shows zero on the y-axis. (B) Relationship between the magnitude of inbreeding depression and optimal parental investment across four degrees of relatedness between a focal female and her mate. Across all $\beta$ and $r$ presented, $m_{min}=1$ and $c=1$.}
-\label{mcurves_uni}
-\end{figure}
-
-
-\clearpage
-\begin{figure}
-\begin{center}				
-\includegraphics[scale=0.95]{gammas_uni.pdf}
-\end{center}
-\caption{Relationship between the magnitude of inbreeding depression and the rate of a focal female's fitness increase across four degrees of relatedness between a focal female and her mate assuming that (A) focal females invest optimally given their degree of inbreeding and (B) females invest at the optimum for outbreeding.}
-\label{gammas_uni}
-\end{figure}
-
-
-\clearpage
-\begin{figure}
-\begin{center}				
-\includegraphics[scale=0.8]{inbred_parent.pdf}
-\end{center}
-\caption{Relationship between parental investment and the proportion of a focal female's identical-by-descent alleles that are are carried in its offspring for females that are outbred (upper curve) versus females that are inbred (lower curve). Grey shading between curves shows the fitness difference between outbred and inbred females across different degrees of parental invesment.}
-\label{inbred_parent}
-\end{figure}
-
-\clearpage
-\begin{figure}
-\begin{center}				
-\includegraphics[scale=0.8]{mcurves_bip.pdf}
-\end{center}
-\caption{Assuming strict monogamy, the (A) relationship between parental investment and the proportion of a focal female's identical-by-descent alleles that are are carried in its offspring for females that outbreed (solid curve) and females that inbreed with first order relatives (dashed curve). Tangent lines identify optimal parental investment, and their slopes define a female's rate of fitness increase when outbreeding (solid line) and inbreeding (dashed line). Dotted horizontal line shows zero on the y-axis. (B) Relationship between the magnitude of inbreeding depression and optimal parental investment across four degrees of relatedness between a focal female and her mate.}
-\label{mcurves_bip}
-\end{figure}
-
-\clearpage
-\begin{figure}
-\begin{center}				
-\includegraphics[scale=0.95]{gammas_bip.pdf}
-\end{center}
-\caption{Assuming strict monogamy, the relationship between the magnitude of inbreeding depression and the rate of a focal female's fitness increase across four degrees of relatedness between a focal female and her mate given that (A) focal females invest optimally given their degree of inbreeding, and (B) females invest at the optimum for outbreeding.}
-\label{gammas_bip}
-\end{figure}
-
-
-
-\clearpage
-\singlespacing
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{ll}
-\hline
-Parameter & Description & \\
-\hline
-$M$                     & Parent's total investment budget  & \\
-$m$                     & Parent's investment per offspring & \\
-$n$                     & Parent's total offspring production & \\
-$\zeta_{\textrm{off}}$  & Identical-by-descent allele copies carried per offspring & \\
-$r$                     & Relatedness of a mate to the focal parent & \\
-$m_{min}$               & Minimum parental investment required for offspring viability & \\
-$\beta$                 & Inbreeding depression in offspring viability & \\
-$c$                     & Curve of parental investment with offspring fitness & \\
-$\gamma$                & Parent's rate of fitness increase & \\
-\hline	
-\end{tabular}
-\end{center}
-\caption{List of parameter values and descriptions.}
-\label{parameters}
-\end{table}
-
-
 
 
 \end{document}
 
 
+% avoid blank space here 
+\marginpar{
+\vspace{.7cm} % adjust vertical position relative to text with \vspace{} - note that you can enter negative numbers to move margin caption up
+\color{Gray} % this gives caption a grey color to set it apart from text body
+\textbf{Figure \ref{mcurves_uni}:} % note that \ref{fig1} refers to the wrapfigure
+Setting up your figure + caption like this looks fancy and does not disrupt the flow of the text. But it requires more manual adjustments (position, spacing, labeling) compared to using standard \LaTeX figure environments.
+}
+\begin{wrapfigure}[19]{l}{75mm}
+% the number in [] of wrapfigure is optional and gives the number of text lines that should be wrapped around the text. Adjust according to your figures height
+\includegraphics[width=75mm]{mcurves_uni.pdf}
+\captionsetup{labelformat=empty} % makes sure dummy caption is blank
+\caption{} % add dummy caption - otherwise \label won't work and figure numbering will not count up
+\label{mcurves_uni} % use \ref{fig1} to reference to this figure
+\end{wrapfigure} % avoid blank space here
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+In the introduction you will see an example of text wrapping around the figure with a figure caption on the margin (Fig. \ref{fig1}). This is done by combining the \verb!wrapfigure! with 
+% avoid blank space here 
+\marginpar{
+\vspace{.7cm} % adjust vertical position relative to text with \vspace{} - note that you can enter negative numbers to move margin caption up
+\color{Gray} % this gives caption a grey color to set it apart from text body
+\textbf{Figure \ref{fig1}. Example of a margin caption.} % note that \ref{fig1} refers to the corresponding wrapfigure
+Setting up your figure + caption like this looks fancy and does not disrupt the flow of the text. But it requires more manual adjustments (position, spacing, labeling) compared to using standard \LaTeX figure environments.
+}
+\begin{wrapfigure}[19]{l}{75mm}
+% the number in [] of wrapfigure is optional and gives the number of text lines that should be wrapped around the text. Adjust according to your figures height
+\includegraphics[width=75mm]{fig1.pdf}
+\captionsetup{labelformat=empty} % makes sure dummy caption is blank
+\caption{} % add dummy caption - otherwise \label won't work and figure numbering will not count up
+\label{fig1} % use \ref{fig1} to reference to this figure
+\end{wrapfigure} % avoid blank space here
+the \verb!marginnote! environment. Please note that in this case the figure (\verb!wrapfigure!) and the figure caption (\verb!marginpar!) have to be separated as you can tell from the code. The \verb!wrapfigure! environment can be a bit tricky when it comes to text formatting. Thus some general hints: (a) try to avoid line breaks in the code as this may result in weird formatting around the figure, (b) the figure should not span multiple headlines (sections) and (c) if you encounter problems with the line break right after the \verb!wrapfigure! try using \verb!\mbox{}! to prevent premature line breaks (\mbox{see example in code}). As stated in the figure caption, setting up figures this way requires a bit more manual adjustments but it makes figures blend in nicely without interrupting flow of text.
+
+
+
+
+
+
+
+
+\section*{Materials and Methods}
+
+\subsection*{Tables.} 
+
+In this section you will find an example of a table using the \verb!table! plus the \verb!adjustwidth! environment and should give you a minimal example for tables in \LaTeX (Table \ref{tab1}).
+
+\begin{table}[!ht]
+\begin{adjustwidth}{-1.5in}{0in} % comment out/remove adjustwidth environment if table fits in text column.
+\centering
+\caption{{\bf Example Table.} This table demonstrates how to use the  adjustwidth environment if you need that tad bit of extra width for your figures or tables.}
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+\multicolumn{4}{|l|}{\bf Heading 1} & \multicolumn{3}{|l|}{\bf Heading 2}\\ \hline
+cell 1 - row 1 & cell 2 - row 1 & cell 3 - row 1 & cell 4 - row 1 & cell 5 - row 1 & cell 6 - row 1 & cell 7 - row 1 \\ \hline
+cell 1 - row 2 & cell 2 - row 2 & cell 3 - row 2 & cell 4 - row 2 & cell 5 - row 2 & cell 6 - row 2 & cell 7 - row 2 \\ \hline
+cell 1 - row 3 & cell 2 - row 3 & cell 3 - row 3 & cell 4 - row 3 & cell 5 - row 3 & cell 6 - row 3 & cell 7 - row 3 \\ \hline
+\end{tabular}
+\label{tab1}
+\end{adjustwidth}
+\end{table}
+
+\paragraph{Paragraph.}
+Instead of adding more and more subsections you can use the \verb!\paragraph{}! command to give structure to your manuscript.
+
+\subsection*{Formulas.}
+For mathematical formulas you should use the math environment. See this example:
+
+\begin{center}
+$f(A_{ik},A_{jk}) = min(A_{ik},A_{jk}) - C_{1} max(A_{ik},A_{jk}) e^{-C_{2}min(A_{ik},A_{jk})}$
+\end{center}
+
+% newpage forces a page break if you want to clearly separate materials from results
+\newpage
+
+\section*{Results}
+\subsection*{Standard floating figures.}
+Figure \ref{fig2} is wrapped into a standard floating environment. That means that \LaTeX will determine the exact placement of the figure. Even though you can state preferences (see code) it can be tricky to get the right placement - especially when working on very tight manuscripts. If you want exact placement, add \verb!\usepackage{float}! to this file's header and use [H] in the figure environment's placement options.
+
+
+\begin{figure}[ht] %s state preferences regarding figure placement here
+
+% use to correct figure counter if necessary
+%\renewcommand{\thefigure}{2}
+
+\includegraphics[width=\textwidth]{fig2.pdf}
+
+\caption{\color{Gray} \textbf{Example of a standard floating figure}. \textbf{A-F}, This figure is wrapped into the standard floating environment.}
+
+\label{fig2} % \label works only AFTER \caption within figure environment
+
+\end{figure}
+
+\subsection*{Page break in figures.}
+The standard floating figures in \LaTeX do not cope well with page breaks which can make it difficult to fit in large figures. One way to deal with this is to separate figure and caption but \verb!\caption{}! might still give troubles at page breaks. Figure 3 demonstrates a way to manually set up figure and caption such that it continues onto the next page.
+\vspace{.5cm} % set vertical space between text and figure
+\begin{adjustwidth}{-2in}{0in}
+\begin{flushright}
+\includegraphics[width=163mm]{fig3.pdf}
+\end{flushright}
+\justify 
+\color{Gray}
+\textbf {Figure 3. Example of a wide figure with multi-page caption.}
+\textbf{A}, Proin lectus ex, venenatis vel ornare eget, hendrerit tempus justo. Pellentesque molestie purus sed pretium tincidunt. Curabitur facilisis, orci vitae mollis fringilla, elit erat fermentum justo, nec luctus nunc sapien vel dolor. Cras enim justo, ullamcorper ut commodo at, posuere et ex. Fusce cursus sapien id augue maximus convallis. Praesent egestas massa in enim volutpat varius. In aliquam turpis urna, at elementum turpis eleifend at. \textbf{B}, Proin risus erat, tincidunt quis massa non, sollicitudin congue metus. Aliquam quis magna vulputate, posuere est eu, tempor nisi. Cras gravida tempus felis, vitae lacinia lacus volutpat quis. Pellentesque et eros eu mi suscipit tempus. Proin in augue scelerisque. \textbf{C}, Donec a tempor tortor, et dignissim enim. Cras in ipsum sed velit bibendum imperdiet. Aenean aliquet mauris maximus, sodales ligula sit amet, placerat felis. In tristique nisi eu risus rutrum, ac lacinia lorem cursus. Nunc eget condimentum purus. Maecenas imperdiet nisl eu accumsan gravida. \textbf{D}, Nullam tincidunt, magna sed auctor ultrices, leo mi eleifend velit, quis varius ex diam non tellus. Nam tincidunt vehicula turpis, ut euismod turpis elementum vel.
+\end{adjustwidth}
+
+
+%\clearpage makes sure that all above content is printed at this point and does not invade into the upcoming content
+%\clearpage
+
+\section*{Discussion}
+\subsection*{Subsection heading.}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam bibendum finibus diam, gravida sagittis lorem gravida vitae. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla in diam tristique ante posuere tristique. Donec interdum purus sit amet nisl accumsan consectetur. Fusce aliquet libero mi, quis ornare dolor congue ullamcorper. Nulla nulla urna, molestie in urna sed, lacinia volutpat eros. Ut mi libero, elementum scelerisque ipsum vel, hendrerit fermentum turpis. Aliquam sit amet leo sodales, egestas augue id, fermentum nulla. Aenean vel cursus ante, et pellentesque eros. Nulla ac neque nec justo posuere commodo sit amet sit amet justo. Aliquam tincidunt tempor ex nec tincidunt. In ullamcorper vehicula lobortis. 
+
+%\clearpage
+
+\section*{Supporting Information}
+If you intend to keep supporting files separately you can do so and just provide figure captions here. Optionally make clicky links to the online file using \verb!\href{url}{description}!.
+
+%These commands reset the figure counter and add "S" to the figure caption (e.g. "Figure S1"). This is in case you want to add actual figures and not just captions.
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{S\arabic{figure}}
+
+% You can use the \nameref{label} command to cite supporting items in the text.
+\subsection*{S1 Figure}
+\label{example_label}
+{\bf Caption of Figure S1.} \textbf{A}, If you want to reference supporting figures in the text, use the \verb!\nameref{}!. command. This will reference the section's heading: \nameref{example_label}.
+
+\subsection*{S2 Video}
+\label{example_video}
+{\bf Example Video.} Use \href{www.youtube.com}{clicky links} to the online sources of the files.
+
+%\clearpage
+
+\section*{Acknowledgments}
+We thank just about everybody.
+
+\nolinenumbers
+
+%This is where your bibliography is generated. Make sure that your .bib file is actually called library.bib
+\bibliography{library}
+
+%This defines the bibliographies style. Search online for a list of available styles.
+\bibliographystyle{abbrv}
 
 
 
