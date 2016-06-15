@@ -83,7 +83,7 @@ rg125 <- gamz(rvl=0.125,betas=bss);
 rg250 <- gamz(rvl=0.250,betas=bss);
 rg500 <- gamz(rvl=0.500,betas=bss);
 #-----------------------------------------
-setEPS():
+setEPS();
 cairo_ps("mcurves_uni.eps",family="Arial",width=6,height=8);
 par(mfrow=c(2,1),mar=c(5,5,1,1),lwd=2);
 layout(matrix(data=c(1,2), nrow=2, ncol=1, byrow = TRUE),
@@ -98,6 +98,10 @@ points(PI,Alleles_IBD_inbr,type="l",lwd=3,lty="dashed");
 abline(a=0,b=r00g,lty="solid", lwd=1); # Tangent line r = 0
 abline(a=0,b=r05g,lty="dashed",lwd=1); # Tangent line r = 0.5
 text(x=0.15,y=0.92,labels="A",cex=2.5);
+arrows(x0=r00m,x1=r00m,y0=0.1,y1=0.003,length = 0.08,angle=30,code=2,lwd=1.25);
+arrows(x0=r05m,x1=r05m,y0=0.1,y1=0.003,length = 0.08,angle=30,code=2,lwd=1.25);
+text(x=r00m,y=0.145,labels=expression(paste(italic(m),"*"[r==0])),cex=1.0);
+text(x=r05m,y=0.145,labels=expression(paste(italic(m),"*"[r==1/2])),cex=1.0);
 # --------------------------------------------------------------------
 plot(x=bss,y=rg000$mvl,type="l",lwd=2,ylim=c(2,6),pch=1.5,
      xlab=expression(paste("Inbreeding depression (",beta,")")),
@@ -147,9 +151,9 @@ rg125fs <- gamzfsib(rvl=0.125,betas=bss);
 rg250fs <- gamzfsib(rvl=0.250,betas=bss);
 rg500fs <- gamzfsib(rvl=0.500,betas=bss);
 #--- Start building the figure below
-setEPS():
+setEPS();
 cairo_ps("gammas_uni.eps",family="Arial",width=6,height=8);
-par(mfrow=c(2,1),mar=c(0.25,1,4,1),oma=c(5,5,1,1),lwd=2);
+par(mfrow=c(2,1),mar=c(0.25,1,1,1),oma=c(1,4,0.2,0.2),lwd=2);
 #----------------------------------------------------------------
 #par(mar=c(0.5,1,0.25,1),lwd=2);
 plot(x=bss,y=rg000$gam,type="l",lwd=2,ylim=c(0.09,0.22),pch=1.5,yaxt="n",
@@ -158,10 +162,10 @@ axis(side=2,at=c(0.10,0.15,0.20),cex.axis=1.5);
 points(x=bss,y=rg125$gam,type="l",lwd=2);
 points(x=bss,y=rg250$gam,type="l",lwd=2);
 points(x=bss,y=rg500$gam,type="l",lwd=2);
-text(x=bss[18],y=rg000$gam[18]+0.0038,labels="r=0",srt=-0,cex=0.8);
-text(x=bss[18],y=rg125$gam[18]+0.0038,labels="r=1/8",srt=-7,cex=0.8);
-text(x=bss[18],y=rg250$gam[18]+0.0038,labels="r=1/4",srt=-9,cex=0.8);
-text(x=bss[18],y=rg500$gam[18]+0.0038,labels="r=1/2",srt=-12,cex=0.8);
+text(x=bss[18],y=rg000$gam[18]+0.0038,labels="r=0",srt=-0,cex=1);
+text(x=bss[18],y=rg125$gam[18]+0.0038,labels="r=1/8",srt=-7,cex=1);
+text(x=bss[18],y=rg250$gam[18]+0.0038,labels="r=1/4",srt=-9,cex=1);
+text(x=bss[18],y=rg500$gam[18]+0.0038,labels="r=1/2",srt=-12,cex=1);
 text(x=4.95,y=0.213,labels="A",cex=2.5);
 #----------------------------------------------------------------
 par(mar=c(4,1,0.25,1),lwd=2);
@@ -172,13 +176,13 @@ axis(side=2,at=c(0.10,0.15,0.20),cex.axis=1.5);
 points(x=bss,y=rg125nk$gam,type="l",lwd=2);
 points(x=bss,y=rg250nk$gam,type="l",lwd=2);
 points(x=bss,y=rg500nk$gam,type="l",lwd=2);
-text(x=bss[12],y=rg000nk$gam[12]+0.004,labels="r=0",srt=-0,cex=0.8);
-text(x=bss[10],y=rg125nk$gam[10]+0.005,labels="r=1/8",srt=-16,cex=0.8);
-text(x=bss[7],y=rg250nk$gam[7]+0.005,labels="r=1/4",srt=-40,cex=0.8);
-text(x=bss[4]+0.075,y=rg500nk$gam[4]+0.002,labels="r=1/2",srt=-65,cex=0.8);
+text(x=bss[12],y=rg000nk$gam[12]+0.004,labels="r=0",srt=-0,cex=1);
+text(x=bss[10],y=rg125nk$gam[10]+0.005,labels="r=1/8",srt=-16,cex=1);
+text(x=bss[7],y=rg250nk$gam[7]+0.005,labels="r=1/4",srt=-40,cex=1);
+text(x=bss[4]+0.075,y=rg500nk$gam[4]+0.002,labels="r=1/2",srt=-65,cex=1);
 text(x=4.95,y=0.213,labels="B",cex=2.5);
 mtext(text=expression(paste("Rate of fitness increase (",gamma,")")),
-      side=2,line=3, cex=1.5, col="black", outer=TRUE);
+      side=2,line=2, cex=1.5, col="black", outer=TRUE);
 dev.off();
 #----------------------------------------------------------------
 # Next, the below generates a function to find where lines intersect
@@ -301,7 +305,7 @@ rg500p <- gamzp(rvl=0.500,betas=bss);
 Alleles_IBD_outbr_pair <- Offpair(r=0.0, m=PI, mmin=1, Beta=1, c=1);
 Alleles_IBD_inbr_pair  <- Offpair(r=0.5, m=PI, mmin=1, Beta=1, c=1);
 #-----------------------------------------
-setEPS():
+setEPS();
 cairo_ps("mcurves_bip.eps",family="Arial",width=6,height=8);
 par(mfrow=c(2,1),mar=c(5,5,1,1),lwd=2);
 #layout(matrix(data=c(1,2), nrow=2, ncol=1, byrow = TRUE),
@@ -333,9 +337,9 @@ dev.off();
 
 
 #--- Start building the figure below
-setEPS():
+setEPS();
 cairo_ps("gammas_bip.eps",family="Arial",width=6,height=8);
-par(mfrow=c(2,1),mar=c(0.25,1,4,1),oma=c(5,5,1,1),lwd=2);
+par(mfrow=c(2,1),mar=c(0.25,1,0.1,0.1),oma=c(4,4,0.7,0.7),lwd=2);
 #----------------------------------------------------------------
 plot(x=bss,y=rg000p$gam,type="l",lwd=2,ylim=c(0.05,0.18),pch=1.5,yaxt="n",
      xlab=expression(paste("Inbreeding depression (",beta,")")),xaxt="n",
@@ -350,14 +354,14 @@ text(x=bss[17],y=rg250p$gam[17]+0.005,labels="r=1/4",srt=-6,cex=1);
 text(x=bss[17],y=rg500p$gam[17]+0.005,labels="r=1/2",srt=-8,cex=1);
 text(x=4.95,y=0.174,labels="A",cex=2.5);
 #----------------------------------------------------------------
-par(mar=c(4,1,0.25,1),lwd=2);
+par(mar=c(4,1,0.1,0.1),lwd=2);
 r000_000pt <- Offpair(r=0.000, m=r00m, mmin=1, Beta=bss, c=1, m0=r00m) / r00m;
 r125_000pt <- Offpair(r=0.125, m=r00m, mmin=1, Beta=bss, c=1, m0=r00m) / r00m;
 r250_000pt <- Offpair(r=0.250, m=r00m, mmin=1, Beta=bss, c=1, m0=r00m) / r00m;
 r500_000pt <- Offpair(r=0.500, m=r00m, mmin=1, Beta=bss, c=1, m0=r00m) / r00m;
 plot(x=bss,y=r000_000pt,type="l",lwd=2,ylim=c(0.05,0.18),pch=1.5,yaxt="n",
      xlab=expression(paste("Inbreeding depression (",beta,")")),
-     ylab="",cex.lab=1.5,cex.axis=1.5);
+     ylab="",cex.lab=1.75,cex.axis=1.5);
 axis(side=2,at=c(0.05,0.10,0.15,0.20),cex.axis=1.5);
 points(x=bss,y=r125_000pt,type="l",lwd=2);
 points(x=bss,y=r250_000pt,type="l",lwd=2);
@@ -369,7 +373,7 @@ text(x=bss[4]+0.06,y=r500_000pt[4]+0.004,labels="r=1/2",srt=-65,cex=1);
 text(x=4.95,y=0.174,labels="B",cex=2.5);
 #----------------------------------------------------------------
 mtext(text=expression(paste("Rate of fitness increase (",gamma,")")),
-      side=2,line=2, cex=1.5, col="black",outer=TRUE);
+      side=2,line=2, cex=1.75, col="black",outer=TRUE);
 dev.off();
 
 
@@ -431,13 +435,13 @@ otang.f025 <- OffATf(m=omopt.f025, f=0.25, k=0.0, B0=1, B1=1, c=1) / omopt.f025;
 
 
 Alleles_IBD_f000 <- OffATf(k=0.25, f=0.0, m=PI, B0=1, B1=1, c=1);
-setEPS():
-cairo_ps("inbred_parent.eps",family="Arial");
-par(mar=c(5,5,2,2));
+setEPS();
+cairo_ps("inbred_parent.eps",family="Arial",width=7,height=5);
+par(mar=c(5,5,1,1));
 plot(PI,Alleles_IBD_f000,type="l",lwd=1,ylim=c(0,0.95),lty="solid",
      xlab=expression(paste("Parental investment (",italic(m),")")),
      ylab=expression(paste("IBD alleles in offspring (",zeta[off],")")),
-     cex.lab=1.5,cex.axis=1.5,yaxs="i",xaxs="i");
+     cex.lab=1.75,cex.axis=1.5,yaxs="i",xaxs="i");
 abline(h=0,lty="dotted",lwd=0.8);
 Alleles_IBD_f025 <- OffATf(k=0.25, f=0.25, m=PI, B0=1, B1=1, c=1);
 abline(b=itang.f000,a=0,lty="solid",lwd=0.5,col="grey40");
