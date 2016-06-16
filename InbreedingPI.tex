@@ -238,9 +238,7 @@ A solution for $m^{*}$ can be obtained numerically for the example in which $m_{
 
 \section*{Appendix 2: $m^{*}$ increases with increasing $r$}
 
-Here we show that optimal parental investment always increases with increasing inbreeding given ID and $c>0$. Because we are only interested in the sign of this increase, it will be sufficient to show that $\partial r / \partial m^{*} > 0$ given $\beta>0$ and $c>0$. 
-
-First, we note that $m^{*}$ is defined as the value of $m$ that maximises the rate of increase in $\zeta_{\textrm{off}}$ for a female. This is described by the line that passes through the origin and lies tangent to $\zeta_{\textrm{off}}(m)$. As in Appendix 1, we have the general equation for which $m=m^{*}$,
+Here we show that optimal parental investment always increases with increasing inbreeding given ID and $c>0$. First, note that $m^{*}$ is defined as the value of $m$ that maximises the rate of increase in $\zeta_{\textrm{off}}$ for a female. This is described by the line that passes through the origin and lies tangent to $\zeta_{\textrm{off}}(m)$. As in Appendix 1, we have the general equation for which $m=m^{*}$,
 \begin{equation}
 0 = \frac{c}{2} \left(1+r\right)e^{-c\left(m-m_{min}-\beta r\right)}\left(0-m\right) + \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right).
 \end{equation}
@@ -268,9 +266,13 @@ r = \frac{1}{\beta}\left(m^{*} - m_{min} + \frac{1}{c}\ln\left(\frac{1}{\left(1 
 %\end{align*}
 We now differentiate $r$ with respect to $m^{*}$,
 \begin{equation}
-\frac{\partial r}{\partial m^{*}} = \frac{m^{*} c}{\beta \left(m^{*} c + 1\right)} 
+\frac{\partial r}{\partial m^{*}} = \frac{m^{*} c}{\beta \left(m^{*} c + 1\right)}. 
 \end{equation}
-Given the above, $\partial r / \partial m^{*} > 0$ assuming $\beta>0$ (ID), $c>0$ (offspring fitness increases with parental investment), and $m^{*}>0$ (optimum parental investment is positive). These assumptions are biologically realistic; we therefore conclude that the positive association between optimal parental investment ($m^{*}$) and inbreeding ($r$) is general. As inbreeding increases, so should optimal parental investment in offspring.
+We thereby arrive at the general conclusion,
+\begin{equation}
+\frac{\partial m^{*}}{\partial r} = \frac{\beta \left(m^{*} c + 1\right)}{m^{*} c}. 
+\end{equation} 
+Given the above, $\partial m^{*} / \partial r > 0$ assuming $\beta>0$ (ID), $c>0$ (offspring fitness increases with parental investment), and $m^{*}>0$ (optimum parental investment is positive). These assumptions are biologically realistic; we therefore conclude that the positive association between optimal parental investment ($m^{*}$) and inbreeding ($r$) is general. As inbreeding increases, so should optimal parental investment in offspring.
 
 \section*{Appendix 3: Consistency with biparental inbreeding models}
 
