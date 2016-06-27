@@ -2275,3 +2275,35 @@ mtext(text=expression(paste("Rate of fitness increase (",gamma,"*)")),
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+rrmm  <- expression((1/beta)*(mopt-mmin+(1/c)*log(1/(mopt*c+1))),'mopt');
+# We can use the above to differentiate fm wrt `m`
+drdm <- D(rrmm,'mopt'); # can print fmd to show solution
+# Note that drdm simplifies considerably from what R produces
+
+
+
+
+bbmm  <- expression((1/r)*(mopt-mmin+(1/c)*log(1/(mopt*c+1))),'mopt');
+dbdm <- D(bbmm,'mopt'); # can print fmd to show solution
+
+
+
+
+
+
+
+
+
+
+

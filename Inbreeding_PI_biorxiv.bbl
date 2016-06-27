@@ -1,4 +1,4 @@
-\begin{thebibliography}{34}
+\begin{thebibliography}{30}
 \providecommand{\natexlab}[1]{#1}
 
 \bibitem[{Avil{\'{e}}s and Bukowski(2006)}]{Aviles2006}
@@ -108,12 +108,6 @@ Mattey, S.~N. 2014.
 \newblock Ph.D. thesis.
 \newblock University of Edinburgh.
 
-\bibitem[{Meunier and Kolliker(2013)}]{Meunier2013}
-Meunier, J., and M.~Kolliker. 2013.
-\newblock {Inbreeding depression in an insect with maternal care: Influences of
-  family interactions, life stage and offspring sex}.
-\newblock Journal of Evolutionary Biology 26:2209--2220.
-
 \bibitem[{Michod and Anderson(1979)}]{Michod1979}
 Michod, R.~E., and W.~W. Anderson. 1979.
 \newblock {Measures of genetic relationship and the concept of inclusive
@@ -170,15 +164,6 @@ R{\"{a}}ikk{\"{o}}nen, J., J.~A. Vucetich, R.~O. Peterson, and M.~P. Nelson.
 \newblock {Congenital bone deformities and the inbred wolves (Canis lupus) of
   Isle Royale}.
 \newblock Biological Conservation 142:1025--1031.
-
-\bibitem[{Reid et~al.(2015)Reid, Arcese, Bocedi, Duthie, Wolak, and
-  Keller}]{Reid2015b}
-Reid, J.~M., P.~Arcese, G.~Bocedi, A.~B. Duthie, M.~E. Wolak, and L.~F. Keller.
-  2015.
-\newblock {Resolving the conundrum of inbreeding depression but no inbreeding
-  avoidance: estimating sex-specific selection on inbreeding by song sparrows
-  (Melospiza melodia)}.
-\newblock Evolution 69:2846--2861.
 
 \bibitem[{Smith(1977)}]{Smith1977}
 Smith, J.~M. 1977.
