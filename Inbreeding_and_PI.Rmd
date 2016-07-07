@@ -329,17 +329,17 @@ In some populations, individuals might be unable to discriminate between relativ
 Investment and fitness of an inbred parent
 ------------------------------------------------
 
-We have assumed that parents are themselves outbred, but this is unrealistic for populations in which inbreeding is expected to occur [@Duthie2015a]. We therefore consider how the degree to which a focal female is herself inbred will affect her optimum parental care ($m^{*}$) and rate of increase in fitness ($\gamma^{*}$).
+Our initial assumption that a focal female is herself outbred is likely to be violated in populations where inbreeding is expected to occur [@Duthie2015a]. We therefore consider how the degree to which a focal female is herself inbred will affect her optimum parental investment ($m^{*}$) and rate of increase in fitness ($\gamma^{*}$).
 
-To account for an inbred parent, we decompose the coefficient of relatedness $r$ into two parts [see @Hamilton1972; @Michod1979]. The first is the constituent coefficient of kinship $k$, which is the probability that a two randomly sampled homologous alleles between the focal female and her mate are identical-by-descent. The second is the focal female's own inbreeding coefficient $f$, which is the probability that two homologous alleles within the focal female are identical-by-descent. The coefficient $r$ can be defined as such,
+To account for an inbred female, we decompose the coefficient of relatedness $r$ into the underlying coefficient of kinship $k$ between the female and her mate and the female's own coefficient of inbreeding $f$ [see @Hamilton1972; @Michod1979], such that,
 
 (@rdef) $$ r = \frac{2k}{1 + f}. $$
 
-Because inbreeding depression is widely assumed to be caused by the pairing of deleterious recessive alleles [@Charlesworth2009], the value of $k$ is relevant for modelling inbreeding depression (and in fact defines an offspring's $f$). In contrast, $f$ does not directly affect the degree to which homologous deleterious recessive alleles from two different parents will pair in inbred offspring, and therefore does not contribute to inbreeding depression. To understand how $\zeta_{\textrm{off}}$ is affected by $f$ and $k$, and thereby relax the assumption that a focal female is outbred, we expand Eq @maineq,
+The coefficients $k$ and $f$ are the probabilities that two homologous alleles randomly sampled from the focal female and her mate, and two homologous alleles within the focal female, are identical-by-descent. The value of $k$ between two parents therefore defines offspring $f$. Because inbreeding depression is widely assumed to be caused by the expression of homozygous deleterious recessive alleles [@Charlesworth2009], the value of $k$ determines the degree to which ID is expressed in offspring. In contrast, a female's own $f$ does not directly affect the degree to which homologous deleterious recessive alleles from two different parents will pair in inbred offspring, and therefore does not contribute to ID. To understand how $\zeta_{\textrm{off}}$ is affected by $f$ and $k$, and thereby relax the assumption that a focal female is outbred, we expand Eq @maineq,
 
 (@maineqr) $$\zeta_{\textrm{off}} = \frac{1}{2}\left(1+\frac{2k}{1+f}\right)\left(1-e^{-c\left(m-m_{min}-2\beta k\right)}\right).$$
 
-Note that if $f=0$ (the focal female is outbred), then Eq. @maineqr reduces to Eq. @maineq because $r=2k$. Because the $f$ of a focal parent does not affect inbreeding depression in its offspring, and instead only affects the fitness increment $1/2\left(1+ 2 k / \left[1 + f\right]\right)$,  optimal PI ($m^{*}$) is unaffected by $f$ (see also Appendix 2). The degree to which a female is herself inbred therefore does not affect optimal PI.
+Because a focal female's $f$ does not affect inbreeding depression in its offspring, and instead only affects the fitness increment $1/2\left(1+ 2 k / \left[1 + f\right]\right)$,  optimal PI ($m^{*}$) is unaffected by $f$ (see also Appendix 2). The degree to which a female is herself inbred therefore does not affect optimal PI (Fig. 3).
 
 ```{r, echo=FALSE}
 OffATf <- function(f, k, m, B0=1, B1=1, c=1){
@@ -395,7 +395,7 @@ otang.f000 <- OffATf(m=omopt.f000, f=0, k=0.0, B0=1, B1=1, c=1) / omopt.f000;
 otang.f025 <- OffATf(m=omopt.f025, f=0.25, k=0.0, B0=1, B1=1, c=1) / omopt.f025;
 ```
 
-```{r, echo=FALSE, fig.cap="Relationship between parental investment (m) and the number of identical-by-descent copies of a focal female's alleles that are carried by its offspring (zeta-off) for females that are outbred (f=0; upper curve) versus females that are inbred (f=1/4; lower curve). Grey shading between the curves shows the fitness difference between outbred and inbred females across different degrees of parental investment, and m* indicates optimal parental investment."}
+```{r, echo=FALSE, fig.cap="Relationship between parental investment (m) and the number of identical-by-descent copies of a focal female's alleles that are carried by its offspring (zeta-off) for females that are outbred (f=0; upper curve) versus females that are inbred (f=1/4; lower curve). Grey shading between the curves shows the fitness difference between outbred and inbred females across different degrees of parental investment, and m* indicates optimal parental investment. Thin grey lines in the figure show tangent lines for each curve."}
 Alleles_IBD_f000 <- OffATf(k=0.25, f=0.0, m=PI, B0=1, B1=1, c=1);
 par(mar=c(5,5,2,2));
 plot(PI,Alleles_IBD_f000,type="l",lwd=1,ylim=c(0,0.95),lty="solid",
@@ -424,7 +424,7 @@ text(x=0.67,y=0.35,labels=expression(paste(italic(f==frac(1,4)))),cex=1.25);
 arrows(x0=0.87,y0=0.36,x1=1.1,y1=yof025-0.01,length = 0.15,angle=30,code=2,lwd=2);
 ```
 
-Further, the degree to which a female is inbred should only slightly affect $\gamma^{*}$, and only if $k>0$. Figure 3 illustrates the difference between two curves predicting $\zeta_{\textrm{off}}(m)$ for $f=0$ and $f=1/4$ given $k=1/4$. The bottom curve of Fig. 3 shows $\zeta_{\textrm{off}}(m)$ given $f=1/4$, and the top curve shows $\zeta_{\textrm{off}}(m)$ given $f=0$, with the difference between $\zeta_{\textrm{off}}(m)$ represented by grey shading. Where $m=m^{*}$, $\zeta_{\textrm{off}}$ is slightly higher for $f=0$, meaning that $\gamma^{*}$ (here, technically, identical-by-descent alleles carried by offspring per copy in the focal parent) is higher for outbred individuals even though optimal investment per offspring has not changed ($m^{*}_{f=0}=m^{*}_{f=1/4}$). Thin grey lines in the figure show tangent lines for each curve. Overall, Fig 3 shows a weak effect on $\gamma^{*}$ across a relatively wide range of $f$ (outbred individuals versus individuals of full sibling matings). Consequently, the degree to which an individual is inbred will have a relatively minor effect on its rate of fitness increase, but no effect on the optimal PI.
+Further, a focal female's $f$ should only slightly affect $\gamma^{*}$, and only if $k>0$.  For example, Fig. \ref{inbred_parent} shows the difference between $\zeta_{\textrm{off}}(m)$ for females that are outbred ($f=0$, top curve) versus inbred ($f=1/4$, i.e., whose parents were outbred first-order relatives, bottom curve) when each pairs with a first order relative ($k=1/4$). Where $m=m^{*}$, $\zeta_{\textrm{off}}$ is slightly higher for outbred females, meaning that $\gamma^{*}$ is higher for outbred individuals even though optimal investment per offspring is the same ($m^{*}_{f=0}=m^{*}_{f=1/4}$). Thin grey lines in the figure show tangent lines for each curve. Overall, Fig 3 shows a weak effect on $\gamma^{*}$ across a relatively wide range of $f$ (outbred individuals versus individuals of full sibling matings). Consequently, the degree to which an individual is inbred will have a small effect on its rate of fitness increase, and no effect on its optimal PI.
 
 
 Effects of biparental investment

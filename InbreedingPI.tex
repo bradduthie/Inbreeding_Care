@@ -65,7 +65,7 @@
 \begin{center}
 \vspace{5 mm}
 
-\noindent {\bf A. Bradley Duthie\textsuperscript{1,*}, Aline M. Lee\textsuperscript{1}}, and J M. Reid \\ 
+\noindent {\bf A. Bradley Duthie\textsuperscript{1,*}, Aline M. Lee\textsuperscript{1}, and Jane M. Reid} \\ 
 
 \vspace{5 mm}
 
@@ -148,28 +148,27 @@ Assuming that females allocate PI optimally, their $\gamma^{*}$ values can be co
 
 In some populations, individuals might be unable to discriminate between relatives and non-relatives, and hence unable to adjust their PI when inbreeding. We therefore consider a focal female's inclusive fitness when she cannot adjust their PI to $m^{*}$ upon inbreeding, and therefore $\gamma < \gamma^{*}$. Figure \ref{gammas_uni}B shows $\gamma$ values for females that inbreed to different degrees when they invest at the relatively low optimum $m^{*}$ of outbreeding females. When inbreeding females allocate PI as if they are outbreeding, $\gamma$ always decreases, and this fitness decrease becomes more severe with increasing $r$. While the fitness of a female that inbreeds with a first order relative ($r=1/2$) exceeds that of an outbreeding female when $\beta < 2.335$, if the inbreeding female invests at the outbreeding female's optimum, then its fitness is higher only when $\beta < 1.079$. Consequently, if parents are unable to recognise that they are inbreeding and adjust their PI accordingly, their fitness might be decreased severely relative to optimally investing parents. 
 
-% XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX %
-% XXX XXX XXX XXX XXX XXX  LEFT OFF HERE  XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX %
-% XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX %
-
 \subsection*{Investment and fitness of an inbred parent}
 
-We have assumed that parents are themselves outbred, but this is unrealistic for populations in which inbreeding is expected to occur \cite[][]{Duthie2015a}. We therefore consider how the degree to which a focal female is herself inbred will affect her optimum parental care ($m^{*}$) and rate of increase in fitness ($\gamma^{*}$).
+Our initial assumption that a focal female is herself outbred is likely to be violated in populations where inbreeding is expected to occur \cite[][]{Duthie2015a}. We therefore consider how the degree to which a focal female is herself inbred will affect her optimum parental investment ($m^{*}$) and rate of increase in fitness ($\gamma^{*}$).
 
-To account for an inbred parent, we decompose the coefficient of relatedness $r$ into two parts \cite[see][]{Hamilton1972, Michod1979}. The first is the constituent coefficient of kinship $k$, which is the probability that a two randomly sampled homologous alleles between the focal female and her mate are identical-by-descent. The second is the focal female's own inbreeding coefficient $f$, which is the probability that two homologous alleles within the focal female are identical-by-descent. The coefficient $r$ can be defined as such,
+To account for an inbred female, we decompose the coefficient of relatedness $r$ into the underlying coefficient of kinship $k$ between the female and her mate and the female's own coefficient of inbreeding $f$ \cite[see][]{Hamilton1972, Michod1979}, such that,
 \begin{equation} \label{rdef}
 r = \frac{2k}{1 + f}.
-\end{equation}
-Because ID is widely assumed to be caused by the pairing of deleterious recessive alleles \cite[][]{Charlesworth2009}, the value of $k$ is relevant for modelling ID (and in fact defines an offspring's $f$). In contrast, $f$ does not directly affect the degree to which homologous deleterious recessive alleles from two different parents will pair in inbred offspring, and therefore does not contribute to ID. To understand how $\zeta_{\textrm{off}}$ is affected by $f$ and $k$, and thereby relax the assumption that a focal female is outbred, we expand Eq. \ref{maineq},
+\end{equation} % This sentence below feels a bit clunking (hard to take), but think it works.
+The coefficients $k$ and $f$ are the probabilities that two homologous alleles randomly sampled from the focal female and her mate, and two homologous alleles within the focal female, are identical-by-descent. The value of $k$ between two parents therefore defines offspring $f$. Because ID is widely assumed to be caused by the expression of homozygous deleterious recessive alleles \cite[][]{Charlesworth2009}, the value of $k$ determines the degree to which ID is expressed in offspring. In contrast, a female's own $f$ does not directly affect the degree to which homologous deleterious recessive alleles will be expressed in offspring, and therefore does not contribute to ID. To understand how $\zeta_{\textrm{off}}$ is affected by $f$ and $k$, and thereby relax the assumption that a focal female is outbred, we expand Eq. \ref{maineq},
 \begin{equation} \label{maineqr}
 \zeta_{\textrm{off}} = \frac{1}{2}\left(1+\frac{2k}{1+f}\right)\left(1-e^{-c\left(m-m_{min}-2\beta k\right)}\right).
 \end{equation}
-Note that if $f=0$ (the focal female is outbred), then Eq. \ref{maineqr} reduces to Eq. \ref{maineq} because $r=2k$. Because the $f$ of a focal parent does not affect ID in its offspring, and instead only affects the fitness increment $1/2\left(1+ 2 k / \left[1 + f\right]\right)$, optimal PI ($m^{*}$) is unaffected by $f$  (see also Appendix 2). The degree to which a female is herself inbred therefore does not affect optimal PI. 
+Because a focal female's $f$ does not affect ID in its offspring, and instead only affects the fitness increment $1/2\left(1+ 2 k / \left[1 + f\right]\right)$, optimal PI ($m^{*}$) is unaffected by $f$  (see also Appendix 2). The degree to which a female is herself inbred therefore does not affect optimal PI (Fig. \ref{inbred_parent}). 
 
-Further, the degree to which a female is inbred should only slightly affect $\gamma^{*}$, and only if $k>0$. Figure \ref{inbred_parent} illustrates the difference between two curves predicting $\zeta_{\textrm{off}}(m)$ for $f=0$ and $f=1/4$ given $k=1/4$. The bottom curve of Fig. \ref{inbred_parent} shows $\zeta_{\textrm{off}}(m)$ given $f=1/4$, and the top curve shows $\zeta_{\textrm{off}}(m)$ given $f=0$, with the difference between $\zeta_{\textrm{off}}(m)$ represented by grey shading. Where $m=m^{*}$, $\zeta_{\textrm{off}}$ is slightly higher for $f=0$, meaning that $\gamma^{*}$ (here, technically, identical-by-descent alleles carried by offspring per copy in the focal parent) is higher for outbred individuals even though optimal investment per offspring has not changed ($m^{*}_{f=0}=m^{*}_{f=1/4}$). Thin grey lines in the figure show tangent lines for each curve. Overall, Fig \ref{inbred_parent} shows a weak effect on $\gamma^{*}$ across a relatively wide range of $f$ (outbred individuals versus individuals of full sibling matings). Consequently, the degree to which an individual is inbred will have a relatively minor effect on its rate of fitness increase, but no effect on the optimal PI.
-
+Further, a focal female's $f$ should only slightly affect $\gamma^{*}$, and only if $k>0$. For example, Fig. \ref{inbred_parent} shows the difference between $\zeta_{\textrm{off}}(m)$ for females that are outbred ($f=0$, top curve) versus inbred ($f=1/4$, i.e., whose parents were outbred first-order relatives, bottom curve) when each pairs with a first order relative ($k=1/4$). Where $m=m^{*}$, $\zeta_{\textrm{off}}$ is slightly higher for outbred females, meaning that $\gamma^{*}$ is higher for outbred females than for inbred females even though optimal investment per offspring is the same ($m^{*}_{f=0}=m^{*}_{f=1/4}$). Overall, Fig \ref{inbred_parent} shows a small effect on $\gamma^{*}$ across a relatively wide range of $f$ (outbred individuals versus individuals of full sibling matings). Consequently, the degree to which an individual is inbred will have a small effect on its rate of fitness increase, and no effect on its optimal PI.
 
 \subsection*{Effects of biparental investment}
+
+% XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX %
+% XXX XXX XXX XXX XXX XXX  LEFT OFF HERE  XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX %
+% XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX %
 
 We have assumed that only one parent provides PI. We now consider the opposite extreme, where PI is provided by both parents, which pair exactly once in life and therefore have completely overlapping fitness interests \cite[i.e., strict monogamy; see][]{Parker1985}. Given outbreeding, $m^{*}$ does not change from single parent PI, but twice as many offspring are produced due to a doubled investment budget $2M$ \cite[][]{Parker1985}. However, $m^{*}$ for monogamy will differ from $m^{*}$ for single parent PI if monogamous parents are related because a male is by definition precluded from mating with another female, and therefore pays a complete opportunity cost for inbreeding \cite[][]{Waser1986}. A focal female will thereby lose any indirect fitness increment that she would have otherwise received from having her related mate also breed with other females. To incorporate this cost, it is now necessary to consider both the direct and indirect fitness consequences of inbreeding explicitly. We assume that if a focal female avoids inbreeding, her male relative will instead outbreed, and that parents invest optimally for any given $\beta$; we define $m^{*}_{0}$ as optimal investment for outbreeding and $m^{*}_{r}$ as optimal investment for inbreeding to the degree $r$. Therefore, if a focal female avoids inbreeding,
 \begin{equation} \label{optPI}
@@ -333,7 +332,7 @@ To show that inbreeding with first order relatives returns a higher fitness than
 \begin{center}				
 \includegraphics[scale=0.8]{inbred_parent.pdf}
 \end{center}
-\caption{Relationship between parental investment ($m$) and the number of identical-by-descent copies of a focal female's alleles that are carried by its offspring ($\zeta_{\textrm{off}}$) for females that are outbred ($f=0$; upper curve) versus females that are inbred ($f=1/4$; lower curve). Grey shading between the curves shows the fitness difference between outbred and inbred females across different degrees of parental investment, and $m^{*}$ indicates optimal parental investment.}
+\caption{Relationship between parental investment ($m$) and the number of identical-by-descent copies of a focal female's alleles that are carried by its offspring ($\zeta_{\textrm{off}}$) for females that are outbred ($f=0$; upper curve) versus females that are inbred ($f=1/4$; lower curve). Grey shading between the curves shows the fitness difference between outbred and inbred females across different degrees of parental investment, and $m^{*}$ indicates optimal parental investment. Thin grey lines in the figure show tangent lines for each curve.}
 \label{inbred_parent}
 \end{figure}
 
