@@ -141,7 +141,7 @@ We consider a focal diploid parent (hereafter assumed to be a stereotypical fema
 \begin{equation} \label{maineq}
 \zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right).
 \end{equation}
-Our model can be conceptualised in two pieces (parameters are summarised in Table \ref{parameters}). The first expression $\left(1/2\right) \left(1 + r\right)$ is the fitness increment that a female gains from identical-by-descent alleles inherited by her offspring, as affected by the coefficient of relatedness between the female and the sire of her offspring ($r$) scaled by $1/2$ to give each parent's genetic contribution to its offspring. The second expression $\left(1 - \exp\left[-c\left(m-m_{min}-\beta r\right)\right]\right)$ is the individual offspring's viability as a function of $m$ and $r$. Offspring viability is also affected by a minimum value of $m$ required for viability to exceed zero ($m_{min}$), ID ($\beta$), and the shape of the curve relating PI to viability ($c$; i.e., how `diminishing' returns in $\zeta_{\textrm{off}}$ are with increasing $m$). When a focal female inbreeds, the first expression increases because more identical-by-descent alleles are inherited by inbred offspring, but the second expression decreases if $\beta>0$ due to ID. However, increased PI ($m$) can offset ID and thereby increase $\zeta_{\textrm{off}}$.
+Our model can be conceptualised in two pieces (parameters are summarised in Table 1). The first expression $\left(1/2\right) \left(1 + r\right)$ is the fitness increment that a female gains from identical-by-descent alleles inherited by her offspring, as affected by the coefficient of relatedness between the female and the sire of her offspring ($r$) scaled by $1/2$ to give each parent's genetic contribution to its offspring. The second expression $\left(1 - \exp\left[-c\left(m-m_{min}-\beta r\right)\right]\right)$ is the individual offspring's viability as a function of $m$ and $r$. Offspring viability is also affected by a minimum value of $m$ required for viability to exceed zero ($m_{min}$), ID ($\beta$), and the shape of the curve relating PI to viability ($c$; i.e., how `diminishing' returns in $\zeta_{\textrm{off}}$ are with increasing $m$). When a focal female inbreeds, the first expression increases because more identical-by-descent alleles are inherited by inbred offspring, but the second expression decreases if $\beta>0$ due to ID. However, increased PI ($m$) can offset ID and thereby increase $\zeta_{\textrm{off}}$.
 
 When $r=0$ (outbreeding), $\beta=0$ and Eq. \ref{maineq} reduces to standard models of PI that assume outbreeding \cite[e.g.,][]{Macnair1978, Parker1978}, but with the usual parameter $K$ replaced by $1/2$, thereby explicitly representing identical-by-descent alleles instead of an arbitrary constant affecting offspring fitness. Similarly, given $\delta = \exp\left[-c\left(m-m_{min}-\beta r\right)\right]$, Eq. \ref{maineq} reduces to standard models of biparental inbreeding that assume PI is fixed, where $\delta$ defines reduced viability of inbred versus outbred offspring \cite[see][]{Kokko2006, Parker2006, Duthie2015a}.  All offspring have equal viability as $m \to \infty$. Consequently, we assume that sufficient PI can always compensate for ID, but key conclusions remain unchanged when this assumption is relaxed (Supporting Information p. S1-2).
 \marginpar{
@@ -177,12 +177,12 @@ $\gamma$                & Female's rate of fitness increase &
 \subsection*{Parental investment and fitness given inbreeding}
 
 \marginpar{
-\vspace{0.5cm} 
+\vspace{0.2cm} 
 \color{Gray} 
 \textbf{Figure \ref{mcurves_uni}:} 
 (A) Relationship between parental investment ($m$) and the number of identical-by-descent copies of a focal female's alleles inherited by its offspring ($\zeta_{\textrm{off}}$) for females that outbreed (solid curve) and females that inbreed with a first order relative (dashed curve). Tangent lines identify optimal parental investment, and their slopes define a female's rate of fitness increase when outbreeding (solid line) and inbreeding with a first order relative (dashed line). (B) Relationship between the magnitude of inbreeding depression ($\beta$) and optimal parental investment ($m^{*}$) across four degrees of relatedness ($r$) between a focal female and her mate given $m_{min}=1$ and $c=1$.
 }
-\begin{wrapfigure}[25]{l}{75mm}
+\begin{wrapfigure}[23]{l}{75mm}
 % the number in [] of wrapfigure is optional and gives the number of text lines that should be wrapped around the text. Adjust according to your figures height
 \includegraphics[width=75mm]{mcurves_uni.pdf}
 \captionsetup{labelformat=empty} % makes sure dummy caption is blank
@@ -307,7 +307,7 @@ Parent-offspring conflict is a focal theoretical interest of many PI models, whi
 
 \subsection*{Acknowledgments}
 
-This work was funded by a European Research Council Starting Grant to JMR.
+This work was funded by a European Research Council Starting Grant to JMR. We thank Greta Bocedi, Ryan Germain, and Matthew Wolak for helpful comments.
 
 \subsection*{Appendix 1: Sample derivations of $m^{*}$ and $\gamma^{*}$}
 
