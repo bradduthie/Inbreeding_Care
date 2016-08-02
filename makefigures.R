@@ -568,7 +568,7 @@ mstrgm1 <- OffATr(r=0.125, m=mstr125, mmin=1, Beta=moBB, c=1) / mstr125;
 mstrgm2 <- OffATr(r=0.250, m=mstr250, mmin=1, Beta=moBB, c=1) / mstr250;
 mstrgm5 <- OffATr(r=0.500, m=mstr500, mmin=1, Beta=moBB, c=1) / mstr500;
 plot(x=mvals,y=mvr000,type="l",lwd=3,ylim=c(0.0,0.21),pch=1.5,yaxt="n",
-     ylab=expression(paste("Rate of fitness increase (",gamma,")")),
+     ylab=expression(paste("Female's inclusive fitness (",gamma,")")),
      cex.lab=1.5,cex.axis=1.5,xaxs="i",yaxs="i",xaxt="n");
 axis(side=2,at=c(0,0.05,0.10,0.15,0.20),labels=TRUE,cex.axis=1.5);
 axis(side=1,at=c(1,2,3,4,5,6),cex.axis=1.5);
