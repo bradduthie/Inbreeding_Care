@@ -61,6 +61,11 @@ Geffen, E., M.~Kam, R.~Hefner, P.~Hersteinsson, A.~Angerbj{\"{o}}rn,
 \newblock {Kin encounter rate and inbreeding avoidance in canids}.
 \newblock Molecular Ecology 20:5348--5358.
 
+\bibitem[{Grafen(2006)}]{Grafen2006}
+Grafen, A. 2006.
+\newblock {Optimization of inclusive fitness}.
+\newblock Journal of Theoretical Biology 238:541--563.
+
 \bibitem[{Hamilton(1964{\natexlab{\emph{a}}})}]{Hamilton1964}
 Hamilton, W.~D. 1964{\natexlab{\emph{a}}}.
 \newblock {The genetical evolution of social behaviour. I}.
@@ -196,6 +201,7 @@ R{\"{a}}ikk{\"{o}}nen, J., J.~A. Vucetich, R.~O. Peterson, and M.~P. Nelson.
   Arcese}]{Reid2016}
 Reid, J.~M., G.~Bocedi, P.~Nietlisbach, A.~B. Duthie, E.~Matthew, E.~A. Gow,
   and P.~Arcese. 2016.
+
 \newblock {Variation in parent-offspring kinship in socially monogamous systems
   with extra-pair reproduction and inbreeding}.
 \newblock Evolution 70:1512--1529.
