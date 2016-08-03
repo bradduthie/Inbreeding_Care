@@ -1,247 +1,201 @@
 \begin{thebibliography}{10}
-
-\bibitem{Frank2012a}
-Frank SA. 2012.
-\newblock {Natural selection. III. Selection versus transmission and the levels
-  of selection}.
-\newblock \textit{Journal of Evolutionary Biology}. \textbf{25}, 227--243.
-
-\bibitem{Grafen2015a}
-Grafen A.
-\newblock {Biological fitness and the fundamental theorem of natural
-  selection}.
-\newblock American Naturalist. 2015;186(1):1--14.
-
-\bibitem{Reznick2016}
-Reznick D.
-\newblock {Hard and soft selection revisited: How evolution by natural
-  selection works in the real world}.
-\newblock Journal of Heredity. 2016;107(1):3--14.
-
-\bibitem{Darwin1859}
-Darwin C.
-\newblock {The Origin of Species}.
-\newblock New York: Penguin; 1859.
-
-\bibitem{Dawkins1982}
-Dawkins R.
-\newblock {The Extended Phenotype}.
-\newblock Revised ed ed. Oxford: Oxford University Press; 1982.
-
-\bibitem{Hamilton1964}
-Hamilton WD.
-\newblock {The genetical evolution of social behaviour. I}.
-\newblock Journal of Theoretical Biology. 1964 jul;7(1):1--16.
-
-\bibitem{Hamilton1964a}
-Hamilton WD.
-\newblock {The genetical evolution of social behaviour. II}.
-\newblock Journal of Theoretical Biology. 1964 jul;7(1):17--52.
-
-\bibitem{Grafen2006}
-Grafen A.
-\newblock {Optimization of inclusive fitness}.
-\newblock Journal of Theoretical Biology. 2006 feb;238(3):541--563.
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
 
 \bibitem{Fisher2013}
-Fisher RM, Cornwallis CK, West SA.
-\newblock {Group formation, relatedness, and the evolution of
-  multicellularity}.
-\newblock Current Biology. 2013;23(12):1120--1125.
+Fisher RM, Cornwallis CK, West SA. 2013 {Group formation,
+  relatedness, and the evolution of multicellularity}. \textit{Curr. Biol.}
+  \textbf{23}, 1120--1125, \doi{10.1016/j.cub.2013.05.004}.
 
 \bibitem{Bourke2014}
-Bourke AFG.
-\newblock {Hamilton's rule and the causes of social evolution}.
-\newblock Philosophical Transactions of the Royal Society B.
-  2014;369(1642):20130362.
-
-\bibitem{Liao2015}
-Liao X, Rong S, Queller DC.
-\newblock {Relatedness, conflict, and the evolution of eusociality}.
-\newblock PLoS Biology. 2015;13(2):1--14.
+Bourke AFG. 2014 {Hamilton's rule and the causes of social evolution}.
+  \textit{Phil. Trans. R. Soc. B} \textbf{369},
+  20130362, \doi{10.1098/rstb.2013.0362}.
 
 \bibitem{Gardner2014}
-Gardner A, West SA.
-\newblock {Inclusive fitness: 50 years on}.
-\newblock Philosophical Transactions of the Royal Society B. 2014;369:20130356.
+Gardner A, West SA. 2014 {Inclusive fitness: 50 years on}.
+  \textit{Phil. Trans. R. Soc. B} \textbf{369},
+  20130356.
+
+\bibitem{Liao2015}
+Liao, X, Rong S, Queller DC. 2015 {Relatedness, conflict, and the
+  evolution of eusociality}. \textit{PLoS Biol.} \textbf{13}, 1--14,
+  \doi{10.1371/journal.pbio.1002098}.
+
+\bibitem{Hamilton1964}
+Hamilton, WD. 1964 {The genetical evolution of social behaviour. I}.
+  \textit{J. Theor. Biol.} \textbf{7}, 1--16.
+
+\bibitem{Hamilton1964a}
+Hamilton WD. 1964 {The genetical evolution of social behaviour. II}.
+  \textit{J. Theor. Biol.} \textbf{7}, 17--52.
 
 \bibitem{Frank2013}
-Frank SA.
-\newblock {Natural selection. VII. History and interpretation of kin selection
-  theory}.
-\newblock Journal of Evolutionary Biology. 2013;26(6):1151--1184.
-
-\bibitem{Trivers1972}
-Trivers R.
-\newblock {Parental investment and sexual selection}.
-\newblock In: Campbell B, editor. Sexual Selection and the Descent of Man,
-  1871-1971. London: Heinemann; 1972. p. 136--179.
-
-\bibitem{Trivers1974}
-Trivers R.
-\newblock {Parent-Offspring Conflict}.
-\newblock American Zoologist. 1974;14(1):249--264.
-
-\bibitem{Kolliker2015}
-K{\"{o}}lliker M, Boos S, Wong JWY, R{\"{o}}llin L, Stucki D, Raveh S, et~al.
-\newblock {Parent-offspring conflict and the genetic trade-offs shaping
-  parental investment}.
-\newblock Nature Communications. 2015;6:6850.
-
-\bibitem{Parker1979}
-Parker GA.
-\newblock {Sexual selection and sexual conflict}.
-\newblock In: Blum MS, Blum NA, editors. Sexual selection and reproductive
-  competition in insects. New York: Academic Press, Inc; 1979. p. 123--166.
+Frank SA. 2013 {Natural selection. VII. History and interpretation of kin
+  selection theory}. \textit{J. Evol. Biol.} \textbf{26},
+  1151--1184, \doi{10.1111/jeb.12131}.
 
 \bibitem{Parker2006}
-Parker GA.
-\newblock {Sexual conflict over mating and fertilization: an overview}.
-\newblock Philosophical Transactions of the Royal Society B. 2006
-  feb;361(1466):235--259.
+Parker GA. 2006 {Sexual conflict over mating and fertilization: an
+  overview}. \textit{Phil. Trans. R. Soc. B}
+  \textbf{361}, 235--259, \doi{10.1098/rstb.2005.1785}.
+
+\bibitem{Trivers1972}
+Trivers R. 1972 {Parental investment and sexual selection}, in \textit{Sexual
+  selection and the descent of man, 1871-1971} (ed. B.~Campbell), chap.~7, pp.
+  136--179, London: Heinemann.
+
+\bibitem{Trivers1974}
+Trivers R. 1974 {Parent-offspring conflict}. \textit{Am. Zool.}
+  \textbf{14}, 249--264, \doi{10.1093/icb/14.1.249}.
+
+\bibitem{Kolliker2015}
+K{\"{o}}lliker M, Boos S, Wong JWY, R{\"{o}}llin L, Stucki D,
+  Raveh S, Wu M, Meunier J. 2015 {Parent-offspring conflict and the
+  genetic trade-offs shaping parental investment}. \textit{Nature
+  Comm.} \textbf{6}, 6850, \doi{10.1038/ncomms7850}.
+
+\bibitem{Parker1979}
+Parker GA. 1979 {Sexual selection and sexual conflict}, in \textit{Sexual
+  selection and reproductive competition in insects} (eds. M.~S. Blum \& N.~A.
+  Blum), pp. 123--166, New York: Academic Press, Inc.
 
 \bibitem{Kokko2006}
-Kokko H, Ots I.
-\newblock {When not to avoid inbreeding}.
-\newblock Evolution. 2006;60(3):467--475.
+Kokko H, Ots I. 2006 {When not to avoid inbreeding}. \textit{Evolution}
+  \textbf{60}, 467--475.
 
 \bibitem{Duthie2015a}
-Duthie AB, Reid JM.
-\newblock {What happens after inbreeding avoidance? Inbreeding by rejected
-  relatives and the inclusive fitness benefit of inbreeding avoidance}.
-\newblock PLoS One. 2015;10(4):e0125140.
+Duthie AB, Reid JM. 2015 {What happens after inbreeding avoidance?
+  Inbreeding by rejected relatives and the inclusive fitness benefit of
+  inbreeding avoidance}. \textit{PLoS One} \textbf{10}, e0125140,
+  \doi{10.1371/journal.pone.0125140}.
 
 \bibitem{Lynch1998}
-Lynch M, Walsh B.
-\newblock {Genetics and Analysis of Quantitative Traits}.
-\newblock Sunderland: Sinauer; 1998.
+Lynch M, Walsh B. 1998 \textit{{Genetics and analysis of quantitative
+  traits}}, Sunderland: Sinauer.
 
 \bibitem{Reid2016}
-Reid JM, Bocedi G, Nietlisbach P, Duthie AB, Matthew E, Gow EA, et~al.
-\newblock {Variation in parent-offspring kinship in socially monogamous systems
-  with extra-pair reproduction and inbreeding}.
-\newblock Evolution. 2016;.
+Reid JM, Bocedi G, Nietlisbach P, Duthie AB, Matthew E, Gow
+  EA, Arcese P. 2016 {Variation in parent-offspring kinship in socially
+  monogamous systems with extra-pair reproduction and inbreeding}.
+  \textit{Evolution} \textbf{70}, 1512--1529, \doi{10.1111/evo.12953}.
 
 \bibitem{Szulkin2012}
-Szulkin M, Stopher KV, Pemberton JM, Reid JM.
-\newblock {Inbreeding avoidance, tolerance, or preference in animals?}
-\newblock Trends in Ecology {\&} Evolution. 2013 nov;28(4):205--211.
+Szulkin M, Stopher KV, Pemberton JM, Reid JM, 2013 {Inbreeding
+  avoidance, tolerance, or preference in animals?} \textit{Trends Ecol. Evol.} 
+  \textbf{28}, 205--211, \doi{10.1016/j.tree.2012.10.016}.
 
 \bibitem{Waser1986}
-Waser PM, Austad SN, Keane B.
-\newblock {When should animals tolerate inbreeding?}
-\newblock American Naturalist. 1986;128(4):529--537.
+Waser PM, Austad SN, Keane B. 1986 {When should animals tolerate
+  inbreeding?} \textit{Am. Nat.} \textbf{128}, 529--537.
 
 \bibitem{Macnair1978}
-Macnair MR, Parker GA.
-\newblock {Models of parent-offspring conflict. II. Promiscuity}.
-\newblock Animal Behaviour. 1978;26(PART 1):111--122.
+Macnair MR, Parker GA. 1978 {Models of parent-offspring conflict. II.
+  Promiscuity}. \textit{Anim. Behav.} \textbf{26}, 111--122,
+  \doi{10.1016/0003-3472(78)90010-6}.
 
 \bibitem{Parker1978}
-Parker GA, Macnair MR.
-\newblock {Models of parent-offspring conflict. I. Monogamy}.
-\newblock Animal Behaviour. 1978;26(PART 1):97--110.
+Parker GA, Macnair MR. 1978 {Models of parent-offspring conflict. I.
+  Monogamy}. \textit{Anim. Behav.} \textbf{26}, 97--110,
+  \doi{10.1016/0003-3472(78)90009-X}.
 
 \bibitem{Parker1985}
-Parker GA.
-\newblock {Models of parent-offspring conflict. V. Effects of the behaviour of
-  the two parents}.
-\newblock Animal Behaviour. 1985;33(2):519--533.
+Parker GA. 1985 {Models of parent-offspring conflict. V. Effects of the
+  behaviour of the two parents}. \textit{Anim. Behav.} \textbf{33},
+  519--533, \doi{10.1016/S0003-3472(85)80075-0}.
 
 \bibitem{DeJong2005}
-{De Jong} TJ, {Van Dijk} H, Klinkhamer PGL.
-\newblock {Hamilton's rule, imprinting and parent-offspring conflict over seed
-  mass in partially selfing plants}.
-\newblock Journal of Evolutionary Biology. 2005 may;18(3):676--682.
+{De Jong} TJ, {Van Dijk} H, Klinkhamer PGL. 2005 {Hamilton's
+  rule, imprinting and parent-offspring conflict over seed mass in partially
+  selfing plants}. \textit{J. Evol. Biol.} \textbf{18},
+  676--682, \doi{10.1111/j.1420-9101.2004.00856.x}.
 
 \bibitem{Kuijper2012}
-Kuijper B, Johnstone RA.
-\newblock {How dispersal influences parent-offspring conflict over investment}.
-\newblock Behavioral Ecology. 2012;23(4):898--906.
+Kuijper B, Johnstone RA. 2012 {How dispersal influences
+  parent-offspring conflict over investment}. \textit{Behav. Ecol.}
+  \textbf{23}, 898--906, \doi{10.1093/beheco/ars054}.
 
 \bibitem{OGrady2006}
-O'Grady JJ, Brook BW, Reed DH, Ballou JD, Tonkyn DW, Frankham R.
-\newblock {Realistic levels of inbreeding depression strongly affect extinction
-  risk in wild populations}.
-\newblock Biological Conservation. 2006 nov;133(1):42--51.
+O'Grady JJ, Brook BW, Reed DH, Ballou JD, Tonkyn DW,
+  Frankham R. 2006 {Realistic levels of inbreeding depression strongly affect
+  extinction risk in wild populations}. \textit{Biol. Cons.}
+  \textbf{133}, 42--51, \doi{10.1016/j.biocon.2006.05.016}.
 
 \bibitem{Charlesworth2009}
-Charlesworth D, Willis JH.
-\newblock {The genetics of inbreeding depression}.
-\newblock Nature Reviews Genetics. 2009 nov;10(11):783--796.
+Charlesworth D, Willis JH. 2009 {The genetics of inbreeding
+  depression}. \textit{Nature Rev. Genet.} \textbf{10}, 783--796,
+  \doi{10.1038/nrg2664}.
 
 \bibitem{Penn2010}
-Penn DJ, Frommen JG.
-\newblock {Kin recognition: an overview of conceptual issues, mechanisms and
-  evolutionary thinking}.
-\newblock In: Kappeler P, editor. Animal Behaviour: Evolution and Mechanisms.
-  London: Springer; 2010. p. 55--86.
+Penn DJ, Frommen JG. 2010 {Kin recognition: an overview of conceptual
+  issues, mechanisms and evolutionary thinking}, in \textit{Animal behaviour:
+  evolution and mechanisms} (ed. P.~Kappeler), chap.~3, pp. 55--86, London:
+  Springer.
 
 \bibitem{Hamilton1972}
-Hamilton WD.
-\newblock {Altruism and related phenomena, mainly in social insects}.
-\newblock Annual Review of Ecology and Systematics. 1972;3:193--232.
+Hamilton WD. 1972 {Altruism and related phenomena, mainly in social
+  insects}. \textit{Annu. Rev. Ecol. Syst.} \textbf{3},
+  193--232.
 
 \bibitem{Michod1979}
-Michod RE, Anderson WW.
-\newblock {Measures of genetic relationship and the concept of inclusive
-  fitness}.
-\newblock American Naturalist. 1979;114(5):637--647.
+Michod RE, Anderson WW. 1979 {Measures of genetic relationship and
+  the concept of inclusive fitness}. \textit{Am. Nat.} \textbf{114},
+  637--647.
 
 \bibitem{Keller2002}
-Keller LF, Waller DM.
-\newblock {Inbreeding effects in wild populations}.
-\newblock Trends in Ecology {\&} Evolution. 2002;17(5):19--23.
+Keller LF, Waller DM. 2002 {Inbreeding effects in wild populations}.
+  \textit{Trends Ecol. Evol.} \textbf{17}, 19--23.
 
 \bibitem{Parker2002}
-Parker GA, Royle NJ, Hartley IR.
-\newblock {Intrafamilial conflict and parental investment: a synthesis.}
-\newblock Philosophical Transactions of the Royal Society B.
-  2002;357(1419):295--307.
+Parker GA, Royle NJ, Hartley IR. 2002 {Intrafamilial conflict and
+  parental investment: a synthesis.} \textit{Phil. Trans. R. Soc. B} 
+  \textbf{357}, 295--307, \doi{10.1098/rstb.2001.0950}.
 
 \bibitem{Pilakouta2015}
-Pilakouta N, Jamieson S, Moorad JA, Smiseth PT.
-\newblock {Parental care buffers against inbreeding depression in burying
-  beetles}.
-\newblock Proceedings of the National Academy of Sciences.
-  2015;112(26):201500658.
+Pilakouta N, Jamieson S, Moorad JA, Smiseth PT. 2015 {Parental
+  care buffers against inbreeding depression in burying beetles}.
+  \textit{Proc. Natl Acad. Sci. USA} \textbf{112},
+  201500658, \doi{10.1073/pnas.1500658112}.
 
 \bibitem{Aviles2006}
-Avil{\'{e}}s L, Bukowski TC.
-\newblock {Group living and inbreeding depression in a subsocial spider}.
-\newblock Proceedings of the Royal Society B. 2006;273(1583):157--163.
+Avil{\'{e}}s L, Bukowski TC. 2006 {Group living and inbreeding
+  depression in a subsocial spider}. \textit{Proc. R. Soc. B} 
+  \textbf{273}, 157--163, \doi{10.1098/rspb.2005.3308}.
 
 \bibitem{Liberg2005}
-Liberg O, Andr{\'{e}}n H, Pedersen HC, Sand H, Sejberg D, Wabakken P, et~al.
-\newblock {Severe inbreeding depression in a wild wolf (Canis lupus)
-  population}.
-\newblock Biology letters. 2005 mar;1(1):17--20.
+Liberg O, Andr{\'{e}}n H, Pedersen H-C, Sand H, Sejberg D, Wabakken
+  P, Kesson M, Bensch S. 2005 {Severe inbreeding depression in a wild
+  wolf (\textit{Canis lupus}) population}. \textit{Biol. Lett.} \textbf{1}, 17--20,
+  \doi{10.1098/rsbl.2004.0266}.
 
 \bibitem{Fredrickson2007}
-Fredrickson RJ, Siminski P, Woolf M, Hedrick PW.
-\newblock {Genetic rescue and inbreeding depression in Mexican wolves.}
-\newblock Proceedings of The Royal Society B. 2007;274(1623):2365--2371.
+Fredrickson RJ, Siminski P, Woolf M, Hedrick PW. 2007 {Genetic
+  rescue and inbreeding depression in Mexican wolves.} \textit{Proc. R. Soc. B} 
+  \textbf{274}, 2365--2371, \doi{10.1098/rspb.2007.0785}.
 
 \bibitem{Raikkonen2009}
 R{\"{a}}ikk{\"{o}}nen J, Vucetich JA, Peterson RO, Nelson MP.
-\newblock {Congenital bone deformities and the inbred wolves (Canis lupus) of
-  Isle Royale}.
-\newblock Biological Conservation. 2009;142(5):1025--1031.
+  2009 {Congenital bone deformities and the inbred wolves (\textit{Canis lupus}) of Isle
+  Royale}. \textit{Biol. Cons.} \textbf{142}, 1025--1031,
+  \doi{10.1016/j.biocon.2009.01.014}.
 
 \bibitem{Geffen2011}
-Geffen E, Kam M, Hefner R, Hersteinsson P, Angerbj{\"{o}}rn A, Dal{\`{e}}n L,
-  et~al.
-\newblock {Kin encounter rate and inbreeding avoidance in canids}.
-\newblock Molecular Ecology. 2011 dec;20:5348--5358.
+Geffen E, Kam M, Hefner R, Hersteinsson P, Angerbj{\"{o}}rn A,
+  Dal{\`{e}}n L, Fuglei E, Nor{\`{e}}n K, Adams JR, Vucetich J,
+  Meier TJ, Mech LD, Vonholdt BM, Stahler DR, Wayne RK.
+  2011 {Kin encounter rate and inbreeding avoidance in canids}.
+  \textit{Mol. Ecol.} \textbf{20}, 5348--5358,
+  \doi{10.1111/j.1365-294X.2011.05358.x}.
 
 \bibitem{Smith1977}
-Maynard Smith, J.
-\newblock {Parental investment: A prospective analysis}.
-\newblock Animal Behaviour. 1977;25(PART 1):1--9.
+Maynard Smith J. 1977 {Parental investment: A prospective analysis}.
+  \textit{Anim. Behav.} \textbf{25}, 1--9,
+  \doi{10.1016/0003-3472(77)90062-8}.
 
 \bibitem{Mattey2014}
-Mattey SN.
-\newblock {Social effects of inbreeding associated with parental care}.
-\newblock University of Edinburgh; 2014.
+Mattey SN. 2014 \textit{{Social effects of inbreeding associated with
+  parental care}}, Ph.D. thesis, University of Edinburgh.
 
 \end{thebibliography}
