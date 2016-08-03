@@ -4,6 +4,12 @@
   \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
   \urlstyle{rm}\Url}\fi
 
+\bibitem{Grafen2006}
+Grafen, A. 2006.
+  \newblock {Optimization of inclusive fitness}.
+  \newblock J. Theor. Biol. \textbf{238}, 541--563, 
+  \doi{10.1016/j.jtbi.2005.06.009}
+
 \bibitem{Fisher2013}
 Fisher RM, Cornwallis CK, West SA. 2013 {Group formation,
   relatedness, and the evolution of multicellularity}. \textit{Curr. Biol.}
