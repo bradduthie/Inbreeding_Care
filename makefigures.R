@@ -105,7 +105,7 @@ text(x=r05m,y=0.145,labels=expression(paste(italic(m),"*"[r==1/2])),cex=1.0);
 # --------------------------------------------------------------------
 plot(x=bss,y=rg000$mvl,type="l",lwd=2,ylim=c(2,6),pch=1.5,
      xlab=expression(paste("Inbreeding depression (",beta,")")),
-     ylab=expression(paste("Optimum PI (",italic(m),"*)")),
+     ylab=expression(paste("Optimal PI (",italic(m),"*)")),
      cex.lab=1.5,cex.axis=1.5);
 points(x=bss,y=rg125$mvl,type="l",lwd=2);
 points(x=bss,y=rg250$mvl,type="l",lwd=2);
@@ -181,7 +181,7 @@ text(x=bss[10],y=rg125nk$gam[10]+0.005,labels="r=1/8",srt=-16,cex=1);
 text(x=bss[7],y=rg250nk$gam[7]+0.005,labels="r=1/4",srt=-40,cex=1);
 text(x=bss[4]+0.075,y=rg500nk$gam[4]+0.002,labels="r=1/2",srt=-65,cex=1);
 text(x=4.95,y=0.213,labels="B",cex=2.5);
-mtext(text=expression(paste("Rate of fitness increase (",gamma,")")),
+mtext(text=expression(paste("Focal female's inclusive fitness (",gamma,")")),
       side=2,line=2, cex=1.5, col="black", outer=TRUE);
 dev.off();
 #----------------------------------------------------------------
@@ -323,7 +323,7 @@ text(x=0.15,y=0.925,labels="A",cex=2.5);
 # --------------------------------------------------------------------
 plot(x=bss,y=rg000$mvl,type="l",lwd=2,ylim=c(2,6),pch=1.5,
      xlab=expression(paste("Inbreeding depression (",beta,")")),
-     ylab=expression(paste("Optimum PI (",italic(m),"*)")),
+     ylab=expression(paste("Optimal PI (",italic(m),"*)")),
      cex.lab=1.5,cex.axis=1.5);
 points(x=bss,y=rg125$mvl,type="l",lwd=2);
 points(x=bss,y=rg250$mvl,type="l",lwd=2);
@@ -372,7 +372,7 @@ text(x=bss[7],y=r250_000pt[7]+0.005,labels="r=1/4",srt=-34,cex=1);
 text(x=bss[4]+0.06,y=r500_000pt[4]+0.004,labels="r=1/2",srt=-65,cex=1);
 text(x=4.95,y=0.174,labels="B",cex=2.5);
 #----------------------------------------------------------------
-mtext(text=expression(paste("Rate of fitness increase (",gamma,")")),
+mtext(text=expression(paste("Monogamous focal female's inclusive fitness (",gamma,")")),
       side=2,line=2, cex=1.75, col="black",outer=TRUE);
 dev.off();
 
@@ -445,9 +445,9 @@ plot(PI,Alleles_IBD_f000,type="l",lwd=1,ylim=c(0,0.95),lty="solid",
 abline(h=0,lty="dotted",lwd=0.8);
 Alleles_IBD_f025 <- OffATf(k=0.25, f=0.25, m=PI, B0=1, B1=1, c=1);
 abline(b=itang.f000,a=0,lty="solid",lwd=0.5,col="grey40");
-abline(b=itang.f025,a=0,lty="solid",lwd=0.5,col="grey40");
+abline(b=itang.f025,a=0,lty="dotdash",lwd=0.5,col="grey40");
 polygon(x=c(PI,rev(PI)),y=c(Alleles_IBD_f000,rev(Alleles_IBD_f025)),col="grey70",border=NA);
-points(PI,Alleles_IBD_f025,type="l",lwd=1,col="black",lty="solid");
+points(PI,Alleles_IBD_f025,type="l",lwd=1,col="black",lty="dotdash");
 points(PI,Alleles_IBD_f000,type="l",lwd=1,col="black",lty="solid");
 yof000 <- OffATf(k=0.25, f=0.0,  m=imopt.f000, B0=1, B1=1, c=1);
 yof025 <- OffATf(k=0.25, f=0.25, m=imopt.f025, B0=1, B1=1, c=1);
