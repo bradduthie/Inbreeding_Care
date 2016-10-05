@@ -123,6 +123,7 @@ Inbreeding, inclusive fitness, mate choice, parental investment, relatedness, re
 Inbreeding increases parent-offspring relatedness and commonly reduces offspring viability, shaping selection on reproductive interactions involving relatives and associated parental investment (PI). Nevertheless, theories predicting selection for inbreeding versus inbreeding avoidance and selection for optimal PI have only been considered separately, precluding prediction of optimal PI and associated reproductive strategy given inbreeding. We unify inbreeding and PI theory, demonstrating that optimal PI increases when a female's inbreeding decreases the viability of her offspring. Inbreeding females should therefore produce fewer offspring due to the fundamental trade-off between offspring number and PI. Accordingly, selection for inbreeding versus inbreeding avoidance changes when females can adjust PI with the degree that they inbreed. In contrast, optimal PI does not depend on whether a focal female is herself inbred. However, inbreeding causes optimal PI to increase given strict monogamy and associated biparental investment compared to female-only investment. Our model implies that understanding evolutionary dynamics of inbreeding strategy, inbreeding depression, and PI requires joint consideration of the expression of each in relation to the other. Overall, we demonstrate that existing PI and inbreeding theories represent special cases of a more general theory, implying that intrinsic links between inbreeding and PI affect evolution of behaviour and intra-familial conflict.
 
 \section*{Introduction}
+
 Inclusive fitness theory identifies how natural selection will act at any given level of biological organisation \cite[][]{Grafen2006}. It thereby provides key evolutionary insights \cite[][]{Fisher2013, Bourke2014, Gardner2014, Liao2015}, perhaps most iconically explaining self-sacrificial behaviour of focal individuals by accounting for the increased reproductive success of related beneficiaries that carry replica copies of alleles \cite[][]{Hamilton1964, Hamilton1964a, Frank2013}. Inclusive fitness theory also identifies relatedness as a central cause of sexual conflict over mating and fertilisation \cite[][]{Parker2006}, and of conflict among parents and offspring over parental investment \cite[hereafter `PI';][]{Trivers1972, Trivers1974, Kolliker2015}. 
 
 In the context of sexual conflict between females and males over mating decisions, it remains somewhat under-appreciated that individuals can increase their inclusive fitness by inbreeding. Selection for inbreeding tolerance or preference is therefore sometimes predicted despite decreased viability of resulting inbred offspring \cite[i.e., ``inbreeding depression'', hereafter `ID';][]{Parker1979, Parker2006}. Furthermore, inclusive fitness theory pertaining to inbreeding versus inbreeding avoidance has focused solely on individuals' mating decisions, assuming no concurrent modulation of PI or offspring production \cite[][]{Parker2006, Kokko2006, Duthie2015a}. Such theory ignores that parents might be able to increase the viability of their inbred offspring through PI, potentially mitigating ID. Because parents are more closely related to inbred offspring than they are to outbred offspring \cite[][]{Trivers1974, Lynch1998, Reid2016}, inclusive fitness accrued from viable inbred offspring should be greater than that accrued from viable outbred offspring. Consequently, the inclusive fitness consequences of inbreeding and PI cannot be independent. However, to date, inbreeding and PI theory have been developed separately, potentially generating incomplete or misleading predictions concerning reproductive strategy.
@@ -140,7 +141,7 @@ We consider a focal diploid parent (hereafter assumed to be a stereotypical fema
 \begin{equation} \label{maineq}
 \zeta_{\textrm{off}} = \frac{1}{2}\left(1+r\right)\left(1-e^{-c\left(m-m_{min}-\beta r\right)}\right).
 \end{equation}
-Our model in Eq. \ref{maineq} can be understood in two pieces (parameters are summarised in Table 1). The first expression $\left(1/2\right) \left(1 + r\right)$ is the inclusive fitness increment that a female gains from identical-by-descent alleles inherited by her offspring, as affected by the coefficient of relatedness between the female and the sire of her offspring ($r$) scaled by $1/2$ to give each parent's genetic contribution to its offspring. The second expression $\left(1 - \exp\left[-c\left(m-m_{min}-\beta r\right)\right]\right)$ is the individual offspring's viability, which is affected by $m$ and $r$. Offspring viability is also affected by a minimum value of $m$ required for viability to exceed zero ($m_{min}$), the strength of ID ($\beta$), and the shape of the curve relating PI to offspring viability ($c$; i.e., how `diminishing' returns in $\zeta_{\textrm{off}}$ are with increasing $m$). When a focal female inbreeds, the first expression increases because more identical-by-descent alleles are inherited by inbred offspring, but the second expression decreases if $\beta>0$ due to ID. However, increased PI ($m$) can offset ID and thereby increase $\zeta_{\textrm{off}}$.
+Our model in Eq. \ref{maineq} can be understood in two pieces (parameters are summarised in Table 1). The first expression $\left(1/2\right) \left(1 + r\right)$ is the inclusive fitness increment that a female gains from identical-by-descent alleles inherited by her offspring, as affected by the coefficient of relatedness between the female and the sire of her offspring ($r$) scaled by $1/2$ to give each parent's genetic contribution to its offspring. The second expression $\left(1 - \exp\left[-c\left(m-m_{min}-\beta r\right)\right]\right)$ is the individual offspring's viability, which is affected by $m$ and $r$. Offspring viability is also affected by a minimum value of $m$ required for viability to exceed zero ($m_{min}$), the strength of ID ($\beta$), and the shape of the curve relating PI to offspring viability ($c$; i.e., how `diminishing' returns are in $\zeta_{\textrm{off}}$ with increasing $m$). When a focal female inbreeds, the first expression increases because more identical-by-descent alleles are inherited by inbred offspring, but the second expression decreases if $\beta>0$ due to ID. However, increased PI ($m$) can offset ID and thereby increase $\zeta_{\textrm{off}}$.
 \marginpar{
 \vspace{0.5cm} % adjust vertical position relative to text with \vspace{} - note that you can enter negative numbers to move margin caption up
 \color{Gray} % this gives caption a grey color to set it apart from text body
@@ -316,7 +317,7 @@ Parent-offspring conflict is a focal theoretical interest of many PI models, whi
 
 \subsection*{Acknowledgments}
 
-This work was funded by a European Research Council Starting Grant to JMR. We thank Greta Bocedi, Ryan Germain, and Matthew Wolak for helpful comments.
+This work was funded by a European Research Council Starting Grant to JMR. We thank Greta Bocedi, Ryan Germain, and Matthew Wolak for helpful comments. We also thank Andy Gardner and two anonymous reviewers for helpful comments on an earlier version of this manuscript.
 
 \subsection*{Appendix 1: Example derivations of $m^{*}$ and $\gamma^{*}$}
 
@@ -348,7 +349,7 @@ We first substitute $m=m^{*}$ and note that this equation reduces to,
 \begin{equation}
 0 = c e^{-c\left(m^{*}-m_{min}-\beta r\right)}\left(0-m^{*}\right) + \left(1-e^{-c\left(m^{*}-m_{min}-\beta r\right)}\right). 
 \end{equation}
-This simplification dividing both sides of the equation by $(1/2)(1+r)$ has a biological interpretation that is relevant to PI. Optimal PI does not depend directly on the uniform increase in $\zeta_{\textrm{off}}$ caused by $r$ in $(1/2)(1+r)$, the change in $m^{*}$ is only affected by $r$ insofar as $r$ affects offspring viability directly through ID. %Ideally, we would isolate $m$ to find $\partial m^{*} / \partial r$, but this is not possible. Instead, the above equation can be simplified further to isolate $r$ and show that $\partial r / \partial m^{*} > 0$,
+This simplification dividing both sides of the equation by $(1/2)(1+r)$ has a biological interpretation that is relevant to PI. Optimal PI does not depend directly on the uniform increase in $\zeta_{\textrm{off}}$ caused by $r$ in $(1/2)(1+r)$, the change in $m^{*}$ is only affected by $r$ insofar as $r$ affects offspring viability directly through ID.
 \begin{equation}
 0 = -m^{*} c e^{-c\left(m^{*}-m_{min}-\beta r\right)} + 1-e^{-c\left(m^{*}-m_{min}-\beta r\right)}
 \end{equation}
@@ -366,23 +367,6 @@ By applying the chain rule, we can thereby arrive at the general conclusion,
 \end{equation} 
 Given the above, $\partial m^{*} / \partial r > 0$ assuming $\beta>0$ (ID), $c>0$ (offspring viability increases with PI), and $m^{*}>0$ (optimum PI is positive). These assumptions are biologically realistic; we therefore conclude that the positive association between optimal PI ($m^{*}$) and inbreeding ($r$) is general. As inbreeding increases, so should optimal PI in offspring.
 
-%\subsection*{Appendix 3: Consistency with biparental inbreeding models}
-
-%It is trivial to show that a female that inbreeds with a first order relative ($r=1/2$) has a higher fitness than a female that outbreeds ($r=0$) given $m_{min}=1$, $\beta=1$, and $c=1$ at optimal values of $m^{*}_{r=1/2}$ and $m^{*}_{r=0}$. To do this, we define $\delta_{r}$ as follows,
-%\begin{equation}
-%\delta_{r} = e^{-c(m^{*}_{r}-m_{min}-\beta r)}.
-%\end{equation}
-%In biparental inbreeding models \cite[e.g.,][]{Kokko2006, Parker2006, Duthie2015a}, it is assumed that $\delta_{r=0}=0$ for outbred offspring, but this is not the case in our model because $\delta_{r=0}$ will also depend on parental investment. Fitness from inbreeding to any degree $r$ can be determined by,
-%\begin{equation}
-%W_{r} = \frac{n}{2}\left(1+r\right)\left(1-\delta_{r}\right).
-%\end{equation}
-%By definition, $n = M/m$, so $n$ is the total number of offspring a female produces. Biparental inbreeding models assume that this value is constant, but $n$ will scale linearly with $m$ because females that invest more in each offspring (high $m$) will produce fewer total offspring (low $n$). To account for this, we can simply substitute $M/m$ for $n$ to scale for offspring produced,
-%\begin{equation}
-%W_{r} = \frac{M}{2 m}\left(1+r\right)\left(1-\delta_{r}\right).
-%\end{equation}
-%Fitness given $r=0$ and $r=1/2$, and $m^{*}_{r=0}$ and $m^{*}_{r=1/2}$, can be determined by substituting some constant value for $M$ (here for simplicity, assume $M=1$), as the magnitude of $n$ will not affect relative fitness differences. 
-
-%To show that inbreeding with first order relatives returns a higher fitness than outbreeding given the above conditions assumed in our model, we can use the above equation directly to compare the fitness given both $r=1/2$ and $r=0$, noting that $\delta_{r=1/2}=0.26$ and $\delta_{r=0}=0.32$ (note that $\delta_{r=1/2}<\delta_{r=0}$ because inbreeding parents are investing more in their offspring, $m^{*}_{r=1/2}=2.847$ versus $m^{*}_{r=0}=2.146$). Consequently, we can use the above equation to show that the fitness gain of an optimally investing female that inbreeds with a first order relative is 0.195, compared with 0.159 for the outbreeding female; these values are identical to our earlier calculated values of $\gamma^{*}_{r=1/2}$ and $\gamma^{*}_{r=0}$.
 
 \begin{small}
 \bibliography{duthiebib}
