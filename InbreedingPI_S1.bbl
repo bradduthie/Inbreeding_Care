@@ -1,42 +1,41 @@
-\begin{thebibliography}{10}
-\providecommand{\natexlab}[1]{#1}
+\begin{thebibliography}{1}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
 
-\bibitem[{Duthie and Reid(2015)}]{Duthie2015a}
-Duthie, A.~B., and J.~M. Reid. 2015.
-\newblock {What happens after inbreeding avoidance? Inbreeding by rejected
-  relatives and the inclusive fitness benefit of inbreeding avoidance}.
-\newblock PLoS One 10:e0125140.
+\bibitem{Duthie2015a}
+Duthie, A.~B. \& Reid, J.~M., 2015 {What happens after inbreeding avoidance?
+  Inbreeding by rejected relatives and the inclusive fitness benefit of
+  inbreeding avoidance}. \textit{PLoS One} \textbf{10}, e0125140,
+  \doi{10.1371/journal.pone.0125140}.
 
-\bibitem[{Kokko and Ots(2006)}]{Kokko2006}
-Kokko, H., and I.~Ots. 2006.
-\newblock {When not to avoid inbreeding}.
-\newblock Evolution 60:467--475.
+\bibitem{Parker2006}
+Parker, G.~A., 2006 {Sexual conflict over mating and fertilization: an
+  overview}. \textit{Philosophical Transactions of the Royal Society B}
+  \textbf{361}, 235--259, \doi{10.1098/rstb.2005.1785}.
 
-\bibitem[{Macnair and Parker(1978)}]{Macnair1978}
-Macnair, M.~R., and G.~A. Parker. 1978.
-\newblock {Models of parent-offspring conflict. II. Promiscuity}.
-\newblock Animal Behaviour 26:111--122.
+\bibitem{Kokko2006}
+Kokko, H. \& Ots, I., 2006 {When not to avoid inbreeding}. \textit{Evolution}
+  \textbf{60}, 467--475.
 
-\bibitem[{Parker(1979)}]{Parker1979}
-Parker, G.~A. 1979.
-\newblock {Sexual selection and sexual conflict}.
-\newblock Pages 123--166 \emph{in} M.~S. Blum and N.~A. Blum, eds. Sexual
-  selection and reproductive competition in insects. Academic Press, Inc, New
-  York.
+\bibitem{Parker1979}
+Parker, G.~A., 1979 {Sexual selection and sexual conflict}, in \textit{Sexual
+  selection and reproductive competition in insects} (eds. M.~S. Blum \& N.~A.
+  Blum), pp. 123--166, New York: Academic Press, Inc.
 
-\bibitem[{Parker(2006)}]{Parker2006}
----{}---{}---. 2006.
-\newblock {Sexual conflict over mating and fertilization: an overview}.
-\newblock Philosophical Transactions of the Royal Society B 361:235--259.
+\bibitem{Macnair1978}
+Macnair, M.~R. \& Parker, G.~A., 1978 {Models of parent-offspring conflict. II.
+  Promiscuity}. \textit{Animal Behaviour} \textbf{26}, 111--122,
+  \doi{10.1016/0003-3472(78)90010-6}.
 
-\bibitem[{Parker and Macnair(1978)}]{Parker1978}
-Parker, G.~A., and M.~R. Macnair. 1978.
-\newblock {Models of parent-offspring conflict. I. Monogamy}.
-\newblock Animal Behaviour 26:97--110.
+\bibitem{Parker1978}
+Parker, G.~A. \& Macnair, M.~R., 1978 {Models of parent-offspring conflict. I.
+  Monogamy}. \textit{Animal Behaviour} \textbf{26}, 97--110,
+  \doi{10.1016/0003-3472(78)90009-X}.
 
-\bibitem[{Waser et~al.(1986)Waser, Austad, and Keane}]{Waser1986}
-Waser, P.~M., S.~N. Austad, and B.~Keane. 1986.
-\newblock {When should animals tolerate inbreeding?}
-\newblock American Naturalist 128:529--537.
+\bibitem{Waser1986}
+Waser, P.~M., Austad, S.~N. \& Keane, B., 1986 {When should animals tolerate
+  inbreeding?} \textit{American Naturalist} \textbf{128}, 529--537.
 
 \end{thebibliography}
