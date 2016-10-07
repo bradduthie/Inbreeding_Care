@@ -110,26 +110,6 @@
 
 \clearpage
 
-\section*{Consistency with biparental inbreeding models}
-
-To show that a female that inbreeds with a first order relative ($r=1/2$) has a higher fitness than a female that outbreeds ($r=0$) given $m_{min}=1$, $\beta=1$, and $c=1$ at optimal values of $m^{*}_{r=1/2}$ and $m^{*}_{r=0}$, we define $\delta_{r}$ as follows,
-\begin{equation}
-\delta_{r} = e^{-c(m^{*}_{r}-m_{min}-\beta r)}.
-\end{equation}
-Existing biparental inbreeding models \cite[e.g.,][]{Duthie2015a, Parker2006, Kokko2006} implicitly assume that $\delta_{r=0}=0$ for outbred offspring, but this is not valid in our model because $\delta_{r=0}$ will also depend on PI. However, by defining $\delta_{r}$ to explicitly include PI, we can thereby define inclusive fitness using the same mathematical framework as existing biparental inbreeding models, where inclusive fitness resulting from inbreeding to any degree $r$ is determined by,
-\begin{equation}
-W_{r} = \frac{n}{2}\left(1+r\right)\left(1-\delta_{r}\right).
-\end{equation}
-The right hand side of the above equation defines inclusive fitness resulting from inbreeding as appears in inequality 1 of Duthie and Reid \cite{Duthie2015a}, where the inequality compares inclusive fitness accrued from inbreeding with a relative $r$ versus inclusive fitness accrued from outbreeding. Equivalent definitions of $W_{r}$ also appear in Parker \cite{Parker2006}, and in Kokko and Ots \cite{Kokko2006}. By definition, $n = M/m$, so $n$ is the total number of offspring a female produces. Existing biparental inbreeding models assume that $n$ is constant, but $n$ scales linearly with $m$ in our model because females that invest more in each offspring (high $m$) will produce fewer total offspring (low $n$). To account for this, we can simply substitute $M/m$ for $n$,
-\begin{equation}
-W_{r} = \frac{M}{2 m}\left(1+r\right)\left(1-\delta_{r}\right).
-\end{equation}
-Inclusive fitness given $r=0$ and $r=1/2$, and $m^{*}_{r=0}$ and $m^{*}_{r=1/2}$, can be determined by substituting some constant value for $M$ (here for simplicity, assume $M=1$), as the magnitude of $n$ will not affect relative inclusive fitness. 
-
-To show that inbreeding with first order relatives returns a higher inclusive fitness than outbreeding given the above conditions assumed in our model, we can use the above equation directly to compare inclusive fitness given both $r=1/2$ and $r=0$, noting that $\delta_{r=1/2}=0.26$ and $\delta_{r=0}=0.32$ (note that $\delta_{r=1/2}<\delta_{r=0}$ because an inbreeding female invests more in her offspring, $m^{*}_{r=1/2}=2.847$ versus $m^{*}_{r=0}=2.146$). Consequently, we can use the above equation to show that the inclusive fitness gain of an optimally investing female that inbreeds with a first order relative is 0.195, compared with 0.159 for the outbreeding female; these values are identical to our earlier calculated values of $\gamma^{*}_{r=1/2}$ and $\gamma^{*}_{r=0}$.
-
-\clearpage
-
 \section*{Inbreeding depression that cannot be mitigated by PI}
 
 \noindent{Suppose} we assume that some amount of reduction in offspring viability (ID) due to inbreeding cannot be mitigated by PI, $(1 - \Delta r)$, such that offspring viability decreases linearly with increasing $\Delta$ and $r$ regardless of $m$. In this case, $\zeta_{\textrm{off}}$ is simply,
@@ -147,6 +127,26 @@ Figure S1-\ref{DELTA} compares $\Delta=0$ (solid curve) with $\Delta=1/2$ (dashe
 \caption{Relationship between parental investment (PI) and the number of a focal female's identical-by-descent alleles that are are inherited by its offspring in the absence (solid curve) and presence (dashed curve) of inbreeding depression (ID) that cannot be mitigated by increasing PI. In both curves, females inbreed with first order relatives ($r=1/2$), the minimum amount of investment for offspring viability is one ($m_{min}=1$), the curve of PI with offspring viability is identical ($c=1$), and there is a small amount of ID that can be mitigated by PI ($\beta=1$). For the solid curve, these parameters are identical to those of the dashed line in Figure 1A of the main text. However, in the dashed curve here, some additional ID ($\Delta=1/2$) cannot be mitigated by PI, leading to lower offspring viability (compare the slope of the straight solid line with the slope of the straight dotted line, each of which passes through the origin and lies tangent to $\zeta_{\textrm{off}}(m)$ curves and defines optimal female inclusive fitness $\gamma^{*}$). Despite unavoidably lower offspring viability ($\zeta_{\textrm{off}}$), and therefore lower optimal parent inclusive fitness ($\gamma^{*}$), optimal PI ($m^{*}$) does not change, as indicated by the point on the x-axis ($m^{*}=2.847$) where straight lines are tangent to $\zeta_{\textrm{off}}(m)$ curves.}
 \label{DELTA}
 \end{figure}
+
+\clearpage
+
+\section*{Consistency with biparental inbreeding models}
+
+To show that a female that inbreeds with a first order relative ($r=1/2$) has a higher fitness than a female that outbreeds ($r=0$) given $m_{min}=1$, $\beta=1$, and $c=1$ at optimal values of $m^{*}_{r=1/2}$ and $m^{*}_{r=0}$, we define $\delta_{r}$ as follows,
+\begin{equation}
+\delta_{r} = e^{-c(m^{*}_{r}-m_{min}-\beta r)}.
+\end{equation}
+Existing biparental inbreeding models \cite[e.g.,][]{Duthie2015a, Parker2006, Kokko2006} implicitly assume that $\delta_{r=0}=0$ for outbred offspring, but this is not valid in our model because $\delta_{r=0}$ will also depend on PI. However, by defining $\delta_{r}$ to explicitly include PI, we can thereby define inclusive fitness using the same mathematical framework as existing biparental inbreeding models, where inclusive fitness resulting from inbreeding to any degree $r$ is determined by,
+\begin{equation}
+W_{r} = \frac{n}{2}\left(1+r\right)\left(1-\delta_{r}\right).
+\end{equation}
+The right hand side of the above equation defines inclusive fitness resulting from inbreeding as appears in inequality 1 of Duthie and Reid \cite{Duthie2015a}, where the inequality compares inclusive fitness accrued from inbreeding with a relative $r$ versus inclusive fitness accrued from outbreeding. Equivalent definitions of $W_{r}$ also appear in Parker \cite{Parker2006}, and in Kokko and Ots \cite{Kokko2006}. By definition, $n = M/m$, so $n$ is the total number of offspring a female produces. Existing biparental inbreeding models assume that $n$ is constant, but $n$ scales linearly with $m$ in our model because females that invest more in each offspring (high $m$) will produce fewer total offspring (low $n$). To account for this, we can simply substitute $M/m$ for $n$,
+\begin{equation}
+W_{r} = \frac{M}{2 m}\left(1+r\right)\left(1-\delta_{r}\right).
+\end{equation}
+Inclusive fitness given $r=0$ and $r=1/2$, and $m^{*}_{r=0}$ and $m^{*}_{r=1/2}$, can be determined by substituting some constant value for $M$ (here for simplicity, assume $M=1$), as the magnitude of $n$ will not affect relative inclusive fitness. 
+
+To show that inbreeding with first order relatives returns a higher inclusive fitness than outbreeding given the above conditions assumed in our model, we can use the above equation directly to compare inclusive fitness given both $r=1/2$ and $r=0$, noting that $\delta_{r=1/2}=0.26$ and $\delta_{r=0}=0.32$ (note that $\delta_{r=1/2}<\delta_{r=0}$ because an inbreeding female invests more in her offspring, $m^{*}_{r=1/2}=2.847$ versus $m^{*}_{r=0}=2.146$). Consequently, we can use the above equation to show that the inclusive fitness gain of an optimally investing female that inbreeds with a first order relative is 0.195, compared with 0.159 for the outbreeding female; these values are identical to our earlier calculated values of $\gamma^{*}_{r=1/2}$ and $\gamma^{*}_{r=0}$.
 
 \clearpage
 
