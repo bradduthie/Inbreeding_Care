@@ -1,10 +1,17 @@
-\begin{thebibliography}{38}
+\begin{thebibliography}{43}
 \providecommand{\natexlab}[1]{#1}
 
 \bibitem[{Avil{\'{e}}s and Bukowski(2006)}]{Aviles2006}
 Avil{\'{e}}s, L., and T.~C. Bukowski. 2006.
 \newblock {Group living and inbreeding depression in a subsocial spider}.
 \newblock Proceedings of the Royal Society B 273:157--163.
+
+\bibitem[{Bonisoli-Alquati et~al.(2011)Bonisoli-Alquati, Boncoraglio, Caprioli,
+  and Saino}]{Bonisoli-Alquati2011}
+Bonisoli-Alquati, A., G.~Boncoraglio, M.~Caprioli, and N.~Saino. 2011.
+\newblock {Birth order, individual sex and sex of competitors determine the
+  outcome of conflict among siblings over parental care.}
+\newblock Proc. R. Soc. Lond. B 278:1273--1279.
 
 \bibitem[{Bourke(2014)}]{Bourke2014}
 Bourke, A. F.~G. 2014.
@@ -46,6 +53,12 @@ Frank, S.~A. 2013.
 Fredrickson, R.~J., P.~Siminski, M.~Woolf, and P.~W. Hedrick. 2007.
 \newblock {Genetic rescue and inbreeding depression in Mexican wolves.}
 \newblock Proceedings of The Royal Society B 274:2365--2371.
+
+\bibitem[{Gardner and Smiseth(2011)}]{Gardner2011a}
+Gardner, A., and P.~T. Smiseth. 2011.
+\newblock {Evolution of parental care driven by mutual reinforcement of
+  parental food provisioning and sibling competition}.
+\newblock Proceedings of the Royal Society B: Biological Sciences 278:196--203.
 
 \bibitem[{Gardner and West(2014)}]{Gardner2014}
 Gardner, A., and S.~A. West. 2014.
@@ -99,10 +112,15 @@ K{\"{o}}lliker, M., S.~Boos, J.~W.~Y. Wong, L.~R{\"{o}}llin, D.~Stucki,
   parental investment}.
 \newblock Nature Communications 6:6850.
 
-\bibitem[{Kuijper and Johnstone(2012)}]{Kuijper2012}
-Kuijper, B., and R.~A. Johnstone. 2012.
-\newblock {How dispersal influences parent-offspring conflict over investment}.
-\newblock Behavioral Ecology 23:898--906.
+\bibitem[{Kuijper et~al.(2012)Kuijper, Pen, and Weissing}]{Kuijper2012}
+Kuijper, B., I.~Pen, and F.~J. Weissing. 2012.
+\newblock {A guide to sexual selection theory}.
+\newblock Annual Review of Ecology, Evolution, and Systematics 43:287--311.
+
+\bibitem[{Lessells and Parker(1999)}]{Lessells1999}
+Lessells, C.~M., and G.~A. Parker. 1999.
+\newblock {Parent-offspring conflict: the full-sib-half-sib fallacy}.
+\newblock Proceedings of the Royal Society B 266:1637--1643.
 
 \bibitem[{Liao et~al.(2015)Liao, Rong, and Queller}]{Liao2015}
 Liao, X., S.~Rong, and D.~C. Queller. 2015.
@@ -113,7 +131,7 @@ Liao, X., S.~Rong, and D.~C. Queller. 2015.
   Wabakken, Kesson, and Bensch}]{Liberg2005}
 Liberg, O., H.~Andr{\'{e}}n, H.-C. Pedersen, H.~Sand, D.~Sejberg, P.~Wabakken,
   M.~Kesson, and S.~Bensch. 2005.
-\newblock {Severe inbreeding depression in a wild wolf (\textit{Canis lupus})
+\newblock {Severe inbreeding depression in a wild wolf (Canis lupus)
   population}.
 \newblock Biology letters 1:17--20.
 
@@ -193,7 +211,7 @@ Pilakouta, N., S.~Jamieson, J.~A. Moorad, and P.~T. Smiseth. 2015.
   Peterson, and Nelson}]{Raikkonen2009}
 R{\"{a}}ikk{\"{o}}nen, J., J.~A. Vucetich, R.~O. Peterson, and M.~P. Nelson.
   2009.
-\newblock {Congenital bone deformities and the inbred wolves (\textit{Canis lupus}) of
+\newblock {Congenital bone deformities and the inbred wolves (Canis lupus) of
   Isle Royale}.
 \newblock Biological Conservation 142:1025--1031.
 
@@ -201,13 +219,18 @@ R{\"{a}}ikk{\"{o}}nen, J., J.~A. Vucetich, R.~O. Peterson, and M.~P. Nelson.
   Arcese}]{Reid2016}
 Reid, J.~M., G.~Bocedi, P.~Nietlisbach, A.~B. Duthie, E.~Matthew, E.~A. Gow,
   and P.~Arcese. 2016.
-
 \newblock {Variation in parent-offspring kinship in socially monogamous systems
   with extra-pair reproduction and inbreeding}.
 \newblock Evolution 70:1512--1529.
 
-\bibitem[{Maynard Smith(1977)}]{Smith1977}
-Maynard Smith, J. 1977.
+\bibitem[{Ruch et~al.(2014)Ruch, Herberstein, and Schneider}]{Ruch2014}
+Ruch, J., M.~E. Herberstein, and J.~M. Schneider. 2014.
+\newblock {Offspring dynamics affect food provisioning , growth and mortality
+  in a brood-caring spider}.
+\newblock Proceedings of the Royal Society B 281:20132180.
+
+\bibitem[{Smith(1977)}]{Smith1977}
+Smith, J.~M. 1977.
 \newblock {Parental investment: A prospective analysis}.
 \newblock Animal Behaviour 25:1--9.
 
