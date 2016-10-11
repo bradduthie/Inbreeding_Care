@@ -1,4 +1,4 @@
-\begin{thebibliography}{43}
+\begin{thebibliography}{55}
 \providecommand{\natexlab}[1]{#1}
 
 \bibitem[{Avil{\'{e}}s and Bukowski(2006)}]{Aviles2006}
@@ -18,10 +18,30 @@ Bourke, A. F.~G. 2014.
 \newblock {Hamilton's rule and the causes of social evolution}.
 \newblock Philosophical Transactions of the Royal Society B 369:20130362.
 
+\bibitem[{Carazo et~al.(2014)Carazo, Tan, Allen, Wigby, and
+  Pizzari}]{Carazo2014}
+Carazo, P., C.~K.~W. Tan, F.~Allen, S.~Wigby, and T.~Pizzari. 2014.
+\newblock {Within-group male relatedness reduces harm to females in
+  Drosophila}.
+\newblock Nature 505:672--675.
+
 \bibitem[{Charlesworth and Willis(2009)}]{Charlesworth2009}
 Charlesworth, D., and J.~H. Willis. 2009.
 \newblock {The genetics of inbreeding depression}.
 \newblock Nature Reviews Genetics 10:783--796.
+
+\bibitem[{Chippindale et~al.(2015)Chippindale, Berggren, Alpern, and
+  Montgomerie}]{Chippindale2015}
+Chippindale, A.~K., M.~Berggren, J.~H.~M. Alpern, and R.~Montgomerie. 2015.
+\newblock {Does kin selection moderate sexual conflict in Drosophila?}
+\newblock Proceedings of the Royal Society B 282:20151417.
+
+\bibitem[{Davies et~al.(2016)Davies, Ross, Gardner, and van
+  Baalen}]{Davies2016}
+Davies, N.~G., L.~Ross, A.~Gardner, and M.~van Baalen. 2016.
+\newblock {The ecology of sex explains patterns of helping in arthropod
+  societies}.
+\newblock Ecology Letters 19:862--872.
 
 \bibitem[{{De Jong} et~al.(2005){De Jong}, {Van Dijk}, and
   Klinkhamer}]{DeJong2005}
@@ -30,11 +50,22 @@ Charlesworth, D., and J.~H. Willis. 2009.
   mass in partially selfing plants}.
 \newblock Journal of Evolutionary Biology 18:676--682.
 
+\bibitem[{Dudley and File(2007)}]{Dudley2007}
+Dudley, S.~A., and A.~L. File. 2007.
+\newblock {Kin recognition in an annual plant}.
+\newblock Biology letters 3:435--438.
+
 \bibitem[{Duthie and Reid(2015)}]{Duthie2015a}
 Duthie, A.~B., and J.~M. Reid. 2015.
 \newblock {What happens after inbreeding avoidance? Inbreeding by rejected
   relatives and the inclusive fitness benefit of inbreeding avoidance}.
 \newblock PLoS One 10:e0125140.
+
+\bibitem[{Faria et~al.(2015)Faria, Varela, and Gardner}]{Faria2015}
+Faria, G.~S., S.~A.~M. Varela, and A.~Gardner. 2015.
+\newblock {Sex-biased dispersal, kin selection and the evolution of sexual
+  conflict}.
+\newblock Journal of Evolutionary Biology 28:1901--1910.
 
 \bibitem[{Fisher et~al.(2013)Fisher, Cornwallis, and West}]{Fisher2013}
 Fisher, R.~M., C.~K. Cornwallis, and S.~A. West. 2013.
@@ -79,6 +110,12 @@ Grafen, A. 2006.
 \newblock {Optimization of inclusive fitness}.
 \newblock Journal of Theoretical Biology 238:541--563.
 
+\bibitem[{Griffin and West(2003)}]{Griffin2003}
+Griffin, A., and S.~West. 2003.
+\newblock {Kin discrimination and the benefit of helping in cooperatively
+  breeding vertebrates}.
+\newblock Science 302:634--637.
+
 \bibitem[{Hamilton(1964{\natexlab{\emph{a}}})}]{Hamilton1964}
 Hamilton, W.~D. 1964{\natexlab{\emph{a}}}.
 \newblock {The genetical evolution of social behaviour. I}.
@@ -112,10 +149,10 @@ K{\"{o}}lliker, M., S.~Boos, J.~W.~Y. Wong, L.~R{\"{o}}llin, D.~Stucki,
   parental investment}.
 \newblock Nature Communications 6:6850.
 
-\bibitem[{Kuijper et~al.(2012)Kuijper, Pen, and Weissing}]{Kuijper2012}
-Kuijper, B., I.~Pen, and F.~J. Weissing. 2012.
-\newblock {A guide to sexual selection theory}.
-\newblock Annual Review of Ecology, Evolution, and Systematics 43:287--311.
+\bibitem[{Kuijper and Johnstone(2012)}]{Kuijper2012}
+Kuijper, B., and R.~A. Johnstone. 2012.
+\newblock {How dispersal influences parent-offspring conflict over investment}.
+\newblock Behavioral Ecology 23:898--906.
 
 \bibitem[{Lessells and Parker(1999)}]{Lessells1999}
 Lessells, C.~M., and G.~A. Parker. 1999.
@@ -144,6 +181,17 @@ Lynch, M., and B.~Walsh. 1998.
 Macnair, M.~R., and G.~A. Parker. 1978.
 \newblock {Models of parent-offspring conflict. II. Promiscuity}.
 \newblock Animal Behaviour 26:111--122.
+
+\bibitem[{Martin and Long(2015)}]{Martin2015}
+Martin, E.~S., and T.~A.~F. Long. 2015.
+\newblock {Are flies kind to kin? The role of intra- and inter-sexual
+  relatedness in mediating reproductive conflict}.
+\newblock Proceedings of The Royal Society B 282:20151991.
+
+\bibitem[{Mateo(2002)}]{Mateo2002}
+Mateo, J.~M. 2002.
+\newblock {Kin-recognition abilities and nepotism as a function of sociality}.
+\newblock Proceedings of The Royal Society B 269:721--727.
 
 \bibitem[{Mattey(2014)}]{Mattey2014}
 Mattey, S.~N. 2014.
@@ -207,6 +255,18 @@ Pilakouta, N., S.~Jamieson, J.~A. Moorad, and P.~T. Smiseth. 2015.
   beetles}.
 \newblock Proceedings of the National Academy of Sciences 112:201500658.
 
+\bibitem[{Pilakouta and Smiseth(2016)}]{Pilakouta2016}
+Pilakouta, N., and P.~T. Smiseth. 2016.
+\newblock {Maternal effects alter the severity of inbreeding depression in the
+  offspring}.
+\newblock Proceedings of The Royal Society B 283:20161023.
+
+\bibitem[{Pizzari and Gardner(2012)}]{Pizzari2012}
+Pizzari, T., and A.~Gardner. 2012.
+\newblock {The sociobiology of sex: inclusive fitness consequences of
+  inter-sexual interactions}.
+\newblock Philosophical Transactions of the Royal Society B 367:2314--2323.
+
 \bibitem[{R{\"{a}}ikk{\"{o}}nen et~al.(2009)R{\"{a}}ikk{\"{o}}nen, Vucetich,
   Peterson, and Nelson}]{Raikkonen2009}
 R{\"{a}}ikk{\"{o}}nen, J., J.~A. Vucetich, R.~O. Peterson, and M.~P. Nelson.
@@ -223,6 +283,11 @@ Reid, J.~M., G.~Bocedi, P.~Nietlisbach, A.~B. Duthie, E.~Matthew, E.~A. Gow,
   with extra-pair reproduction and inbreeding}.
 \newblock Evolution 70:1512--1529.
 
+\bibitem[{Royle et~al.(2012)Royle, Smiseth, and K{\"{o}}lliker}]{Royle2012}
+Royle, N.~J., P.~T. Smiseth, and M.~K{\"{o}}lliker. 2012.
+\newblock {The evolution of parental care}.
+\newblock Oxford University Press, Oxford.
+
 \bibitem[{Ruch et~al.(2014)Ruch, Herberstein, and Schneider}]{Ruch2014}
 Ruch, J., M.~E. Herberstein, and J.~M. Schneider. 2014.
 \newblock {Offspring dynamics affect food provisioning , growth and mortality
@@ -233,6 +298,12 @@ Ruch, J., M.~E. Herberstein, and J.~M. Schneider. 2014.
 Smith, J.~M. 1977.
 \newblock {Parental investment: A prospective analysis}.
 \newblock Animal Behaviour 25:1--9.
+
+\bibitem[{Strassmann et~al.(2011)Strassmann, Gilbert, and
+  Queller}]{Strassmann2011}
+Strassmann, J.~E., O.~M. Gilbert, and D.~C. Queller. 2011.
+\newblock {Kin discrimination and cooperation in microbes}.
+\newblock Annual Review of Microbiology 65:349--367.
 
 \bibitem[{Szulkin et~al.(2013)Szulkin, Stopher, Pemberton, and
   Reid}]{Szulkin2012}
