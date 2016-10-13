@@ -20,7 +20,7 @@ bibliography: Inbreeding_and_PI.bib
 ![Diversity Figure](PIandInbreeders_trsp_sm.png)
 
 <!---
-http://www.telegraph.co.uk/travel/advice/Leeches-bloodsuckers-with-a-propensity-for-private-parts/
+http://www.telegraph.c.uk/travel/advice/Leeches-bloodsuckers-with-a-propensity-for-private-parts/
 
 https://en.wikipedia.org/wiki/Northern_leopard_frog#/media/File:Lithobates_pipiens.jpg
 (Brian Gratwicke)

@@ -2303,6 +2303,70 @@ dbdm <- D(bbmm,'mopt'); # can print fmd to show solution
 
 
 
+# --------------------------------------------------------
+# Update after first revision -- find correct derivative -
+# --------------------------------------------------------
+
+
+
+fmn  <- expression( (0.5 * (1+f) * (1 + (2*k)/(1+f)) * (1 - exp(-c * (m - B0 - B1 * 2 * k)))), 'm'); 
+
+
+dfmn <- D(fmn,'m')
+
+
+0.5 * (1 + f) * (1 + (2 * k)/(1 + f)) * (exp(-c * (m - B0 - B1 * 2 * k)) * c)
+
+
+OffATf <- function(m, f=fval, k=kval, B0=1, B1=1, c=1){
+    return( (1/2)*(1+f)*(1+(2*k/(1+f))) * (1 - exp(-c*(m - B0 - 2*B1*k)) ));
+}
+findmf <- function(low.guess,high.guess,kval,fval,B1=1,c=1,B0=1){
+    OffATf <- function(m, f=fval, k=kval, B0=1, B1=1, c=1){
+        return( (1/2)*(1+f)*(1+(2*k/(1+f))) * (1 - exp(-c*(m - B0 - 2*B1*k)) ));
+    }
+    OffATff <- function(m, k=kval, f=fval, B0=1, B1=1, c=1){
+        return(0.5*(1 + f)*(1 + (2 * k)/(1 + f)) * (exp(-c * (m - B0 - B1 * 2 * k)) * c));
+    }    
+    fm <- function(m, f=fval, k=kval, B0=1, B1=1, c=1){
+        OffATff(m=m, f=fval, k=kval, B0=B0, B1=B1, c=c)*(0-m) + 
+            OffATf(m=m, f=fval, k=kval, B0=B0, B1=B1, c=c);
+    }
+    lg  <- fm(m=low.guess, k=kval, f=fval);
+    hg  <- fm(m=high.guess,k=kval, f=fval);
+    if(lg > 0){
+        u <- low.guess;
+        l <- high.guess;
+    }else{
+        u <- high.guess;
+        l <- low.guess;
+    }
+    if((fm(l) > 0 & fm(u) > 0) | (fm(l) < 0 & fm(u) < 0)){
+        return("Value of m is outside the range");
+    }else{
+        check  <- 1;
+        mguess <- 0.5 * (l+u);
+        i      <- 0;
+        while(abs(check) > 0.000001 & i < 10000){
+            check <- fm(k=kval, f=fval, m=mguess);
+            if(check > 0){
+                u      <- mguess;
+                mguess <- 0.5*(l+mguess); 
+            }else{
+                l      <- mguess;
+                mguess <- 0.5*(u+mguess);
+            }
+            i <- i+1;
+        }
+        return(mguess);
+    }
+} # Running the below returns the estimate
+k025f000 <- findmf(low.guess=0,high.guess=4,kval=0.25,fval=0.00,B0=1,B1=1,c=1);
+k025f025 <- findmf(low.guess=0,high.guess=4,kval=0.25,fval=0.25,B0=1,B1=1,c=1);
+# Below finds the tangent slope, \gamma^{*}
+f000g <- OffATf(m=k025f000, B0=1, B1=1, c=1, f=0.00, k=0.25) / k025f000;
+f025g <- OffATf(m=k025f025, B0=1, B1=1, c=1, f=0.25, k=0.25) / k025f025;
+
 
 
 
