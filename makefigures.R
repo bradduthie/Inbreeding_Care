@@ -380,14 +380,14 @@ dev.off();
 
 
 OffATf <- function(f, k, m, B0=1, B1=1, c=1){
-    return( (1/2)*(1+(2*k/(1+f))) * (1 - exp(-c*(m - B0 - 2*B1*k)) ));
+    return( (1/2)*(1+f)*(1+(2*k/(1+f))) * (1 - exp(-c*(m - B0 - 2*B1*k)) ));
 }
 findmf <- function(low.guess,high.guess,kval,fval,B1=1,c=1,B0=1){
     OffATf <- function(m, f=fval, k=kval, B0=1, B1=1, c=1){
-        return( (1/2)*(1+(2*k/(1+f))) * (1 - exp(-c*(m - B0 - 2*B1*k)) ));
+        return( (1/2)*(1+f)*(1+(2*k/(1+f))) * (1 - exp(-c*(m - B0 - 2*B1*k)) ));
     }
     OffATff <- function(m, k=kval, f=fval, B0=1, B1=1, c=1){
-        return( 0.5 * (1 + (2 * k/(f + 1))) * (exp(-c * (m - B0 - 2 * B1 * k)) * c) );
+        return( (1/2)*(1 + f)*(1 + (2 * k)/(1 + f)) * (exp(-c * (m - B0 - B1 * 2 * k)) * c) );
     }    
     fm <- function(m, f=fval, k=kval, B0=1, B1=1, c=1){
         OffATff(m=m, f=fval, k=kval, B0=B0, B1=B1, c=c)*(0-m) + 
@@ -408,7 +408,7 @@ findmf <- function(low.guess,high.guess,kval,fval,B1=1,c=1,B0=1){
         check  <- 1;
         mguess <- 0.5 * (l+u);
         i      <- 0;
-        while(abs(check) > 0.001 & i < 10000){
+        while(abs(check) > 0.00001 & i < 10000){
             check <- fm(k=kval, f=fval, m=mguess);
             if(check > 0){
                 u      <- mguess;
@@ -454,14 +454,16 @@ yof025 <- OffATf(k=0.25, f=0.25, m=imopt.f025, B0=1, B1=1, c=1);
 xline  <- seq(from=1,to=imopt.f000,by=0.001);
 points(x=xline,y=rep(yof000,length(xline)),type="l",lwd=1);
 points(x=xline,y=rep(yof025,length(xline)),type="l",lwd=1);
-yline  <- seq(from=0,to=yof025,by=0.001);
+yline  <- seq(from=0,to=yof000,by=0.001);
 points(x=rep(imopt.f025,length(yline)),y=yline,type="l",lwd=1);
 text(x=3.5,y=0.255,labels=expression(paste(italic(m^{"*"}))),cex=1.75);
 arrows(x0=3.345,y0=0.205,x1=imopt.f025+0.04,y1=0.01,length = 0.15,angle=30,code=2,lwd=2);
-text(x=0.75,y=0.8,labels=expression(paste(italic(f==0))),cex=1.25);
-arrows(x0=0.8,y0=0.75,x1=1.1,y1=yof000+0.01,length = 0.15,angle=30,code=2,lwd=2);
-text(x=0.67,y=0.35,labels=expression(paste(italic(f==frac(1,4)))),cex=1.25);
-arrows(x0=0.87,y0=0.36,x1=1.1,y1=yof025-0.01,length = 0.15,angle=30,code=2,lwd=2);
+text(x=0.82,y=0.85,labels=expression(paste(italic(f==frac(1,4)))),cex=1.25);
+arrows(x0=0.8,y0=0.80,x1=1.1,y1=yof025+0.01,length = 0.15,angle=30,code=2,lwd=2);
+text(x=0.82,y=0.32,labels=expression(paste(italic(f==0))),cex=1.25);
+arrows(x0=0.87,y0=0.36,x1=1.1,y1=yof000-0.01,length = 0.15,angle=30,code=2,lwd=2);
+abline(b=itang.f000,a=0,lty="solid",lwd=0.75,col="grey40");
+abline(b=itang.f025,a=0,lty="dotdash",lwd=0.75,col="grey40");
 dev.off();
 
 
