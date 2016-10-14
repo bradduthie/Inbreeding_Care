@@ -377,7 +377,8 @@ mtext(text=expression(paste("Monogamous focal female's inclusive fitness (",gamm
 dev.off();
 
 
-
+fmf  <- expression(0.5*(1+f)*(1+((2*k)/(1+f)))*(1-exp(-c*(m-B0-B1*2*k))),'m');
+fmf1 <- D(fmf,'m');
 
 OffATf <- function(f, k, m, B0=1, B1=1, c=1){
     return( (1/2)*(1+f)*(1+(2*k/(1+f))) * (1 - exp(-c*(m - B0 - 2*B1*k)) ));
@@ -430,8 +431,6 @@ omopt.f000 <- findmf(low.guess=0,high.guess=4,kval=0.0,fval=0.0, B1=1);
 omopt.f025 <- findmf(low.guess=0,high.guess=4,kval=0.0,fval=0.25, B1=1);
 otang.f000 <- OffATf(m=omopt.f000, f=0, k=0.0, B0=1, B1=1, c=1) / omopt.f000;
 otang.f025 <- OffATf(m=omopt.f025, f=0.25, k=0.0, B0=1, B1=1, c=1) / omopt.f025;
-
-
 
 
 Alleles_IBD_f000 <- OffATf(k=0.25, f=0.0, m=PI, B0=1, B1=1, c=1);
