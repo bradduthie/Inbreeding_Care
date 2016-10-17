@@ -204,6 +204,11 @@ Mattey, S.~N. 2014.
 \newblock Ph.D. thesis.
 \newblock University of Edinburgh.
 
+\bibitem[{Smith(1977)}]{Smith1977}
+Maynard Smith, J. 1977.
+\newblock {Parental investment: A prospective analysis}.
+\newblock Animal Behaviour 25:1--9.
+
 \bibitem[{Michod and Anderson(1979)}]{Michod1979}
 Michod, R.~E., and W.~W. Anderson. 1979.
 \newblock {Measures of genetic relationship and the concept of inclusive
@@ -299,11 +304,6 @@ Ruch, J., M.~E. Herberstein, and J.~M. Schneider. 2014.
   in a brood-caring spider}.
 \newblock Proceedings of the Royal Society B 281:20132180.
 
-\bibitem[{Smith(1977)}]{Smith1977}
-Smith, J.~M. 1977.
-\newblock {Parental investment: A prospective analysis}.
-\newblock Animal Behaviour 25:1--9.
-
 \bibitem[{Strassmann et~al.(2011)Strassmann, Gilbert, and
   Queller}]{Strassmann2011}
 Strassmann, J.~E., O.~M. Gilbert, and D.~C. Queller. 2011.
@@ -324,7 +324,7 @@ Trivers, R. 1972.
 
 \bibitem[{Trivers(1974)}]{Trivers1974}
 ---{}---{}---. 1974.
-\newblock {Parent-Offspring Conflict}.
+\newblock {Parent-offspring conflict}.
 \newblock American Zoologist 14:249--264.
 
 \bibitem[{Waser et~al.(1986)Waser, Austad, and Keane}]{Waser1986}
