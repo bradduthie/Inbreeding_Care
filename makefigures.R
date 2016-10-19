@@ -771,9 +771,73 @@ mtext(text="Strict monogamy", adj=1,
 dev.off();
 
 
-
-
-
+# ============================================================================
+# Now produce combined versions of the figures below for ProcB
+# ============================================================================
+# First Figure 1
+#-----------------------------------------
+setEPS();
+cairo_ps("Fig_1.eps",family="Arial",width=8,height=6);
+par(mfrow=c(2,2),mar=c(4.5,5,1,1),lwd=2);
+#layout(matrix(data=c(2,2), nrow=2, ncol=1, byrow = FALSE),
+#       widths=c(1,1), heights=c(1,1));
+# --------------------------------------------------------------------
+plot(PI,Alleles_IBD_outbr,type="l",lwd=3,ylim=c(0,1),yaxs="i",xaxs="i",
+     xlab=expression(paste("Parental investment (",italic(m),")")),
+     ylab=expression(paste("IBD alleles in offspring (",zeta[off],")")),
+     cex.lab=1.25,cex.axis=1.5);
+abline(h=0,lty="dotted",lwd=0.8);
+points(PI,Alleles_IBD_inbr,type="l",lwd=3,lty="dashed");
+abline(a=0,b=r00g,lty="solid", lwd=1); # Tangent line r = 0
+abline(a=0,b=r05g,lty="dashed",lwd=1); # Tangent line r = 0.5
+text(x=0.22,y=0.92,labels="A",cex=2.5);
+arrows(x0=r00m,x1=r00m,y0=0.1,y1=0.003,length = 0.08,angle=30,code=2,lwd=1.25);
+arrows(x0=r05m,x1=r05m,y0=0.1,y1=0.003,length = 0.08,angle=30,code=2,lwd=1.25);
+text(x=r00m,y=0.145,labels=expression(paste(italic(m),"*"[r==0])),cex=1.20);
+text(x=r05m,y=0.145,labels=expression(paste(italic(m),"*"[r==1/2])),cex=1.20);
+#----------------------------------------------------------------
+plot(x=bss,y=rg000$gam,type="l",lwd=2,ylim=c(0.09,0.22),pch=1.5,yaxt="n",
+     xlab=expression(paste("Inbreeding depression (",beta,")")),
+     ylab=expression(paste("Inclusive fitness (",gamma,")")),
+     cex.lab=1.25,cex.axis=1.5);
+axis(side=2,at=c(0.10,0.15,0.20),cex.axis=1.5);
+points(x=bss,y=rg125$gam,type="l",lwd=2);
+points(x=bss,y=rg250$gam,type="l",lwd=2);
+points(x=bss,y=rg500$gam,type="l",lwd=2);
+text(x=bss[18],y=rg000$gam[18]+0.0038,labels="r=0",srt=-0,cex=1);
+text(x=bss[18],y=rg125$gam[18]+0.0038,labels="r=1/8",srt=-7,cex=1);
+text(x=bss[18],y=rg250$gam[18]+0.0038,labels="r=1/4",srt=-9,cex=1);
+text(x=bss[18],y=rg500$gam[18]+0.0038,labels="r=1/2",srt=-12,cex=1);
+text(x=4.90,y=0.213,labels="C",cex=2.5);
+# --------------------------------------------------------------------
+plot(x=bss,y=rg000$mvl,type="l",lwd=2,ylim=c(2,6),pch=1.5,
+     xlab=expression(paste("Inbreeding depression (",beta,")")),
+     ylab=expression(paste("Optimal PI (",italic(m),"*)")),
+     cex.lab=1.25,cex.axis=1.5);
+points(x=bss,y=rg125$mvl,type="l",lwd=2);
+points(x=bss,y=rg250$mvl,type="l",lwd=2);
+points(x=bss,y=rg500$mvl,type="l",lwd=2);
+text(x=bss[17],y=rg000$mvl[17]+0.17,labels="r=0",srt=-0,cex=1.25);
+text(x=bss[17],y=rg125$mvl[17]+0.2,labels="r=1/8",srt=6,cex=1.25);
+text(x=bss[17],y=rg250$mvl[17]+0.2,labels="r=1/4",srt=12.5,cex=1.25);
+text(x=bss[17],y=rg500$mvl[17]+0.2,labels="r=1/2",srt=18,cex=1.25);
+text(x=0.55,y=5.80,labels="B",cex=2.5);
+#----------------------------------------------------------------
+plot(x=bss,y=rg000nk$gam,type="l",lwd=2,ylim=c(0.09,0.22),pch=1.5,yaxt="n",
+     xlab=expression(paste("Inbreeding depression (",beta,")")),
+     ylab=expression(paste("Inclusive fitness (",gamma,")")),
+     cex.lab=1.25,cex.axis=1.5);
+axis(side=2,at=c(0.10,0.15,0.20),cex.axis=1.5);
+points(x=bss,y=rg125nk$gam,type="l",lwd=2);
+points(x=bss,y=rg250nk$gam,type="l",lwd=2);
+points(x=bss,y=rg500nk$gam,type="l",lwd=2);
+text(x=bss[12],y=rg000nk$gam[12]+0.004,labels="r=0",srt=-0,cex=1);
+text(x=bss[10],y=rg125nk$gam[10]+0.005,labels="r=1/8",srt=-16,cex=1);
+text(x=bss[7],y=rg250nk$gam[7]+0.005,labels="r=1/4",srt=-40,cex=1);
+text(x=bss[4]+0.075,y=rg500nk$gam[4]+0.002,labels="r=1/2",srt=-65,cex=1);
+text(x=4.90,y=0.213,labels="D",cex=2.5);
+dev.off();
+# ============================================================================
 
 
 
