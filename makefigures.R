@@ -441,28 +441,27 @@ plot(PI,Alleles_IBD_f000,type="l",lwd=1,ylim=c(0,0.95),lty="solid",
      xlab=expression(paste("Parental investment (",italic(m),")")),
      ylab=expression(paste("IBD alleles in offspring (",zeta[off],")")),
      cex.lab=1.75,cex.axis=1.5,yaxs="i",xaxs="i");
-abline(h=0,lty="dotted",lwd=0.8);
 Alleles_IBD_f025 <- OffATf(k=0.25, f=0.25, m=PI, B0=1, B1=1, c=1);
-abline(b=itang.f000,a=0,lty="solid",lwd=0.5,col="grey40");
-abline(b=itang.f025,a=0,lty="dotdash",lwd=0.5,col="grey40");
+abline(b=itang.f000,a=0,lty="solid",lwd=1.5,col="grey40");
+abline(b=itang.f025,a=0,lty="dotdash",lwd=1.5,col="grey40");
 polygon(x=c(PI,rev(PI)),y=c(Alleles_IBD_f000,rev(Alleles_IBD_f025)),col="grey70",border=NA);
-points(PI,Alleles_IBD_f025,type="l",lwd=1,col="black",lty="dotdash");
-points(PI,Alleles_IBD_f000,type="l",lwd=1,col="black",lty="solid");
+points(PI,Alleles_IBD_f025,type="l",lwd=1.5,col="black",lty="dotdash");
+points(PI,Alleles_IBD_f000,type="l",lwd=1.5,col="black",lty="solid");
 yof000 <- OffATf(k=0.25, f=0.0,  m=imopt.f000, B0=1, B1=1, c=1);
 yof025 <- OffATf(k=0.25, f=0.25, m=imopt.f025, B0=1, B1=1, c=1);
 xline  <- seq(from=1,to=imopt.f000,by=0.001);
-points(x=xline,y=rep(yof000,length(xline)),type="l",lwd=1);
-points(x=xline,y=rep(yof025,length(xline)),type="l",lwd=1);
+points(x=xline,y=rep(yof000,length(xline)),type="l",lwd=1.0);
+points(x=xline,y=rep(yof025,length(xline)),type="l",lwd=1.5);
 yline  <- seq(from=0,to=yof000,by=0.001);
-points(x=rep(imopt.f025,length(yline)),y=yline,type="l",lwd=1);
+points(x=rep(imopt.f025,length(yline)),y=yline,type="l",lwd=1.0);
 text(x=3.5,y=0.255,labels=expression(paste(italic(m^{"*"}))),cex=1.75);
 arrows(x0=3.345,y0=0.205,x1=imopt.f025+0.04,y1=0.01,length = 0.15,angle=30,code=2,lwd=2);
 text(x=0.82,y=0.85,labels=expression(paste(italic(f==frac(1,4)))),cex=1.25);
 arrows(x0=0.8,y0=0.80,x1=1.1,y1=yof025+0.01,length = 0.15,angle=30,code=2,lwd=2);
 text(x=0.82,y=0.32,labels=expression(paste(italic(f==0))),cex=1.25);
 arrows(x0=0.87,y0=0.36,x1=1.1,y1=yof000-0.01,length = 0.15,angle=30,code=2,lwd=2);
-abline(b=itang.f000,a=0,lty="solid",lwd=0.75,col="grey40");
-abline(b=itang.f025,a=0,lty="dotdash",lwd=0.75,col="grey40");
+abline(b=itang.f000,a=0,lty="solid",lwd=1.2,col="grey40");
+#abline(b=itang.f025,a=0,lty="dotdash",lwd=1.2,col="grey40");
 dev.off();
 
 
